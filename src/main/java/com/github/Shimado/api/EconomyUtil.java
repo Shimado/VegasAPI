@@ -29,6 +29,16 @@ public interface EconomyUtil {
     UUID getTownAccountUUID();
 
     /**
+     * Sets the balance of a specific player.
+     *
+     * @param playerUUID the unique identifier of the player
+     * @param money      the amount of money to set
+     * @return the balance as a double
+     */
+
+    double setBalance(@Nullable UUID playerUUID, double money);
+
+    /**
      * Gets the balance of a specific player.
      *
      * @param playerUUID the unique identifier of the player
