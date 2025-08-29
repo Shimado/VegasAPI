@@ -36,7 +36,7 @@ public interface EconomyUtil {
      * @return the balance as a double
      */
 
-    double setBalance(@Nullable UUID playerUUID, double money);
+    void setBalance(@Nullable UUID playerUUID, double money);
 
     /**
      * Gets the balance of a specific player.
