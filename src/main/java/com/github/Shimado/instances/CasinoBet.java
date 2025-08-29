@@ -22,6 +22,12 @@ public class CasinoBet {
 
     /**
      * Creates a money bet.
+     */
+
+    public CasinoBet(){}
+
+    /**
+     * Creates a money bet.
      *
      * @param moneyBet the amount of money bet
      */
