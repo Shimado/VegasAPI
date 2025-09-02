@@ -27,6 +27,7 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
     @Nullable
     T getGameByName(@Nullable String gameName);
 
+
     /**
      * Gets a game mode by the slot assigned to it in the main GUI.
      *
@@ -36,6 +37,7 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
 
     @Nullable
     T getGameBySlotInMainGUI(int slot);
+
 
     /**
      * Gets a game mode by the slot assigned to it in its own game GUI.
@@ -47,6 +49,7 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
     @Nullable
     T getGameBySlotInOneGameGUI(int slot);
 
+
     /**
      * Gets all registered game modes.
      *
@@ -56,6 +59,7 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
     @Nonnull
     Map<String, T> getGames();
 
+
     /**
      * Registers a new casino game mode in the registry.
      *
@@ -64,6 +68,7 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
 
     void register(@Nullable T casinoGameMode);
 
+
     /**
      * Unregisters a casino game mode by its name.
      *
@@ -71,4 +76,16 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
      */
 
     void unregister(@Nullable String gameName);
+
+
+    /**
+     * Optional.
+     * Helps to get the base mode from the NON-FLAT map to the game mode.
+     *
+     * @param mapConfig the data from the config
+     * @param mapMessages the data from the messages config
+     * @param clazz game mode class
+     */
+
+    T getGameModeFromMaps(Map<String, Object> mapConfig, Map<String, Object> mapMessages, Class<T> clazz);
 }
