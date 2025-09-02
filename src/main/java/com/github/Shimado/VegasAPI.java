@@ -7,6 +7,7 @@ public class VegasAPI {
     private static CasinoGameModeRegister casinoGameModeRegister;
     private static DataStorage dataStorage;
     private static EconomyUtil economyUtil;
+    private static ChipUtil chipUtil;
     private static VictoryUtil victoryUtil;
     private static CasinoGameModeUtil casinoGameModeUtil;
 
@@ -35,6 +36,15 @@ public class VegasAPI {
 
     public static EconomyUtil getEconomyUtil(){
         return economyUtil;
+    }
+
+
+    public static void setChipUtil(ChipUtil e){
+        chipUtil = e;
+    }
+
+    public static ChipUtil getChipUtil(){
+        return chipUtil;
     }
 
 
