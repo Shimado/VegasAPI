@@ -10,59 +10,69 @@ public class VegasAPI {
     private static ChipUtil chipUtil;
     private static VictoryUtil victoryUtil;
     private static CasinoGameModeUtil casinoGameModeUtil;
+    private static InvSession invSession;
 
-
-    public static void setCasinoGameModeRegister(CasinoGameModeRegister c){
-        casinoGameModeRegister = c;
-    }
 
     public static CasinoGameModeRegister getCasinoGameModeRegister(){
         return casinoGameModeRegister;
     }
 
-
-    public static void setDataStorage(DataStorage d){
-        dataStorage = d;
+    public static void setCasinoGameModeRegister(CasinoGameModeRegister c){
+        casinoGameModeRegister = c;
     }
+
 
     public static DataStorage getDataStorage(){
         return dataStorage;
     }
 
-
-    public static void setEconomyUtil(EconomyUtil e){
-        economyUtil = e;
+    public static void setDataStorage(DataStorage d){
+        dataStorage = d;
     }
+
 
     public static EconomyUtil getEconomyUtil(){
         return economyUtil;
     }
 
-
-    public static void setChipUtil(ChipUtil e){
-        chipUtil = e;
+    public static void setEconomyUtil(EconomyUtil e){
+        economyUtil = e;
     }
+
 
     public static ChipUtil getChipUtil(){
         return chipUtil;
     }
 
-
-    public static void setVictoryUtil(VictoryUtil v){
-        victoryUtil = v;
+    public static void setChipUtil(ChipUtil e){
+        chipUtil = e;
     }
+
 
     public static VictoryUtil getVictoryUtil(){
         return victoryUtil;
     }
 
+    public static void setVictoryUtil(VictoryUtil v){
+        victoryUtil = v;
+    }
+
+
+    public static CasinoGameModeUtil getCasinoGameModeUtil(){
+        return casinoGameModeUtil;
+    }
 
     public static void setCasinoGameModeUtil(CasinoGameModeUtil c){
         casinoGameModeUtil = c;
     }
 
-    public static CasinoGameModeUtil getCasinoGameModeUtil(){
-        return casinoGameModeUtil;
+
+    public static InvSession getInvSession(){
+        return invSession;
+    }
+
+    public static void setInvSession(InvSession i){
+        invSession = i;
     }
 
 }
