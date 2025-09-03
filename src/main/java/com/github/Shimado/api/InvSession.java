@@ -1,22 +1,22 @@
 package com.github.Shimado.api;
 
 import com.github.Shimado.interfaces.IPlacedCasinoTable;
-import com.github.Shimado.interfaces.InvSessionInstance;
+import com.github.Shimado.interfaces.ISession;
 import org.bukkit.entity.Player;
 
 import java.util.Map;
 
-public interface InvSession<T extends InvSessionInstance> {
+public interface InvSession {
 
-    Map<Player, T> getSessions();
+    Map<Player, ISession> getSessions();
 
-    T getSession(Player player);
+    ISession getSession(Player player);
 
     void removeSession(Player player);
 
-    T getOrCreateNewSession(Player player);
+    ISession getOrCreateNewSession(Player player);
 
-    T getSessionOrCloseInventory(Player player);
+    ISession getSessionOrCloseInventory(Player player);
 
     void removeTableFromSession(IPlacedCasinoTable casinoTable);
 

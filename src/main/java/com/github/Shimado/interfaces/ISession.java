@@ -9,7 +9,7 @@ import org.bukkit.inventory.Inventory;
 
 import javax.annotation.Nullable;
 
-public interface InvSessionInstance<T extends CasinoGameMode & CasinoGameModeMethods & Listener>{
+public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods & Listener>{
 
     @Nullable
     Inventory getInv();
