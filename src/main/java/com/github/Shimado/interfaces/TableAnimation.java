@@ -7,20 +7,20 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public interface ITableAnimation {
+public interface TableAnimation {
 
     @Nullable
     TableAnimationType getTableAnimationType();
-    void setTableAnimationType(TableAnimationType tableAnimationType);
+    TableAnimation setTableAnimationType(TableAnimationType tableAnimationType);
 
     @Nonnull
     List<ItemStack> getItemsToDrop();
-    void setItemsToDrop(List<ItemStack> itemsToDrop);
+    TableAnimation setItemsToDrop(List<ItemStack> itemsToDrop);
 
     double getDropSpawnChance();
-    void setDropSpawnChance(double dropSpawnChance);
+    TableAnimation setDropSpawnChance(double dropSpawnChance);
 
     int getItemsAmount();
-    void setItemsAmount(int itemsAmount);
+    TableAnimation setItemsAmount(int itemsAmount);
 
 }

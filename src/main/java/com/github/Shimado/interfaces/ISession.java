@@ -31,8 +31,8 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods & Lis
     void setOpenedGame(T openedGame);
 
     @Nullable
-    IPlacedCasinoTable getCasinoTable();
-    void setCasinoTable(IPlacedCasinoTable casinoTable);
+    PlacedCasinoTable getCasinoTable();
+    void setCasinoTable(PlacedCasinoTable casinoTable);
 
     int getMusicPage();
     void setMusicPage(int musicPage);

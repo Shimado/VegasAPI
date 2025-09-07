@@ -1,6 +1,6 @@
 package com.github.Shimado.api;
 
-import com.github.Shimado.interfaces.IPlacedCasinoTable;
+import com.github.Shimado.interfaces.PlacedCasinoTable;
 import com.github.Shimado.interfaces.ISession;
 import org.bukkit.entity.Player;
 
@@ -18,7 +18,7 @@ public interface InvSession {
 
     ISession getSessionOrCloseInventory(Player player);
 
-    void removeTableFromSession(IPlacedCasinoTable casinoTable);
+    void removeTableFromSession(PlacedCasinoTable casinoTable);
 
     void returnToPreviousPage(Player player);
 

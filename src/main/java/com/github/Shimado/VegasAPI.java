@@ -4,6 +4,7 @@ import com.github.Shimado.api.*;
 
 public class VegasAPI {
 
+    private static SchedulerAdapter schedulerAdapter;
     private static CasinoGameModeRegister casinoGameModeRegister;
     private static DataStorage dataStorage;
     private static EconomyUtil economyUtil;
@@ -11,6 +12,15 @@ public class VegasAPI {
     private static VictoryUtil victoryUtil;
     private static CasinoGameModeUtil casinoGameModeUtil;
     private static InvSession invSession;
+
+
+    public static SchedulerAdapter getSchedulerAdapter(){
+        return schedulerAdapter;
+    }
+
+    public static void setSchedulerAdapter(SchedulerAdapter s){
+        schedulerAdapter = s;
+    }
 
 
     public static CasinoGameModeRegister getCasinoGameModeRegister(){
