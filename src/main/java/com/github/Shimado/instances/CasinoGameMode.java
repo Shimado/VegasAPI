@@ -28,7 +28,7 @@ public class CasinoGameMode {
     private boolean useOnlyJackpotCommands = false;                          // Будут ли выполняться только команды
     private List<String> jackpotCommandsToDispatch = new ArrayList<>();      // Команды, которые выполняются при джекпоте игрока [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpJackpotURL;                                           // Ссылка, которая будет обрабатываться
-    private String httpJackpotMethod;                                        // Метод запроса
+    private String httpJackpotMethod = "POST";                               // Метод запроса
     private Map<String, Object> httpJackpotHeaders = new HashMap<>();        // Заголовки запроса
     private BackgroundSong jackpotMusic;                                     // Музыка в формате .nbs с Boombox плагина
 
@@ -39,7 +39,7 @@ public class CasinoGameMode {
     private boolean useOnlyVictoryCommands = false;                          // Будут ли выполняться только команды
     private List<String> victoryCommandsToDispatch = new ArrayList<>();      // Команды, которые выполняются при победе игрока [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpVictoryURL;                                           // Ссылка, которая будет обрабатываться
-    private String httpVictoryMethod;                                        // Метод запроса
+    private String httpVictoryMethod = "POST";                               // Метод запроса
     private Map<String, Object> httpVictoryHeaders = new HashMap<>();        // Заголовки запроса
     private BackgroundSong victoryMusic;                                     // Музыка в формате .nbs с Boombox плагина
 
@@ -98,7 +98,7 @@ public class CasinoGameMode {
         return this.modeName;
     }
 
-    public CasinoGameMode setModeName(String modeName){
+    public CasinoGameMode setModeName(@Nonnull String modeName){
         this.modeName = modeName;
         return this;
     }
@@ -109,7 +109,7 @@ public class CasinoGameMode {
         return this.guiTitle;
     }
 
-    public CasinoGameMode setGuiTitle(String guiTitle){
+    public CasinoGameMode setGuiTitle(@Nonnull String guiTitle){
         this.guiTitle = guiTitle;
         return this;
     }
@@ -130,7 +130,7 @@ public class CasinoGameMode {
         return this.permission;
     }
 
-    public CasinoGameMode setPermission(String permission){
+    public CasinoGameMode setPermission(@Nonnull String permission){
         this.permission = permission;
         return this;
     }
