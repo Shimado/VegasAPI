@@ -4,14 +4,99 @@ import com.github.Shimado.interfaces.CycleTask;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+/**
+ * Abstraction for scheduling synchronous and asynchronous tasks
+ * for Folia and regular kernels: Paper, Spigot, Purpur.
+ * Provides methods for delayed execution, repeating execution,
+ * and context-aware scheduling bound to locations or players.
+ */
+
 public interface SchedulerAdapter {
 
-    CycleTask scheduleSyncDelayedTask(Runnable task, int delay);
-    CycleTask scheduleSyncDelayedTask(Location loc, Runnable task, int delay);
-    CycleTask scheduleSyncDelayedTask(Player player, Runnable task, int delay);
-    CycleTask scheduleSyncRepeatingTask(Runnable task, int delayBeforeStart, int delay);
-    CycleTask scheduleSyncRepeatingTask(Location loc, Runnable task, int delayBeforeStart, int delay);
-    CycleTask scheduleSyncRepeatingTask(Player player, Runnable task, int delayBeforeStart, int delay);
-    void runTaskAsynchronously(Runnable task);
+    /**
+     * Schedules a synchronous task to be executed after a delay.
+     *
+     * @param task  the task to execute
+     * @param delay the delay in ticks before execution
+     * @return a handle to the scheduled task
+     */
 
+    @Nonnull
+    CycleTask scheduleSyncDelayedTask(@Nonnull Runnable task, int delay);
+
+    /**
+     * Schedules a synchronous task to be executed after a delay,
+     * associated with a specific location.
+     *
+     * @param loc   the location context for the task
+     * @param task  the task to execute
+     * @param delay the delay in ticks before execution
+     * @return a handle to the scheduled task
+     */
+
+    @Nonnull
+    CycleTask scheduleSyncDelayedTask(@Nullable Location loc, @Nonnull Runnable task, int delay);
+
+    /**
+     * Schedules a synchronous task to be executed after a delay,
+     * associated with a specific player.
+     *
+     * @param player the player context for the task
+     * @param task   the task to execute
+     * @param delay  the delay in ticks before execution
+     * @return a handle to the scheduled task
+     */
+
+    @Nonnull
+    CycleTask scheduleSyncDelayedTask(@Nullable Player player, @Nonnull Runnable task, int delay);
+
+    /**
+     * Schedules a synchronous repeating task.
+     *
+     * @param task            the task to execute
+     * @param delayBeforeStart the delay in ticks before the first execution
+     * @param delay           the delay in ticks between repetitions
+     * @return a handle to the scheduled task
+     */
+
+    @Nonnull
+    CycleTask scheduleSyncRepeatingTask(@Nonnull Runnable task, int delayBeforeStart, int delay);
+
+    /**
+     * Schedules a synchronous repeating task associated with a specific location.
+     *
+     * @param loc             the location context for the task
+     * @param task            the task to execute
+     * @param delayBeforeStart the delay in ticks before the first execution
+     * @param delay           the delay in ticks between repetitions
+     * @return a handle to the scheduled task
+     */
+
+    @Nonnull
+    CycleTask scheduleSyncRepeatingTask(@Nullable Location loc, @Nonnull Runnable task, int delayBeforeStart, int delay);
+
+    /**
+     * Schedules a synchronous repeating task associated with a specific player.
+     *
+     * @param player          the player context for the task
+     * @param task            the task to execute
+     * @param delayBeforeStart the delay in ticks before the first execution
+     * @param delay           the delay in ticks between repetitions
+     * @return a handle to the scheduled task
+     */
+
+    @Nonnull
+    CycleTask scheduleSyncRepeatingTask(@Nullable Player player, @Nonnull Runnable task, int delayBeforeStart, int delay);
+
+    /**
+     * Runs a task asynchronously in a separate thread.
+     *
+     * @param task the task to execute asynchronously
+     */
+
+    void runTaskAsynchronously(@Nonnull Runnable task);
 }
+

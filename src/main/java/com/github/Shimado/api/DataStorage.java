@@ -1,6 +1,9 @@
 package com.github.Shimado.api;
 
 import com.github.Shimado.instances.*;
+import com.github.Shimado.interfaces.Jackpot;
+import com.github.Shimado.interfaces.PlayerSettings;
+import com.github.Shimado.interfaces.ShopItem;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;

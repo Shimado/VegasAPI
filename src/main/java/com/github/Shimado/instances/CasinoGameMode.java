@@ -1,5 +1,6 @@
 package com.github.Shimado.instances;
 
+import com.github.Shimado.interfaces.IBoomboxSong;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -30,7 +31,7 @@ public class CasinoGameMode {
     private String httpJackpotURL;                                           // Ссылка, которая будет обрабатываться
     private String httpJackpotMethod = "POST";                               // Метод запроса
     private Map<String, Object> httpJackpotHeaders = new HashMap<>();        // Заголовки запроса
-    private BackgroundSong jackpotMusic;                                     // Музыка в формате .nbs с Boombox плагина
+    private IBoomboxSong jackpotMusic;                                       // Музыка в формате .nbs с Boombox плагина
 
     private boolean spawnVictoryFireWorks = false;                           // Спавнит ли салют при победе
     private boolean sendVictoryMessage = false;                              // Отправляет сообщение о победе игроку, кто выйграл
@@ -41,14 +42,14 @@ public class CasinoGameMode {
     private String httpVictoryURL;                                           // Ссылка, которая будет обрабатываться
     private String httpVictoryMethod = "POST";                               // Метод запроса
     private Map<String, Object> httpVictoryHeaders = new HashMap<>();        // Заголовки запроса
-    private BackgroundSong victoryMusic;                                     // Музыка в формате .nbs с Boombox плагина
+    private IBoomboxSong victoryMusic;                                       // Музыка в формате .nbs с Boombox плагина
 
     private boolean useOnlyBonusCommands = false;                            // Будут ли выполняться только команды
     private List<String> bonusCommandsToDispatch = new ArrayList<>();        // Команды, которые выполняются при победе игрока [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpBonusURL;                                             // Ссылка, которая будет обрабатываться
     private String httpBonusMethod;                                          // Метод запроса
     private Map<String, Object> httpBonusHeaders = new HashMap<>();          // Заголовки запроса
-    private BackgroundSong bonusMusic;                                       // Музыка в формате .nbs с Boombox плагина
+    private IBoomboxSong bonusMusic;                                         // Музыка в формате .nbs с Boombox плагина
 
     private boolean sendDefeatMessage = false;                               // Отправляет сообщение о проигрыше игроку, кто выйграл
     private boolean sendDefeatMessageToAll = false;                          // Отправляет сообщение о проигрыше игрока всем игрокам
@@ -57,7 +58,7 @@ public class CasinoGameMode {
     private String httpDefeatURL;                                            // Ссылка, которая будет обрабатываться
     private String httpDefeatMethod;                                         // Метод запроса
     private Map<String, Object> httpDefeatHeaders = new HashMap<>();         // Заголовки запроса
-    private BackgroundSong defeatMusic;                                      // Музыка в формате .nbs с Boombox плагина
+    private IBoomboxSong defeatMusic;                                        // Музыка в формате .nbs с Boombox плагина
 
     private double minBetPrice = 0.0;                                        // Минимальная ставка в денежном эквиваленте
     private int minBetPriceInItems = 1;                                      // Минимальная количество предметов, которые может поставить игрок
@@ -81,7 +82,7 @@ public class CasinoGameMode {
     private ItemStack leverItemActive;                                       // Активный рычаг, когда игрок сделал ставку
     private ItemStack leverItemRolling;                                      // Прокручивается рычаг, когда игрок сделал ставку и начал игру
 
-    private BackgroundSong backgroundMusic;                                  // Музыка в формате .nbs с Boombox плагина
+    private IBoomboxSong backgroundMusic;                                    // Музыка в формате .nbs с Boombox плагина
     private List<Integer> musicButtonSlots = new ArrayList<>();              // Какой слот занимает кнопка
     private ItemStack musicButtonInactive;                                   // Кнопка фоновой музыка (неактивная)
     private ItemStack musicButtonActive;                                     // Кнопка фоновой музыка (активная)
@@ -284,11 +285,11 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public BackgroundSong getJackpotMusic() {
+    public IBoomboxSong getJackpotMusic() {
         return jackpotMusic;
     }
 
-    public CasinoGameMode setJackpotMusic(BackgroundSong jackpotMusic) {
+    public CasinoGameMode setJackpotMusic(IBoomboxSong jackpotMusic) {
         this.jackpotMusic = jackpotMusic;
         return this;
     }
@@ -389,11 +390,11 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public BackgroundSong getVictoryMusic() {
+    public IBoomboxSong getVictoryMusic() {
         return victoryMusic;
     }
 
-    public CasinoGameMode setVictoryMusic(BackgroundSong victoryMusic) {
+    public CasinoGameMode setVictoryMusic(IBoomboxSong victoryMusic) {
         this.victoryMusic = victoryMusic;
         return this;
     }
@@ -454,11 +455,11 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public BackgroundSong getBonusMusic() {
+    public IBoomboxSong getBonusMusic() {
         return bonusMusic;
     }
 
-    public CasinoGameMode setBonusMusic(BackgroundSong bonusMusic) {
+    public CasinoGameMode setBonusMusic(IBoomboxSong bonusMusic) {
         this.bonusMusic = bonusMusic;
         return this;
     }
@@ -539,11 +540,11 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public BackgroundSong getDefeatMusic() {
+    public IBoomboxSong getDefeatMusic() {
         return defeatMusic;
     }
 
-    public CasinoGameMode setDefeatMusic(BackgroundSong defeatMusic) {
+    public CasinoGameMode setDefeatMusic(IBoomboxSong defeatMusic) {
         this.defeatMusic = defeatMusic;
         return this;
     }
@@ -740,11 +741,11 @@ public class CasinoGameMode {
 
 
     @Nonnull
-    public BackgroundSong getBackgroundMusic() {
+    public IBoomboxSong getBackgroundMusic() {
         return backgroundMusic;
     }
 
-    public CasinoGameMode setBackgroundMusic(BackgroundSong backgroundMusic) {
+    public CasinoGameMode setBackgroundMusic(IBoomboxSong backgroundMusic) {
         this.backgroundMusic = backgroundMusic;
         return this;
     }

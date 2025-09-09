@@ -23,7 +23,6 @@ public interface CasinoGameModeMethods {
 
     void openGame(@Nonnull Player player, @Nonnull Inventory inv);
 
-
     /**
      * Handles logic when the game GUI is closed.
      * Here you can specify the return of the bet if the session has not started.
@@ -34,7 +33,6 @@ public interface CasinoGameModeMethods {
 
     void closeGUI(@Nonnull InventoryCloseEvent e);
 
-
     /**
      * Handles logic when the player interacts with the game GUI (clicking items, etc.).
      *
@@ -42,7 +40,6 @@ public interface CasinoGameModeMethods {
      */
 
     void clickGUI(@Nonnull InventoryClickEvent e);
-
 
     /**
      * Reloads the game mode, refreshing configuration or resetting state if needed.

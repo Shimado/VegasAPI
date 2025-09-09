@@ -39,7 +39,7 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param bet    the bet to refund
      */
 
-    void refundBet(Player player, @Nullable CasinoBet bet);
+    void refundBet(@Nonnull Player player, @Nullable CasinoBet bet);
 
     /**
      * Checks whether a business-owned table has enough funds.
@@ -50,5 +50,5 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      *         {@code false} otherwise
      */
 
-    boolean checkIfBusinessTableHasMoney(Player player, @Nullable UUID tableOwnerUUID);
+    boolean checkIfBusinessTableHasMoney(@Nonnull Player player, @Nullable UUID tableOwnerUUID);
 }
