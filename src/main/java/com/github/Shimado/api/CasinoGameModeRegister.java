@@ -83,5 +83,5 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
      */
 
     @Nullable
-    T getGameModeFromMaps(@Nonnull Map<String, Object> mapConfig, @Nonnull Map<String, Object> mapMessages, @Nonnull Class<T> clazz, @Nonnull Class<T> pluginClazz);
+    T getGameModeFromMaps(@Nonnull Map<String, Object> mapConfig, @Nonnull Map<String, Object> mapMessages, @Nonnull Class<T> clazz, @Nonnull Class pluginClazz);
 }
