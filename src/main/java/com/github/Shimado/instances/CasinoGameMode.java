@@ -86,6 +86,7 @@ public class CasinoGameMode {
     private List<Integer> musicButtonSlots = new ArrayList<>();              // Какой слот занимает кнопка
     private ItemStack musicButtonInactive;                                   // Кнопка фоновой музыка (неактивная)
     private ItemStack musicButtonActive;                                     // Кнопка фоновой музыка (активная)
+    private String musicButtonActiveTitle;                                   // Заголовок активной фоновой кнопки
     private Map<Integer, ItemStack> emptySlots = new HashMap<>();            // Фоновые ячейки
 
 
@@ -780,6 +781,17 @@ public class CasinoGameMode {
 
     public CasinoGameMode setMusicButtonActive(ItemStack musicButtonActive) {
         this.musicButtonActive = musicButtonActive;
+        return this;
+    }
+
+
+    @Nullable
+    public String getMusicButtonActiveTitle() {
+        return musicButtonActiveTitle;
+    }
+
+    public CasinoGameMode setMusicButtonActiveTitle(String musicButtonActiveTitle) {
+        this.musicButtonActiveTitle = musicButtonActiveTitle;
         return this;
     }
 
