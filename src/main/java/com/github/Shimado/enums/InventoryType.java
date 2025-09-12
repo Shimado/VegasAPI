@@ -4,8 +4,12 @@ public enum InventoryType {
 
     MAIN,
     SHOP,
+    SHOP_COMMANDS,
     STATISTICS,
+    STATISTICS_COMMANDS,
     MUSIC,
-    GAME_MODE
+    MUSIC_COMMANDS,
+    GAME_MODE,
+    GAME_MODE_COMMANDS
 
 }

@@ -17,10 +17,10 @@ public interface PlayerSettings {
     /**
      * Gets the player's UUID.
      *
-     * @return UUID of the player, or {@code null} if not set
+     * @return UUID of the player
      */
 
-    @Nullable
+    @Nonnull
     UUID getPlayerUUID();
 
     /**
@@ -42,7 +42,6 @@ public interface PlayerSettings {
 
      PlayerSettings setDefaultMoneyBet(double defaultMoneyBet);
 
-
     /**
      * Gets the background song settings for the main GUI.
      *
@@ -60,8 +59,7 @@ public interface PlayerSettings {
      * @return this PlayerSettings instance for chaining
      */
 
-    PlayerSettings setMainGUISong(boolean musicActive, String musicID);
-
+    PlayerSettings setMainGUISong(boolean musicActive, @Nonnull String musicID);
 
     /**
      * Gets background song settings for all game GUIs.
@@ -80,7 +78,7 @@ public interface PlayerSettings {
      */
 
     @Nullable
-    BackgroundSongSettings getGameGUISong(String gameName);
+    BackgroundSongSettings getGameGUISong(@Nonnull String gameName);
 
     /**
      * Sets the background song for a specific game GUI.
@@ -91,6 +89,6 @@ public interface PlayerSettings {
      * @return this PlayerSettings instance for chaining
      */
 
-    PlayerSettings setGameGUISong(String gameName, boolean musicActive, String musicID);
+    PlayerSettings setGameGUISong(@Nonnull String gameName, boolean musicActive, @Nonnull String musicID);
 
 }

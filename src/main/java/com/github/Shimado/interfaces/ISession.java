@@ -22,10 +22,10 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
     /**
      * Gets the current inventory associated with this session.
      *
-     * @return the inventory, or {@code null} if none is open
+     * @return the inventory
      */
 
-    @Nullable
+    @Nonnull
     Inventory getInv();
 
     /**
@@ -39,10 +39,10 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
     /**
      * Gets the type of the current GUI.
      *
-     * @return the GUI type, or {@code null} if not set
+     * @return the GUI type
      */
 
-    @Nullable
+    @Nonnull
     InventoryType getInventoryType();
 
     /**
@@ -73,10 +73,10 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
      * Gets the name of the game mode associated with this session's table.
      * Can be "ALL"
      *
-     * @return the table game identifier, or {@code null} if not set
+     * @return the table game identifier
      */
 
-    @Nullable
+    @Nonnull
     String getTableGame();
 
     /**
@@ -86,7 +86,7 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
      * @param tableGame the game identifier
      */
 
-    void setTableGame(@Nullable String tableGame);
+    void setTableGame(@Nonnull String tableGame);
 
     /**
      * Gets the currently opened game instance in this session.

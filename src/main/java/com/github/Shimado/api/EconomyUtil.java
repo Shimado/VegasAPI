@@ -74,4 +74,5 @@ public interface EconomyUtil {
      */
 
     void removeBalance(@Nullable UUID playerUUID, double money);
+
 }

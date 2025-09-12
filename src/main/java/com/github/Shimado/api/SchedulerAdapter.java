@@ -24,7 +24,7 @@ public interface SchedulerAdapter {
      * @return a handle to the scheduled task
      */
 
-    @Nonnull
+    @Nullable
     CycleTask scheduleSyncDelayedTask(@Nonnull Runnable task, int delay);
 
     /**
@@ -34,10 +34,10 @@ public interface SchedulerAdapter {
      * @param loc   the location context for the task
      * @param task  the task to execute
      * @param delay the delay in ticks before execution
-     * @return a handle to the scheduled task
+     * @return a handle to the scheduled task or {@code null} if delay < 1
      */
 
-    @Nonnull
+    @Nullable
     CycleTask scheduleSyncDelayedTask(@Nullable Location loc, @Nonnull Runnable task, int delay);
 
     /**
@@ -47,10 +47,10 @@ public interface SchedulerAdapter {
      * @param player the player context for the task
      * @param task   the task to execute
      * @param delay  the delay in ticks before execution
-     * @return a handle to the scheduled task
+     * @return a handle to the scheduled task or {@code null} if delay < 1
      */
 
-    @Nonnull
+    @Nullable
     CycleTask scheduleSyncDelayedTask(@Nullable Player player, @Nonnull Runnable task, int delay);
 
     /**
@@ -59,10 +59,10 @@ public interface SchedulerAdapter {
      * @param task            the task to execute
      * @param delayBeforeStart the delay in ticks before the first execution
      * @param delay           the delay in ticks between repetitions
-     * @return a handle to the scheduled task
+     * @return a handle to the scheduled task or {@code null} if delayBeforeStart < 0 or delay < 1
      */
 
-    @Nonnull
+    @Nullable
     CycleTask scheduleSyncRepeatingTask(@Nonnull Runnable task, int delayBeforeStart, int delay);
 
     /**
@@ -72,10 +72,10 @@ public interface SchedulerAdapter {
      * @param task            the task to execute
      * @param delayBeforeStart the delay in ticks before the first execution
      * @param delay           the delay in ticks between repetitions
-     * @return a handle to the scheduled task
+     * @return a handle to the scheduled task or {@code null} if delayBeforeStart < 0 or delay < 1
      */
 
-    @Nonnull
+    @Nullable
     CycleTask scheduleSyncRepeatingTask(@Nullable Location loc, @Nonnull Runnable task, int delayBeforeStart, int delay);
 
     /**
@@ -85,10 +85,10 @@ public interface SchedulerAdapter {
      * @param task            the task to execute
      * @param delayBeforeStart the delay in ticks before the first execution
      * @param delay           the delay in ticks between repetitions
-     * @return a handle to the scheduled task
+     * @return a handle to the scheduled task or {@code null} if delayBeforeStart < 0 or delay < 1
      */
 
-    @Nonnull
+    @Nullable
     CycleTask scheduleSyncRepeatingTask(@Nullable Player player, @Nonnull Runnable task, int delayBeforeStart, int delay);
 
     /**

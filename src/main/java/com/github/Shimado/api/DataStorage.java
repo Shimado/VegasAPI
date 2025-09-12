@@ -37,7 +37,7 @@ public interface DataStorage {
      * @return the {@link Jackpot} or {@code null}
      */
 
-    @Nullable
+    @Nonnull
     Jackpot getJackpot();
 
     /**
@@ -117,4 +117,5 @@ public interface DataStorage {
 
     @Nullable
     CasinoGameModeStats getCasinoGameStats(@Nullable String gameName);
+
 }

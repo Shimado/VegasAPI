@@ -30,7 +30,7 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param itemsRunnable    action to run if the bet is made with items. Handles further actions after a bet has been placed.
      */
 
-    void placeBet(@Nonnull Player player, @Nullable CasinoBet bet, @Nullable ItemStack itemOnCursor, double defaultMoneyBet, @Nullable T casinoGameMode, @Nonnull Runnable chipsRunnable, @Nonnull Runnable moneyRunnable, @Nonnull Runnable itemsRunnable);
+    void placeBet(@Nonnull Player player, @Nonnull CasinoBet bet, @Nullable ItemStack itemOnCursor, double defaultMoneyBet, @Nonnull T casinoGameMode, @Nullable Runnable chipsRunnable, @Nullable Runnable moneyRunnable, @Nullable Runnable itemsRunnable);
 
     /**
      * Refunds a bet back to the player.
@@ -39,7 +39,7 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param bet    the bet to refund
      */
 
-    void refundBet(@Nonnull Player player, @Nullable CasinoBet bet);
+    void refundBet(@Nonnull Player player, @Nonnull CasinoBet bet);
 
     /**
      * Checks whether a business-owned table has enough funds.

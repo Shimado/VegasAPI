@@ -86,7 +86,7 @@ public interface PlacedCasinoTable {
      * @return this instance for chaining
      */
 
-    PlacedCasinoTable setGame(@Nonnull String game);
+    PlacedCasinoTable setGame(@Nullable String game);
 
     /**
      * Gets the location of this table in the world.

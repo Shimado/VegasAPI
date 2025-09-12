@@ -62,7 +62,7 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
      * @param casinoGameMode the game mode instance to register
      */
 
-    void register(@Nullable T casinoGameMode);
+    void register(@Nonnull T casinoGameMode);
 
     /**
      * Unregisters a casino game mode by its name.
@@ -70,7 +70,7 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
      * @param gameName the name of the game to remove
      */
 
-    void unregister(@Nullable String gameName);
+    void unregister(@Nonnull String gameName);
 
     /**
      * Optional.

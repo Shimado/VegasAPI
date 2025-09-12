@@ -18,10 +18,10 @@ public interface TableAnimation {
     /**
      * Gets the type of table animation.
      *
-     * @return the animation type, or {@code null} if not set
+     * @return the animation type
      */
 
-    @Nullable
+    @Nonnull
     TableAnimationType getTableAnimationType();
 
     /**
@@ -31,7 +31,7 @@ public interface TableAnimation {
      * @return this instance for chaining
      */
 
-    TableAnimation setTableAnimationType(@Nullable TableAnimationType tableAnimationType);
+    TableAnimation setTableAnimationType(@Nonnull TableAnimationType tableAnimationType);
 
     /**
      * Gets the list of items that can be dropped during the animation.
@@ -49,11 +49,11 @@ public interface TableAnimation {
      * @return this instance for chaining
      */
 
-    TableAnimation setItemsToDrop(@Nonnull List<ItemStack> itemsToDrop);
+    TableAnimation setItemsToDrop(@Nullable List<ItemStack> itemsToDrop);
 
     /**
      * Gets the chance that an item will spawn/drop during the animation.
-     * Value is typically between {@code 0.0} (never) and {@code 1.0} (always).
+     * Value is typically between {@code 0.0} (never) and {@code 100.0}
      *
      * @return the drop spawn chance
      */
@@ -62,7 +62,7 @@ public interface TableAnimation {
 
     /**
      * Sets the chance that an item will spawn/drop during the animation.
-     * Value should be between {@code 0.0} and {@code 1.0}.
+     * Value should be between {@code 0.0} and {@code 100.0}.
      *
      * @param dropSpawnChance the spawn chance
      * @return this instance for chaining
@@ -86,5 +86,6 @@ public interface TableAnimation {
      */
 
     TableAnimation setItemsAmount(int itemsAmount);
+
 }
 

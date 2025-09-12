@@ -19,10 +19,10 @@ public interface CasinoTableItem {
     /**
      * Gets the unique identifier of this table item.
      *
-     * @return the ID, or {@code null} if not set
+     * @return the ID of the table
      */
 
-    @Nullable
+    @Nonnull
     String getID();
 
     /**
@@ -37,10 +37,10 @@ public interface CasinoTableItem {
     /**
      * Gets the {@link ItemStack} representing the table item.
      *
-     * @return the table item, or {@code null} if not set
+     * @return the table item
      */
 
-    @Nullable
+    @Nonnull
     ItemStack getTableItem();
 
     /**
@@ -71,11 +71,12 @@ public interface CasinoTableItem {
 
     /**
      * Gets the game mode name associated with this table item.
+     * Or "ALL".
      *
-     * @return the game mode name, or {@code null} if none is set
+     * @return the game mode name
      */
 
-    @Nullable
+    @Nonnull
     String getGame();
 
     /**
@@ -177,7 +178,7 @@ public interface CasinoTableItem {
      * @return this instance for chaining
      */
 
-    CasinoTableItem setTableAnimation(@Nonnull TableAnimationType tableAnimationType, @Nonnull List<ItemStack> itemsToDrop, double spawnChance, int itemsAmount);
+    CasinoTableItem setTableAnimation(@Nullable TableAnimationType tableAnimationType, @Nullable List<ItemStack> itemsToDrop, double spawnChance, int itemsAmount);
 
     /**
      * Sets the animation configuration for the table using string-based values.
@@ -189,6 +190,7 @@ public interface CasinoTableItem {
      * @return this instance for chaining
      */
 
-    CasinoTableItem setTableAnimation(@Nonnull String tableAnimationTypeString, @Nonnull List<String> itemsToDropString, double spawnChance, int itemsAmount);
+    CasinoTableItem setTableAnimation(@Nullable String tableAnimationTypeString, @Nullable List<String> itemsToDropString, double spawnChance, int itemsAmount);
+
 }
 
