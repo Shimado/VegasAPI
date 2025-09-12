@@ -12,10 +12,10 @@ import java.util.Map;
  * Provides methods for registering, unregistering, and retrieving game modes
  * by name or by their assigned slot in different GUIs.
  *
- * @param <T> the type of casino game mode, which must implement {@link CasinoGameMode}, {@link CasinoGameModeMethods}, and {@link Listener}
+ * @param <T> the type of casino game mode, which must implement {@link CasinoGameMode}, {@link CasinoGameModeMethods}
  */
 
-public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameModeMethods & Listener> {
+public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameModeMethods> {
 
     /**
      * Gets a game mode by its registered name.

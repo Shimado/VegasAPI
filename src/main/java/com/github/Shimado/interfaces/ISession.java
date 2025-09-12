@@ -4,7 +4,6 @@ import com.github.Shimado.api.CasinoGameModeMethods;
 import com.github.Shimado.enums.InventoryType;
 import com.github.Shimado.instances.CasinoGameMode;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 
 import javax.annotation.Nonnull;
@@ -15,10 +14,10 @@ import javax.annotation.Nullable;
  * Stores information about the current state of the session such as
  * opened inventory, associated game, table, and pagination.
  *
- * @param <T> the game mode, which must implement {@link CasinoGameMode}, {@link CasinoGameModeMethods}, and {@link Listener}
+ * @param <T> the game mode, which must implement {@link CasinoGameMode}, {@link CasinoGameModeMethods}
  */
 
-public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods & Listener> {
+public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
 
     /**
      * Gets the current inventory associated with this session.

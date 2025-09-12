@@ -14,7 +14,7 @@ import java.util.UUID;
  * A set of optional methods to simplify the creation of a game mode.
  */
 
-public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMethods & Listener> {
+public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMethods> {
 
     /**
      * Places a bet for a player in a specific casino game mode.
