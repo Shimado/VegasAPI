@@ -37,6 +37,23 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
     void setInv(Inventory inv);
 
     /**
+     * Gets the opened Music inventory associated with this session.
+     *
+     * @return the inventory, or {@code null} if GUI is closed
+     */
+
+    @Nonnull
+    Inventory getMusicInv();
+
+    /**
+     * Sets the opened Music inventory associated with this session.
+     *
+     * @param musicInv the inventory to set
+     */
+
+    void setMusicInv(Inventory musicInv);
+
+    /**
      * Gets the type of the current GUI.
      *
      * @return the GUI type
