@@ -34,7 +34,7 @@ public interface DataStorage {
     /**
      * Gets the current jackpot instance.
      *
-     * @return the {@link Jackpot} or {@code null}
+     * @return the {@link Jackpot}
      */
 
     @Nonnull

@@ -23,9 +23,9 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param player           the player placing the bet
      * @param bet              the bet object containing bet details
      * @param casinoGameMode   the casino game mode where the bet is placed
-     * @param chipsRunnable    action to run if the bet is made with chips. Handles further actions after a bet has been placed.
-     * @param moneyRunnable    action to run if the bet is made with money. Handles further actions after a bet has been placed.
-     * @param itemsRunnable    action to run if the bet is made with items. Handles further actions after a bet has been placed.
+     * @param chipsRunnable    action to run if the bet is made with chips. Handles further actions after a bet has been placed
+     * @param moneyRunnable    action to run if the bet is made with money. Handles further actions after a bet has been placed
+     * @param itemsRunnable    action to run if the bet is made with items. Handles further actions after a bet has been placed
      */
 
     void placeBet(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull T casinoGameMode, @Nullable Runnable chipsRunnable, @Nullable Runnable moneyRunnable, @Nullable Runnable itemsRunnable);
@@ -33,19 +33,19 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
     /**
      * Refunds a bet back to the player.
      *
-     * @param player the player whose bet is refunded
-     * @param bet    the bet to refund
+     * @param player          the player whose bet is refunded
+     * @param bet             the bet to refund
+     * @param casinoGameMode  the casino game itself
      */
 
-    void refundBet(@Nonnull Player player, @Nonnull CasinoBet bet);
+    void refundBet(@Nonnull Player player, @Nullable CasinoBet bet, @Nonnull T casinoGameMode);
 
     /**
      * Checks whether a business-owned table has enough funds.
      *
      * @param player         the player attempting to use the table
      * @param tableOwnerUUID the UUID of the table's owner
-     * @return {@code true} if the business table has sufficient money,
-     *         {@code false} otherwise
+     * @return {@code true} if the business table has sufficient money, {@code false} otherwise
      */
 
     boolean checkIfBusinessTableHasMoney(@Nonnull Player player, @Nullable UUID tableOwnerUUID);

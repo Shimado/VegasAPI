@@ -14,7 +14,7 @@ public interface BackgroundSongSettings {
      * @return {@code true} if music is active, {@code false} otherwise
      */
 
-    public boolean isMusicActive();
+    boolean isMusicActive();
 
     /**
      * Sets whether the music is active. If so, music will play when the GUI is opened.
@@ -22,7 +22,7 @@ public interface BackgroundSongSettings {
      * @param musicActive true if active, false otherwise
      */
 
-    public void setMusicActive(boolean musicActive);
+    void setMusicActive(boolean musicActive);
 
     /**
      * Gets the music identifier.
@@ -32,7 +32,7 @@ public interface BackgroundSongSettings {
      */
 
     @Nonnull
-    public String getMusicID();
+    String getMusicID();
 
     /**
      * Sets the music identifier.
@@ -41,7 +41,7 @@ public interface BackgroundSongSettings {
      * @param musicID music ID
      */
 
-    public void setMusicID(@Nonnull String musicID);
+    void setMusicID(@Nonnull String musicID);
 
     /**
      * Converts the format to musicID/musicActive: song/1 or song/0

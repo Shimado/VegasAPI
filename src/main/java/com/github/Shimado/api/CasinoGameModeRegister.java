@@ -62,7 +62,7 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
      * @param casinoGameMode the game mode instance to register
      */
 
-    void register(@Nonnull T casinoGameMode);
+    void register(@Nullable T casinoGameMode);
 
     /**
      * Unregisters a casino game mode by its name.
@@ -70,18 +70,18 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
      * @param gameName the name of the game to remove
      */
 
-    void unregister(@Nonnull String gameName);
+    void unregister(@Nullable String gameName);
 
     /**
      * Optional.
      * Helps to get the base mode from the NON-FLAT map to the game mode.
      *
-     * @param mapConfig the data from the config
-     * @param mapMessages the data from the messages config
-     * @param clazz game mode class
-     * @param pluginClazz plugin class. Vegas.class or VegasAddon.class
+     * @param mapConfig the data from the config that stores fields and values: "mode-name", "gui-size", "jackpot" and etc
+     * @param mapMessages the data from the messages config that stores fields and values: "title", "lore" and etc
+     * @param clazz game mode class. For example: Drums.class, Roulette.class and etc
+     * @param pluginClazz your plugin class. Vegas.class or VegasAddon.class
      */
 
     @Nullable
-    T getGameModeFromMaps(@Nonnull Map<String, Object> mapConfig, @Nonnull Map<String, Object> mapMessages, @Nonnull Class<T> clazz, @Nonnull Class pluginClazz);
+    T getGameModeFromMaps(@Nullable Map<String, Object> mapConfig, @Nullable Map<String, Object> mapMessages, @Nonnull Class<T> clazz, @Nonnull Class pluginClazz);
 }

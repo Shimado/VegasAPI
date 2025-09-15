@@ -43,20 +43,11 @@ public interface CardDeck {
     Deck getDeck(@Nonnull CardSuit cardSuit);
 
     /**
-     * Adds or replaces a deck for the specified suit.
-     *
-     * @param cardSuit the suit to associate with the given deck.
-     * @param deck     the deck to add.
-     */
-
-    void addToDeck(@Nonnull CardSuit cardSuit, @Nonnull Deck deck);
-
-    /**
      * Returns the card item for the given suit and card number.
      *
      * @param cardSuit   the suit of the card.
      * @param cardNumber the card number (2–14).
-     * @return the card item, or {@code null} if not present.
+     * @return the card item, or {@code null} if cardNumber < 2 or carNumber > 14
      */
 
     @Nullable

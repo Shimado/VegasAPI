@@ -28,7 +28,7 @@ public interface CasinoTableItem {
     /**
      * Sets the unique identifier for this table item.
      *
-     * @param id the ID to assign
+     * @param id the ID to assign (From Vegas config)
      * @return this instance for chaining
      */
 
@@ -73,7 +73,7 @@ public interface CasinoTableItem {
      * Gets the game mode name associated with this table item.
      * Or "ALL".
      *
-     * @return the game mode name
+     * @return the game mode name or "ALL"
      */
 
     @Nonnull

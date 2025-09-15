@@ -10,108 +10,110 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Represents a casino game mode configuration.
+ * Includes GUI settings, jackpot/victory/bonus/defeat behavior,
+ * commands to execute, HTTP requests, betting restrictions, and music settings.
+ */
+
 public class CasinoGameMode {
 
-    private String modeName;                                                 // Для использования в командах
-    private int guiSize = 6;                                                 // Размер инвентаря
-    private String guiTitle;                                                 // Заголовок инвентаря
-    private String permission = "";                                          // Право доступа, чтобы открыть режим
-    private List<Integer> slotInGUI = new ArrayList<>();                     // Какой слот занимает в главном меню
-    private List<Integer> slotInOneGameGUI = new ArrayList<>();              // Какой слот занимает в меню под 1 игру
-    private ItemStack iconItem;                                              // Сама иконка
+    private String modeName;                                                 // For usage in commands/placeholders/code and etc
+    private int guiSize = 6;                                                 // The size of the GUI (lines)
+    private String guiTitle = "";                                            // Title of the GUI
+    private String permission = "";                                          // The permission to open the game mode
+    private List<Integer> slotInGUI = new ArrayList<>();                     // Slots occupied by the icon in the main GUI
+    private List<Integer> slotInOneGameGUI = new ArrayList<>();              // Slots occupied by an icon in the main GUI for one game
+    private ItemStack iconItem;                                              // The icon in the main GUI
 
-    private double jackpotChance = 0.0;                                      // Шанс выбить джекпот при победе
-    private double jackpotBoost = 1.0;                                       // Усиление выплаты джекпота
-    private double chargedPercentage = 0.0;                                  // Какой процент ставки идет в джекпот
-    private boolean sendJackpotMessage = true;                               // Отправляет сообщение о джекпоте игрока
-    private boolean sendJackpotMessageToAll = false;                         // Отправляет сообщение о джекпоте игрока всем игрокам
-    private boolean sendJackpotMessageToDiscord = false;                     // Отправляет сообщение о джекпоте игрока в дискорд
-    private boolean useOnlyJackpotCommands = false;                          // Будут ли выполняться только команды
-    private List<String> jackpotCommandsToDispatch = new ArrayList<>();      // Команды, которые выполняются при джекпоте игрока [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
-    private String httpJackpotURL;                                           // Ссылка, которая будет обрабатываться
-    private String httpJackpotMethod = "POST";                               // Метод запроса
-    private Map<String, Object> httpJackpotHeaders = new HashMap<>();        // Заголовки запроса
-    private IBoomboxSong jackpotMusic;                                       // Музыка в формате .nbs с Boombox плагина
+    private double jackpotChance = 0.0;                                      // Chance to hit the jackpot if you win
+    private double jackpotBoost = 1.0;                                       // Jackpot Payout Boost
+    private double chargedPercentage = 0.0;                                  // Percentage of the bet that goes to the jackpot
+    private boolean sendJackpotMessage = true;                               // Sends jackpot message to the player
+    private boolean sendJackpotMessageToAll = false;                         // Sends jackpot message to all players
+    private boolean sendJackpotMessageToDiscord = false;                     // Sends jackpot message to Discord
+    private boolean useOnlyJackpotCommands = false;                          // Whether only commands will be executed
+    private List<String> jackpotCommandsToDispatch = new ArrayList<>();      // Commands executed when player hits jackpot [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String httpJackpotURL;                                           // URL to be processed
+    private String httpJackpotMethod = "POST";                               // Request method
+    private Map<String, Object> httpJackpotHeaders = new HashMap<>();        // Request headers
+    private IBoomboxSong jackpotMusic;                                       // Music in .nbs format from Boombox plugin
 
-    private boolean spawnVictoryFireWorks = false;                           // Спавнит ли салют при победе
-    private boolean sendVictoryMessage = false;                              // Отправляет сообщение о победе игроку, кто выйграл
-    private boolean sendVictoryMessageToAll = false;                         // Отправляет сообщение о победе игрока всем игрокам
-    private boolean sendVictoryMessageToDiscord = false;                     // Отправляет сообщение о победе игрока в дискорд
-    private boolean useOnlyVictoryCommands = false;                          // Будут ли выполняться только команды
-    private List<String> victoryCommandsToDispatch = new ArrayList<>();      // Команды, которые выполняются при победе игрока [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
-    private String httpVictoryURL;                                           // Ссылка, которая будет обрабатываться
-    private String httpVictoryMethod = "POST";                               // Метод запроса
-    private Map<String, Object> httpVictoryHeaders = new HashMap<>();        // Заголовки запроса
-    private IBoomboxSong victoryMusic;                                       // Музыка в формате .nbs с Boombox плагина
+    private boolean spawnVictoryFireWorks = false;                           // Whether to spawn fireworks on victory
+    private boolean sendVictoryMessage = false;                              // Sends victory message to the winning player
+    private boolean sendVictoryMessageToAll = false;                         // Sends victory message to all players
+    private boolean sendVictoryMessageToDiscord = false;                     // Sends victory message to Discord
+    private boolean useOnlyVictoryCommands = false;                          // Whether only commands will be executed
+    private List<String> victoryCommandsToDispatch = new ArrayList<>();      // Commands executed when player wins [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String httpVictoryURL;                                           // URL to be processed
+    private String httpVictoryMethod = "POST";                               // Request method
+    private Map<String, Object> httpVictoryHeaders = new HashMap<>();        // Request headers
+    private IBoomboxSong victoryMusic;                                       // Music in .nbs format from Boombox plugin
 
-    private boolean useOnlyBonusCommands = false;                            // Будут ли выполняться только команды
-    private List<String> bonusCommandsToDispatch = new ArrayList<>();        // Команды, которые выполняются при победе игрока [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
-    private String httpBonusURL;                                             // Ссылка, которая будет обрабатываться
-    private String httpBonusMethod;                                          // Метод запроса
-    private Map<String, Object> httpBonusHeaders = new HashMap<>();          // Заголовки запроса
-    private IBoomboxSong bonusMusic;                                         // Музыка в формате .nbs с Boombox плагина
+    private boolean useOnlyBonusCommands = false;                            // Whether only commands will be executed
+    private List<String> bonusCommandsToDispatch = new ArrayList<>();        // Commands executed when player wins [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String httpBonusURL;                                             // URL to be processed
+    private String httpBonusMethod = "POST";                                 // Request method
+    private Map<String, Object> httpBonusHeaders = new HashMap<>();          // Request headers
+    private IBoomboxSong bonusMusic;                                         // Music in .nbs format from Boombox plugin
 
-    private boolean sendDefeatMessage = false;                               // Отправляет сообщение о проигрыше игроку, кто выйграл
-    private boolean sendDefeatMessageToAll = false;                          // Отправляет сообщение о проигрыше игрока всем игрокам
-    private boolean sendDefeatMessageToDiscord = false;                      // Отправляет сообщение о проигрыше игрока в дискорд
-    private List<String> defeatCommandsToDispatch = new ArrayList<>();       // Команды, которые выполняются при проигрыше игрока [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
-    private String httpDefeatURL;                                            // Ссылка, которая будет обрабатываться
-    private String httpDefeatMethod;                                         // Метод запроса
-    private Map<String, Object> httpDefeatHeaders = new HashMap<>();         // Заголовки запроса
-    private IBoomboxSong defeatMusic;                                        // Музыка в формате .nbs с Boombox плагина
+    private boolean sendDefeatMessage = false;                               // Sends defeat message to the losing player
+    private boolean sendDefeatMessageToAll = false;                          // Sends defeat message to all players
+    private boolean sendDefeatMessageToDiscord = false;                      // Sends defeat message to Discord
+    private List<String> defeatCommandsToDispatch = new ArrayList<>();       // Commands executed when player loses [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
+    private String httpDefeatURL;                                            // URL to be processed
+    private String httpDefeatMethod = "POST";                                // Request method
+    private Map<String, Object> httpDefeatHeaders = new HashMap<>();         // Request headers
+    private IBoomboxSong defeatMusic;                                        // Music in .nbs format from Boombox plugin
 
-    private double minBetPrice = 0.0;                                        // Минимальная ставка в денежном эквиваленте
-    private int minBetPriceInItems = 1;                                      // Минимальная количество предметов, которые может поставить игрок
-    private double maxBetPrice = 0.0;                                        // Максимальная ставка в денежном эквиваленте
-    private int maxBetPriceInItems = 64;                                     // Максимальное количество предметов, которые может поставить игрок
-    private double maxDiffBetweenBets = 0.0;                                 // Максимальная разница между ставками, если превышает, то нельзя сделать ставку
+    private double minBetPrice = 0.01;                                       // Minimum bet amount in currency
+    private int minBetPriceInItems = 1;                                      // Minimum number of items a player can bet
+    private double maxBetPrice = 10000000.0;                                 // Maximum bet amount in currency
+    private int maxBetPriceInItems = 64;                                     // Maximum number of items a player can bet
+    private double maxDiffBetweenBets = 100.0;                               // Maximum difference between bets, if exceeded, betting is not allowed
 
-    private List<Integer> moneyBetSlots = new ArrayList<>();                 // Слоты под ставку денег
-    private ItemStack moneyBetItem;                                          // Кнопка изменения ставки
-    private String moneyBetItemTitle;                                        // Заголовок кнопки изменения ставки
-    private List<String> moneyBetItemLore = new ArrayList<>();               // Описание кнопки изменения ставки
-    private double moneyBetDefault = 1000.0;                                 // Ставка, которая идет по стандарту
-    private double moneyBetChangePerClick = 1000.0;                          // На сколько будет изменять ставка за клик
-    private double moneyBetChangePerClickBig = 10000.0;                      // На сколько будет изменяться ставка за большой клик
+    private List<Integer> moneyBetSlots = new ArrayList<>();                 // Money bet slots
+    private ItemStack moneyBetItem;                                          // Bet change button
+    private String moneyBetItemTitle;                                        // Bet change button title
+    private List<String> moneyBetItemLore = new ArrayList<>();               // Bet change button lore
+    private double moneyBetDefault = 1000.0;                                 // Default bet amount
+    private double moneyBetChangePerClick = 1000.0;                          // Bet change amount per click
+    private double moneyBetChangePerClickBig = 10000.0;                      // Bet change amount per big click
 
-    private List<Integer> spotSlots = new ArrayList<>();                     // Места под ставку
-    private ItemStack spotItem;                                              // Иконка места под ставку
+    private List<Integer> spotSlots = new ArrayList<>();                     // Betting spots
+    private ItemStack spotItem;                                              // Betting spot icon
 
-    private List<Integer> leverSlots = new ArrayList<>();                    // Слоты под рычаги управления
-    private ItemStack leverItemInactive;                                     // Неактивный рычаг, когда еще нет ставки
-    private ItemStack leverItemActive;                                       // Активный рычаг, когда игрок сделал ставку
-    private ItemStack leverItemRolling;                                      // Прокручивается рычаг, когда игрок сделал ставку и начал игру
+    private List<Integer> leverSlots = new ArrayList<>();                    // Control lever slots
+    private ItemStack leverItemInactive;                                     // Inactive lever (when no bet is placed)
+    private ItemStack leverItemActive;                                       // Active lever (when player has placed a bet)
+    private ItemStack leverItemRolling;                                      // Rolling lever (when player has placed a bet and started the game)
 
-    private IBoomboxSong backgroundMusic;                                    // Музыка в формате .nbs с Boombox плагина
-    private List<Integer> musicButtonSlots = new ArrayList<>();              // Какой слот занимает кнопка
-    private ItemStack musicButtonInactive;                                   // Кнопка фоновой музыка (неактивная)
-    private ItemStack musicButtonActive;                                     // Кнопка фоновой музыка (активная)
-    private String musicButtonActiveTitle;                                   // Заголовок активной фоновой кнопки
-    private Map<Integer, ItemStack> emptySlots = new HashMap<>();            // Фоновые ячейки
+    private IBoomboxSong backgroundMusic;                                    // Background music in .nbs format from Boombox plugin
+    private List<Integer> musicButtonSlots = new ArrayList<>();              // Slot occupied by the button
+    private ItemStack musicButtonInactive;                                   // Background music button (inactive)
+    private ItemStack musicButtonActive;                                     // Background music button (active)
+    private String musicButtonActiveTitle;                                   // Active background button title
+    private Map<Integer, ItemStack> emptySlots = new HashMap<>();            // Background slot items
 
 
-    public CasinoGameMode(String modeName){
+    public CasinoGameMode(@Nonnull String modeName){
         this.modeName = modeName;
     }
 
 
-    @Nullable
+    @Nonnull
     public String getModeName(){
         return this.modeName;
     }
 
-    public CasinoGameMode setModeName(@Nonnull String modeName){
-        this.modeName = modeName;
-        return this;
-    }
 
-
-    @Nullable
+    @Nonnull
     public String getGuiTitle(){
         return this.guiTitle;
     }
 
     public CasinoGameMode setGuiTitle(@Nonnull String guiTitle){
+        if(guiTitle == null) return this;
         this.guiTitle = guiTitle;
         return this;
     }
@@ -133,6 +135,7 @@ public class CasinoGameMode {
     }
 
     public CasinoGameMode setPermission(@Nonnull String permission){
+        if(permission == null) return this;
         this.permission = permission;
         return this;
     }
@@ -143,7 +146,8 @@ public class CasinoGameMode {
         return slotInGUI;
     }
 
-    public CasinoGameMode setSlotInGUI(List<Integer> slotInGUI) {
+    public CasinoGameMode setSlotInGUI(@Nonnull List<Integer> slotInGUI) {
+        if(slotInGUI == null) return this;
         this.slotInGUI = slotInGUI;
         return this;
     }
@@ -154,7 +158,8 @@ public class CasinoGameMode {
         return slotInOneGameGUI;
     }
 
-    public CasinoGameMode setSlotInOneGameGUI(List<Integer> slotInOneGameGUI) {
+    public CasinoGameMode setSlotInOneGameGUI(@Nonnull List<Integer> slotInOneGameGUI) {
+        if(slotInOneGameGUI == null) return this;
         this.slotInOneGameGUI = slotInOneGameGUI;
         return this;
     }
@@ -165,7 +170,7 @@ public class CasinoGameMode {
         return iconItem;
     }
 
-    public CasinoGameMode setIconItem(ItemStack iconItem) {
+    public CasinoGameMode setIconItem(@Nullable ItemStack iconItem) {
         this.iconItem = iconItem;
         return this;
     }
@@ -246,7 +251,8 @@ public class CasinoGameMode {
         return jackpotCommandsToDispatch;
     }
 
-    public CasinoGameMode setJackpotCommandsToDispatch(List<String> jackpotCommandsToDispatch) {
+    public CasinoGameMode setJackpotCommandsToDispatch(@Nonnull List<String> jackpotCommandsToDispatch) {
+        if(jackpotCommandsToDispatch == null) return this;
         this.jackpotCommandsToDispatch = jackpotCommandsToDispatch;
         return this;
     }
@@ -257,7 +263,7 @@ public class CasinoGameMode {
         return httpJackpotURL;
     }
 
-    public CasinoGameMode setHttpJackpotURL(String httpJackpotURL) {
+    public CasinoGameMode setHttpJackpotURL(@Nullable String httpJackpotURL) {
         this.httpJackpotURL = httpJackpotURL;
         return this;
     }
@@ -268,7 +274,7 @@ public class CasinoGameMode {
         return httpJackpotMethod;
     }
 
-    public CasinoGameMode setHttpJackpotMethod(String httpJackpotMethod) {
+    public CasinoGameMode setHttpJackpotMethod(@Nullable String httpJackpotMethod) {
         this.httpJackpotMethod = httpJackpotMethod;
         return this;
     }
@@ -279,7 +285,8 @@ public class CasinoGameMode {
         return httpJackpotHeaders;
     }
 
-    public CasinoGameMode setHttpJackpotHeaders(Map<String, Object> httpJackpotHeaders) {
+    public CasinoGameMode setHttpJackpotHeaders(@Nonnull Map<String, Object> httpJackpotHeaders) {
+        if(httpJackpotHeaders == null) return this;
         this.httpJackpotHeaders = httpJackpotHeaders;
         return this;
     }
@@ -290,7 +297,7 @@ public class CasinoGameMode {
         return jackpotMusic;
     }
 
-    public CasinoGameMode setJackpotMusic(IBoomboxSong jackpotMusic) {
+    public CasinoGameMode setJackpotMusic(@Nullable IBoomboxSong jackpotMusic) {
         this.jackpotMusic = jackpotMusic;
         return this;
     }
@@ -351,7 +358,8 @@ public class CasinoGameMode {
         return victoryCommandsToDispatch;
     }
 
-    public CasinoGameMode setVictoryCommandsToDispatch(List<String> victoryCommandsToDispatch) {
+    public CasinoGameMode setVictoryCommandsToDispatch(@Nonnull List<String> victoryCommandsToDispatch) {
+        if(victoryCommandsToDispatch == null) return this;
         this.victoryCommandsToDispatch = victoryCommandsToDispatch;
         return this;
     }
@@ -362,7 +370,7 @@ public class CasinoGameMode {
         return httpVictoryURL;
     }
 
-    public CasinoGameMode setHttpVictoryURL(String httpVictoryURL) {
+    public CasinoGameMode setHttpVictoryURL(@Nullable String httpVictoryURL) {
         this.httpVictoryURL = httpVictoryURL;
         return this;
     }
@@ -373,7 +381,7 @@ public class CasinoGameMode {
         return httpVictoryMethod;
     }
 
-    public CasinoGameMode setHttpVictoryMethod(String httpVictoryMethod) {
+    public CasinoGameMode setHttpVictoryMethod(@Nullable String httpVictoryMethod) {
         this.httpVictoryMethod = httpVictoryMethod;
         return this;
     }
@@ -384,7 +392,8 @@ public class CasinoGameMode {
         return httpVictoryHeaders;
     }
 
-    public CasinoGameMode setHttpVictoryHeaders(Map<String, Object> httpVictoryHeaders) {
+    public CasinoGameMode setHttpVictoryHeaders(@Nonnull Map<String, Object> httpVictoryHeaders) {
+        if(httpVictoryHeaders == null) return this;
         this.httpVictoryHeaders = httpVictoryHeaders;
         return this;
     }
@@ -395,7 +404,7 @@ public class CasinoGameMode {
         return victoryMusic;
     }
 
-    public CasinoGameMode setVictoryMusic(IBoomboxSong victoryMusic) {
+    public CasinoGameMode setVictoryMusic(@Nullable IBoomboxSong victoryMusic) {
         this.victoryMusic = victoryMusic;
         return this;
     }
@@ -416,7 +425,8 @@ public class CasinoGameMode {
         return bonusCommandsToDispatch;
     }
 
-    public CasinoGameMode setBonusCommandsToDispatch(List<String> bonusCommandsToDispatch) {
+    public CasinoGameMode setBonusCommandsToDispatch(@Nonnull List<String> bonusCommandsToDispatch) {
+        if(bonusCommandsToDispatch == null) return this;
         this.bonusCommandsToDispatch = bonusCommandsToDispatch;
         return this;
     }
@@ -427,7 +437,7 @@ public class CasinoGameMode {
         return httpBonusURL;
     }
 
-    public CasinoGameMode setHttpBonusURL(String httpBonusURL) {
+    public CasinoGameMode setHttpBonusURL(@Nullable String httpBonusURL) {
         this.httpBonusURL = httpBonusURL;
         return this;
     }
@@ -438,7 +448,7 @@ public class CasinoGameMode {
         return httpBonusMethod;
     }
 
-    public CasinoGameMode setHttpBonusMethod(String httpBonusMethod) {
+    public CasinoGameMode setHttpBonusMethod(@Nullable String httpBonusMethod) {
         this.httpBonusMethod = httpBonusMethod;
         return this;
     }
@@ -449,7 +459,8 @@ public class CasinoGameMode {
         return httpBonusHeaders;
     }
 
-    public CasinoGameMode setHttpBonusHeaders(Map<String, Object> httpBonusHeaders) {
+    public CasinoGameMode setHttpBonusHeaders(@Nonnull Map<String, Object> httpBonusHeaders) {
+        if(httpBonusHeaders == null) return this;
         this.httpBonusHeaders = httpBonusHeaders;
         return this;
     }
@@ -460,7 +471,7 @@ public class CasinoGameMode {
         return bonusMusic;
     }
 
-    public CasinoGameMode setBonusMusic(IBoomboxSong bonusMusic) {
+    public CasinoGameMode setBonusMusic(@Nullable IBoomboxSong bonusMusic) {
         this.bonusMusic = bonusMusic;
         return this;
     }
@@ -501,7 +512,8 @@ public class CasinoGameMode {
         return defeatCommandsToDispatch;
     }
 
-    public CasinoGameMode setDefeatCommandsToDispatch(List<String> defeatCommandsToDispatch) {
+    public CasinoGameMode setDefeatCommandsToDispatch(@Nonnull List<String> defeatCommandsToDispatch) {
+        if(defeatCommandsToDispatch == null) return this;
         this.defeatCommandsToDispatch = defeatCommandsToDispatch;
         return this;
     }
@@ -512,7 +524,7 @@ public class CasinoGameMode {
         return httpDefeatURL;
     }
 
-    public CasinoGameMode setHttpDefeatURL(String httpDefeatURL) {
+    public CasinoGameMode setHttpDefeatURL(@Nullable String httpDefeatURL) {
         this.httpDefeatURL = httpDefeatURL;
         return this;
     }
@@ -523,7 +535,7 @@ public class CasinoGameMode {
         return httpDefeatMethod;
     }
 
-    public CasinoGameMode setHttpDefeatMethod(String httpDefeatMethod) {
+    public CasinoGameMode setHttpDefeatMethod(@Nullable String httpDefeatMethod) {
         this.httpDefeatMethod = httpDefeatMethod;
         return this;
     }
@@ -534,7 +546,8 @@ public class CasinoGameMode {
         return httpDefeatHeaders;
     }
 
-    public CasinoGameMode setHttpDefeatHeaders(Map<String, Object> httpDefeatHeaders) {
+    public CasinoGameMode setHttpDefeatHeaders(@Nonnull Map<String, Object> httpDefeatHeaders) {
+        if(httpDefeatHeaders == null) return this;
         this.httpDefeatHeaders = httpDefeatHeaders;
         return this;
     }
@@ -545,7 +558,7 @@ public class CasinoGameMode {
         return defeatMusic;
     }
 
-    public CasinoGameMode setDefeatMusic(IBoomboxSong defeatMusic) {
+    public CasinoGameMode setDefeatMusic(@Nullable IBoomboxSong defeatMusic) {
         this.defeatMusic = defeatMusic;
         return this;
     }
@@ -606,7 +619,8 @@ public class CasinoGameMode {
         return moneyBetSlots;
     }
 
-    public CasinoGameMode setMoneyBetSlots(List<Integer> moneyBetSlots) {
+    public CasinoGameMode setMoneyBetSlots(@Nonnull List<Integer> moneyBetSlots) {
+        if(moneyBetSlots == null) return this;
         this.moneyBetSlots = moneyBetSlots;
         return this;
     }
@@ -617,7 +631,7 @@ public class CasinoGameMode {
         return moneyBetItem;
     }
 
-    public CasinoGameMode setMoneyBetItem(ItemStack moneyBetItem) {
+    public CasinoGameMode setMoneyBetItem(@Nullable ItemStack moneyBetItem) {
         this.moneyBetItem = moneyBetItem;
         return this;
     }
@@ -628,7 +642,7 @@ public class CasinoGameMode {
         return moneyBetItemTitle;
     }
 
-    public CasinoGameMode setMoneyBetItemTitle(String moneyBetItemTitle) {
+    public CasinoGameMode setMoneyBetItemTitle(@Nullable String moneyBetItemTitle) {
         this.moneyBetItemTitle = moneyBetItemTitle;
         return this;
     }
@@ -639,7 +653,8 @@ public class CasinoGameMode {
         return moneyBetItemLore;
     }
 
-    public CasinoGameMode setMoneyBetItemLore(List<String> moneyBetItemLore) {
+    public CasinoGameMode setMoneyBetItemLore(@Nonnull List<String> moneyBetItemLore) {
+        if(moneyBetItemLore == null) return this;
         this.moneyBetItemLore = moneyBetItemLore;
         return this;
     }
@@ -680,7 +695,8 @@ public class CasinoGameMode {
         return spotSlots;
     }
 
-    public CasinoGameMode setSpotSlots(List<Integer> spotSlots) {
+    public CasinoGameMode setSpotSlots(@Nonnull List<Integer> spotSlots) {
+        if(spotSlots == null) return this;
         this.spotSlots = spotSlots;
         return this;
     }
@@ -691,7 +707,7 @@ public class CasinoGameMode {
         return spotItem;
     }
 
-    public CasinoGameMode setSpotItem(ItemStack spotItem) {
+    public CasinoGameMode setSpotItem(@Nullable ItemStack spotItem) {
         this.spotItem = spotItem;
         return this;
     }
@@ -702,7 +718,8 @@ public class CasinoGameMode {
         return leverSlots;
     }
 
-    public CasinoGameMode setLeverSlots(List<Integer> leverSlots) {
+    public CasinoGameMode setLeverSlots(@Nonnull List<Integer> leverSlots) {
+        if(leverSlots == null) return this;
         this.leverSlots = leverSlots;
         return this;
     }
@@ -713,7 +730,7 @@ public class CasinoGameMode {
         return leverItemInactive;
     }
 
-    public CasinoGameMode setLeverItemInactive(ItemStack leverItemInactive) {
+    public CasinoGameMode setLeverItemInactive(@Nullable ItemStack leverItemInactive) {
         this.leverItemInactive = leverItemInactive;
         return this;
     }
@@ -724,7 +741,7 @@ public class CasinoGameMode {
         return leverItemActive;
     }
 
-    public CasinoGameMode setLeverItemActive(ItemStack leverItemActive) {
+    public CasinoGameMode setLeverItemActive(@Nullable ItemStack leverItemActive) {
         this.leverItemActive = leverItemActive;
         return this;
     }
@@ -735,18 +752,18 @@ public class CasinoGameMode {
         return leverItemRolling;
     }
 
-    public CasinoGameMode setLeverItemRolling(ItemStack leverItemRolling) {
+    public CasinoGameMode setLeverItemRolling(@Nullable ItemStack leverItemRolling) {
         this.leverItemRolling = leverItemRolling;
         return this;
     }
 
 
-    @Nonnull
+    @Nullable
     public IBoomboxSong getBackgroundMusic() {
         return backgroundMusic;
     }
 
-    public CasinoGameMode setBackgroundMusic(IBoomboxSong backgroundMusic) {
+    public CasinoGameMode setBackgroundMusic(@Nullable IBoomboxSong backgroundMusic) {
         this.backgroundMusic = backgroundMusic;
         return this;
     }
@@ -757,7 +774,8 @@ public class CasinoGameMode {
         return musicButtonSlots;
     }
 
-    public CasinoGameMode setMusicButtonSlots(List<Integer> musicButtonSlots) {
+    public CasinoGameMode setMusicButtonSlots(@Nonnull List<Integer> musicButtonSlots) {
+        if(musicButtonSlots == null) return this;
         this.musicButtonSlots = musicButtonSlots;
         return this;
     }
@@ -768,7 +786,7 @@ public class CasinoGameMode {
         return musicButtonInactive;
     }
 
-    public CasinoGameMode setMusicButtonInactive(ItemStack musicButtonInactive) {
+    public CasinoGameMode setMusicButtonInactive(@Nullable ItemStack musicButtonInactive) {
         this.musicButtonInactive = musicButtonInactive;
         return this;
     }
@@ -779,7 +797,7 @@ public class CasinoGameMode {
         return musicButtonActive;
     }
 
-    public CasinoGameMode setMusicButtonActive(ItemStack musicButtonActive) {
+    public CasinoGameMode setMusicButtonActive(@Nullable ItemStack musicButtonActive) {
         this.musicButtonActive = musicButtonActive;
         return this;
     }
@@ -790,7 +808,7 @@ public class CasinoGameMode {
         return musicButtonActiveTitle;
     }
 
-    public CasinoGameMode setMusicButtonActiveTitle(String musicButtonActiveTitle) {
+    public CasinoGameMode setMusicButtonActiveTitle(@Nullable String musicButtonActiveTitle) {
         this.musicButtonActiveTitle = musicButtonActiveTitle;
         return this;
     }
@@ -801,10 +819,10 @@ public class CasinoGameMode {
         return emptySlots;
     }
 
-    public CasinoGameMode setEmptySlots(Map<Integer, ItemStack> emptySlots) {
+    public CasinoGameMode setEmptySlots(@Nonnull Map<Integer, ItemStack> emptySlots) {
+        if(emptySlots == null) return this;
         this.emptySlots = emptySlots;
         return this;
     }
-
 
 }

@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-
 /**
  * Stores all player statistics: number of games, losses,
  * money won/lost, and detailed stats for each game mode.
@@ -25,11 +24,10 @@ public class PlayerStats extends VegasStats{
      * @param playerUUID unique identifier of the player
      */
 
-    public PlayerStats(UUID playerUUID){
+    public PlayerStats(@Nonnull UUID playerUUID){
         super();
         this.playerUUID = playerUUID;
     }
-
 
     /**
      * Creates a new PlayerStats instance with full statistics.
@@ -44,36 +42,38 @@ public class PlayerStats extends VegasStats{
      * @param lostMoney   total amount of money lost
      */
 
-    public PlayerStats(UUID playerUUID, int gamesPlayed, int victories, int bonuses, int defeats, int jackpots, double wonMoney, double lostMoney){
+    public PlayerStats(@Nonnull UUID playerUUID, int gamesPlayed, int victories, int bonuses, int defeats, int jackpots, double wonMoney, double lostMoney){
         super(gamesPlayed, victories, bonuses, defeats, jackpots, wonMoney, lostMoney);
         this.playerUUID = playerUUID;
     }
 
 
-    @Nullable
+    /**
+     * Gets the unique identifier of the player.
+     *
+     * @return the unique identifier of the player
+     */
+
+    @Nonnull
     public UUID getPlayerUUID() {
         return playerUUID;
     }
 
-    public void setPlayerUUID(UUID playerUUID) {
-        this.playerUUID = playerUUID;
-    }
-
 
     /**
-     * Gets statistics for a specific game.
+     * Gets statistics for a specific game mode.
      *
-     * @param game game name
+     * @param gameName game mode name
      * @return game statistics or {@code null} if not found
      */
 
     @Nullable
-    public CasinoGameModeStats getCasinoGameStats(String game) {
-        return gameStats.get(game);
+    public CasinoGameModeStats getCasinoGameStats(@Nonnull String gameName) {
+        return gameStats.get(gameName);
     }
 
     /**
-     * Gets statistics for all games.
+     * Gets statistics for all game modes.
      *
      * @return map of game statistics, never {@code null}
      */
@@ -84,14 +84,15 @@ public class PlayerStats extends VegasStats{
     }
 
     /**
-     * Sets or updates statistics for a specific game.
+     * Sets or updates statistics for a specific game mode.
      *
-     * @param game          game name
-     * @param gameModeStats game statistics
+     * @param gameName      game mode name
+     * @param gameModeStats game mode statistics
      */
 
-    public void setCasinoGameStats(String game, CasinoGameModeStats gameModeStats) {
-        this.gameStats.put(game, gameModeStats);
+    public void setCasinoGameStats(@Nonnull String gameName, @Nonnull CasinoGameModeStats gameModeStats) {
+        if(gameName == null || gameName.isEmpty() || gameModeStats == null) return;
+        this.gameStats.put(gameName, gameModeStats);
     }
 
     /**
@@ -100,7 +101,8 @@ public class PlayerStats extends VegasStats{
      * @param gameStats map of game statistics
      */
 
-    public void setCasinoGameStats(Map<String, CasinoGameModeStats> gameStats) {
+    public void setCasinoGameStats(@Nonnull Map<String, CasinoGameModeStats> gameStats) {
+        if(gameStats == null) return;
         this.gameStats = gameStats;
     }
 

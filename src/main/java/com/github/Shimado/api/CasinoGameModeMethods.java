@@ -19,7 +19,8 @@ public interface CasinoGameModeMethods {
      * Opens the game GUI for a given player.
      *
      * @param player the player who is opening the game
-     * @param inv    the inventory (GUI) that will be shown to the player
+     * @param inv    the inventory (GUI) that will be shown to the player.
+     *               It will already contain a title and items from "empty-slots:"
      */
 
     void openGame(@Nonnull Player player, @Nonnull Inventory inv);
@@ -39,7 +40,7 @@ public interface CasinoGameModeMethods {
      *
      * @param e      the inventory click event
      * @param player the player who clicked
-     * @param session the inventory session with some data
+     * @param session the inventory session that stores some data
      */
 
     void clickGUI(@Nonnull InventoryClickEvent e, @Nonnull Player player, @Nonnull ISession session);

@@ -1,5 +1,6 @@
 package com.github.Shimado.instances;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -11,23 +12,23 @@ import javax.annotation.Nullable;
 
 public class CasinoGameModeStats extends VegasStats{
 
-    private String game;
+    private String gameName;
 
     /**
      * Creates a new statistics object for a specific game.
      *
-     * @param game name of the game
+     * @param gameName name of the game mode
      */
 
-    public CasinoGameModeStats(String game) {
+    public CasinoGameModeStats(@Nonnull String gameName) {
         super();
-        this.game = game;
+        this.gameName = gameName;
     }
 
     /**
      * Creates a new statistics object with full values.
      *
-     * @param game        name of the game
+     * @param gameName    name of the game mode
      * @param gamesPlayed number of games played
      * @param victories   number of victories
      * @param bonuses     number of bonuses
@@ -36,19 +37,22 @@ public class CasinoGameModeStats extends VegasStats{
      * @param wonMoney    total money won
      * @param lostMoney   total money lost
      */
-    public CasinoGameModeStats(String game, int gamesPlayed, int victories, int bonuses, int defeats, int jackpots, double wonMoney, double lostMoney) {
+
+    public CasinoGameModeStats(@Nonnull String gameName, int gamesPlayed, int victories, int bonuses, int defeats, int jackpots, double wonMoney, double lostMoney) {
         super(gamesPlayed, victories, bonuses, defeats, jackpots, wonMoney, lostMoney);
-        this.game = game;
+        this.gameName = gameName;
     }
 
+
+    /**
+     * Gets the name of the game mode.
+     *
+     * @return the name of the game mode
+     */
 
     @Nullable
-    public String getGame() {
-        return game;
-    }
-
-    public void setGame(String game) {
-        this.game = game;
+    public String getGameName() {
+        return gameName;
     }
 
 }

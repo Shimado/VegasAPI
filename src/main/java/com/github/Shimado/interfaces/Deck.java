@@ -35,19 +35,10 @@ public interface Deck {
      * Returns the card for the specified number.
      *
      * @param cardNumber the card number (2–14).
-     * @return the card item, or {@code null} if not present.
+     * @return the card item, or {@code null} if cardNumber < 2 or carNumber > 14
      */
 
     @Nullable
     ItemStack getCard(int cardNumber);
-
-    /**
-     * Sets or replaces the card at the specified number.
-     *
-     * @param cardNumber the card number (2–14).
-     * @param card       the card item to set.
-     */
-
-    void setCard(int cardNumber, @Nonnull ItemStack card);
 
 }

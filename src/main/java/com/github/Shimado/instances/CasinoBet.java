@@ -7,9 +7,9 @@ import javax.annotation.Nullable;
 /**
  * Represents a casino bet.
  * A bet can be placed in one of three different forms:
- *     Money (numeric value)
- *     Chips ({@link ItemStack})
- *     Items ({@link ItemStack})
+ *     MONEY (numeric value)
+ *     CHIPS ({@link ItemStack})
+ *     ITEMS ({@link ItemStack})
  * Provides utility methods for modifying the bet, checking its type,
  * and retrieving its total value.
  */
@@ -19,32 +19,6 @@ public class CasinoBet {
     private double moneyBet = 0.0;
     private ItemStack chipsBet;
     private ItemStack itemsBet;
-
-    /**
-     * Creates a money bet.
-     */
-
-    public CasinoBet(){}
-
-    /**
-     * Creates a money bet.
-     *
-     * @param moneyBet the amount of money bet
-     */
-
-    public CasinoBet(double moneyBet) {
-        this.moneyBet = moneyBet;
-    }
-
-    /**
-     * Creates a chips bet.
-     *
-     * @param chipsBet the chips bet
-     */
-
-    public CasinoBet(@Nullable ItemStack chipsBet) {
-        this.chipsBet = chipsBet;
-    }
 
 
     /**
@@ -61,20 +35,24 @@ public class CasinoBet {
      * Sets the money bet value.
      *
      * @param moneyBet the new money bet value
+     * @return this instance for chaining
      */
 
-    public void setMoneyBet(double moneyBet) {
+    public CasinoBet setMoneyBet(double moneyBet) {
         this.moneyBet = moneyBet;
+        return this;
     }
 
     /**
      * Adds money to the current money bet.
      *
      * @param moneyBet the amount to add
+     * @return this instance for chaining
      */
 
-    public void addMoneyBet(double moneyBet) {
+    public CasinoBet addMoneyBet(double moneyBet) {
         this.moneyBet += moneyBet;
+        return this;
     }
 
     /**
@@ -82,13 +60,14 @@ public class CasinoBet {
      * If the result is negative, it will reset to zero.
      *
      * @param moneyBet the amount to remove
+     * @return this instance for chaining
      */
 
-    public void removeMoneyBet(double moneyBet) {
+    public CasinoBet removeMoneyBet(double moneyBet) {
         this.moneyBet -= moneyBet;
         if (this.moneyBet < 0) this.moneyBet = 0;
+        return this;
     }
-
 
     /**
      * Gets the chips bet.
@@ -105,13 +84,13 @@ public class CasinoBet {
      * Sets the chips bet.
      *
      * @param chipsBet the chips bet
+     * @return this instance for chaining
      */
 
-    public void setChipsBet(@Nullable ItemStack chipsBet) {
+    public CasinoBet setChipsBet(@Nullable ItemStack chipsBet) {
         this.chipsBet = chipsBet;
+        return this;
     }
-
-
 
     /**
      * Gets the items bet.
@@ -128,12 +107,13 @@ public class CasinoBet {
      * Sets the items bet.
      *
      * @param itemsBet the items bet
+     * @return this instance for chaining
      */
 
-    public void setItemsBet(@Nullable ItemStack itemsBet) {
+    public CasinoBet setItemsBet(@Nullable ItemStack itemsBet) {
         this.itemsBet = itemsBet;
+        return this;
     }
-
 
     /**
      * Checks if there is any bet (money, chips, or items).
