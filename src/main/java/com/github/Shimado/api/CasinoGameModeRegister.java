@@ -1,6 +1,7 @@
 package com.github.Shimado.api;
 
 import com.github.Shimado.instances.CasinoGameMode;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.Listener;
 
 import javax.annotation.Nonnull;
@@ -74,14 +75,15 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
 
     /**
      * Optional.
-     * Helps to get the base mode from the NON-FLAT map to the game mode.
+     * Helps to get the base mode from the config and messages config.
      *
-     * @param mapConfig the data from the config that stores fields and values: "mode-name", "gui-size", "jackpot" and etc
-     * @param mapMessages the data from the messages config that stores fields and values: "title", "lore" and etc
+     * @param configKey common key from both configs. For example: "Roulette-settings"
+     * @param config config that stores fields and values: "mode-name", "gui-size", "jackpot" and etc
+     * @param messages messages config that stores fields and values: "title", "lore" and etc
      * @param clazz game mode class. For example: Drums.class, Roulette.class and etc
      * @param pluginClazz your plugin class. Vegas.class or VegasAddon.class
      */
 
     @Nullable
-    T getGameModeFromMaps(@Nullable Map<String, Object> mapConfig, @Nullable Map<String, Object> mapMessages, @Nonnull Class<T> clazz, @Nonnull Class pluginClazz);
+    T getBasicGameModeFromConfig(@Nonnull String configKey, @Nonnull YamlConfiguration config, @Nonnull YamlConfiguration messages, @Nonnull Class<T> clazz, @Nonnull Class pluginClazz);
 }
