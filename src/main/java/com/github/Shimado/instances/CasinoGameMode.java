@@ -825,4 +825,88 @@ public class CasinoGameMode {
         return this;
     }
 
+
+    @Override
+    public String toString() {
+        return
+                "Mode-name: " + modeName + ";" +
+                "GUI-size: " + guiSize + ";" +
+                "GUI-title: " + guiTitle + ";" +
+                "Permission: " + permission + ";" +
+                "GUI-icon-slots: " + slotInGUI.toString() + ";" +
+                "GUI-one-game-icon-slots: " + slotInOneGameGUI.toString() + ";" +
+                "Icon-item: " + iconItem + ";" +
+
+                "Jackpot-chance: " + jackpotChance + ";" +
+                "Jackpot-boost:" + jackpotBoost + ";" +
+                "Jackpot-charged-percentage:" + chargedPercentage + ";" +
+                "Jackpot-send-message:" + sendJackpotMessage + ";" +
+                "Jackpot-send-message-to-all:" + sendJackpotMessageToAll + ";" +
+                "Jackpot-send-message-to-discord:" + sendJackpotMessageToDiscord + ";" +
+                "Jackpot-only-commands:" + useOnlyJackpotCommands + ";" +
+                "Jackpot-commands-list:" + jackpotCommandsToDispatch.toString() + ";" +
+                "Jackpot-http-url:" + httpJackpotURL + ";" +
+                "Jackpot-http-method:" + httpJackpotMethod + ";" +
+                "Jackpot-http-headers:" + httpJackpotHeaders.toString() + ";" +
+                "Jackpot-music:" + (jackpotMusic == null ? null : jackpotMusic.getID()) + ";" +
+
+                "Victory-fireworks:" + spawnVictoryFireWorks + ";" +
+                "Victory-send-message:" + sendVictoryMessage + ";" +
+                "Victory-send-message-to-all:" + sendVictoryMessageToAll + ";" +
+                "Victory-send-message-to-discord:" + sendVictoryMessageToDiscord + ";" +
+                "Victory-only-commands:" + useOnlyVictoryCommands + ";" +
+                "Victory-commands-list:" + victoryCommandsToDispatch.toString() + ";" +
+                "Victory-http-url:" + httpVictoryURL + ";" +
+                "Victory-http-method:" + httpVictoryMethod + ";" +
+                "Victory-http-headers:" + httpVictoryHeaders.toString() + ";" +
+                "Victory-music:" + (victoryMusic == null ? null : victoryMusic.getID()) + ";" +
+
+                "Bonus-only-commands:" + useOnlyBonusCommands + ";" +
+                "Bonus-commands-list:" + bonusCommandsToDispatch.toString() + ";" +
+                "Bonus-http-url:" + httpBonusURL + ";" +
+                "Bonus-http-method:" + httpBonusMethod + ";" +
+                "Bonus-http-headers:" + httpBonusHeaders.toString() + ";" +
+                "Bonus-music:" + (bonusMusic == null ? null : bonusMusic.getID()) + ";" +
+
+                "Defeat-send-message:" + sendDefeatMessage + ";" +
+                "Defeat-send-message-to-all:" + sendDefeatMessageToAll + ";" +
+                "Defeat-send-message-to-discord:" + sendDefeatMessageToDiscord + ";" +
+                "Defeat-commands-list:" + defeatCommandsToDispatch.toString() + ";" +
+                "Defeat-http-url:" + httpDefeatURL + ";" +
+                "Defeat-http-method:" + httpDefeatMethod + ";" +
+                "Defeat-http-headers:" + httpDefeatHeaders.toString() + ";" +
+                "Defeat-music:" + (defeatMusic == null ? null : defeatMusic.getID()) + ";" +
+
+                "Bet-min-price:" + minBetPrice + ";" +
+                "Bet-min-items-amount:" + minBetPriceInItems + ";" +
+                "Bet-max-price:" + maxBetPrice + ";" +
+                "Bet-max-items-amount:" + maxBetPriceInItems + ";" +
+                "Bet-max-price-difference:" + maxDiffBetweenBets + ";" +
+
+                "Money-bet-slots:" + moneyBetSlots.toString() + ";" +
+                "Money-bet-item:" + moneyBetItem + ";" +
+                "Money-bet-item-title:" + moneyBetItemTitle + ";" +
+                "Money-bet-item-lore:" + moneyBetItemLore.toString() + ";" +
+                "Money-bet-default:" + moneyBetDefault + ";" +
+                "Money-bet-change-per-click:" + moneyBetChangePerClick + ";" +
+                "Money-bet-big-change-per-click:" + moneyBetChangePerClickBig + ";" +
+
+                "Spot-slots:" + spotSlots.toString() + ";" +
+                "Spot-item:" + spotItem + ";" +
+
+                "Lever-slots:" + leverSlots.toString() + ";" +
+                "Lever-item-inactive:" + leverItemInactive + ";" +
+                "Lever-item-active:" + leverItemActive + ";" +
+                "Lever-item-rolling:" + leverItemRolling + ";" +
+
+                "Background-music:" + (backgroundMusic == null ? null : backgroundMusic.getID()) + ";" +
+                "Background-music-button-slots:" + musicButtonSlots.toString() + ";" +
+                "Background-music-button-item-inactive:" + musicButtonInactive + ";" +
+                "Background-music-button-item-active:" + musicButtonActive + ";" +
+                "Background-music-button-item-active-title:" + musicButtonActiveTitle + ";" +
+                "Background-empty-slots:" + emptySlots;
+    }
 }
+
+
+
