@@ -939,9 +939,12 @@ public class CasinoGameMode {
 
                 "Background-music:" + (backgroundMusic == null ? null : backgroundMusic.getID()) + ";" +
                 "Background-music-button-slots:" + musicButtonSlots.toString() + ";" +
-                "Background-music-button-item-inactive:" + musicButtonInactive + ";" +
-                "Background-music-button-item-active:" + musicButtonActive + ";" +
-                "Background-music-button-item-active-title:" + musicButtonActiveTitle + ";" +
+                "Background-music-button-item-inactive:" + musicButtonItemInactive + ";" +
+                "Background-music-button-item-active:" + musicButtonItemActive + ";" +
+                "Background-music-button-item-active-title:" + musicButtonItemActiveTitle + ";" +
+                "Background-stats-button-slots:" + statsButtonSlots.toString() + ";" +
+                "Background-stats-button-item:" + statsButtonItem + ";" +
+                "Background-stats-button-lore:" + statsButtonLore + ";" +
                 "Background-empty-slots:" + emptySlots;
     }
 }
