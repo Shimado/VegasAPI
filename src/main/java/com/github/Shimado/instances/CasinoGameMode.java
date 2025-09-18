@@ -90,9 +90,12 @@ public class CasinoGameMode {
 
     private IBoomboxSong backgroundMusic;                                    // Background music in .nbs format from Boombox plugin
     private List<Integer> musicButtonSlots = new ArrayList<>();              // Slot occupied by the button
-    private ItemStack musicButtonInactive;                                   // Background music button (inactive)
-    private ItemStack musicButtonActive;                                     // Background music button (active)
-    private String musicButtonActiveTitle;                                   // Active background button title
+    private ItemStack musicButtonItemInactive;                               // Background music button (inactive)
+    private ItemStack musicButtonItemActive;                                 // Background music button (active)
+    private String musicButtonItemActiveTitle;                               // Active background button title
+    private List<Integer> statsButtonSlots = new ArrayList<>();              // This game mode statistics slots
+    private ItemStack statsButtonItem;                                       // This game mode statistics item
+    private List<String> statsButtonLore = new ArrayList<>();                // This game mode statistics item lore with all placeholders
     private Map<Integer, ItemStack> emptySlots = new HashMap<>();            // Background slot items
 
 
@@ -782,34 +785,69 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public ItemStack getMusicButtonInactive() {
-        return musicButtonInactive;
+    public ItemStack getMusicButtonItemInactive() {
+        return musicButtonItemInactive;
     }
 
-    public CasinoGameMode setMusicButtonInactive(@Nullable ItemStack musicButtonInactive) {
-        this.musicButtonInactive = musicButtonInactive;
+    public CasinoGameMode setMusicButtonItemInactive(@Nullable ItemStack musicButtonItemInactive) {
+        this.musicButtonItemInactive = musicButtonItemInactive;
         return this;
     }
 
 
     @Nullable
-    public ItemStack getMusicButtonActive() {
-        return musicButtonActive;
+    public ItemStack getMusicButtonItemActive() {
+        return musicButtonItemActive;
     }
 
-    public CasinoGameMode setMusicButtonActive(@Nullable ItemStack musicButtonActive) {
-        this.musicButtonActive = musicButtonActive;
+    public CasinoGameMode setMusicButtonItemActive(@Nullable ItemStack musicButtonItemActive) {
+        this.musicButtonItemActive = musicButtonItemActive;
         return this;
     }
 
 
     @Nullable
-    public String getMusicButtonActiveTitle() {
-        return musicButtonActiveTitle;
+    public String getMusicButtonItemActiveTitle() {
+        return musicButtonItemActiveTitle;
     }
 
-    public CasinoGameMode setMusicButtonActiveTitle(@Nullable String musicButtonActiveTitle) {
-        this.musicButtonActiveTitle = musicButtonActiveTitle;
+    public CasinoGameMode setMusicButtonItemActiveTitle(@Nullable String musicButtonItemActiveTitle) {
+        this.musicButtonItemActiveTitle = musicButtonItemActiveTitle;
+        return this;
+    }
+
+
+    @Nonnull
+    public List<Integer> getStatsButtonSlots() {
+        return statsButtonSlots;
+    }
+
+    public CasinoGameMode setStatsButtonSlots(@Nonnull List<Integer> statsButtonSlots) {
+        if(statsButtonSlots == null) return this;
+        this.statsButtonSlots = statsButtonSlots;
+        return this;
+    }
+
+
+    @Nullable
+    public ItemStack getStatsButtonItem() {
+        return statsButtonItem;
+    }
+
+    public CasinoGameMode setStatsButtonItem(@Nullable ItemStack statsButtonItem) {
+        this.statsButtonItem = statsButtonItem;
+        return this;
+    }
+
+
+    @Nonnull
+    public List<String> getStatsButtonLore() {
+        return statsButtonLore;
+    }
+
+    public CasinoGameMode setStatsButtonLore(@Nonnull List<String> statsButtonLore) {
+        if(statsButtonSlots == null) return this;
+        this.statsButtonLore = statsButtonLore;
         return this;
     }
 
