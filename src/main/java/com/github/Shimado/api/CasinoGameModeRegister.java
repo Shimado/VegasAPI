@@ -81,9 +81,9 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
      * @param config config that stores fields and values: "mode-name", "gui-size", "jackpot" and etc
      * @param messages messages config that stores fields and values: "title", "lore" and etc
      * @param clazz game mode class. For example: Drums.class, Roulette.class and etc
-     * @param pluginClazz your plugin class. Vegas.class or VegasAddon.class
+     * @param pluginInstance your plugin class instance. Vegas or VegasAddon
      */
 
     @Nullable
-    T getBasicGameModeFromConfig(@Nonnull String configKey, @Nonnull YamlConfiguration config, @Nonnull YamlConfiguration messages, @Nonnull Class<T> clazz, @Nonnull Class pluginClazz);
+    T getBasicGameModeFromConfig(@Nonnull String configKey, @Nonnull YamlConfiguration config, @Nonnull YamlConfiguration messages, @Nonnull Class<T> clazz, @Nonnull Object pluginInstance);
 }
