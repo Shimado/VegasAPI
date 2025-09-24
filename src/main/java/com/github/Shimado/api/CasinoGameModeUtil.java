@@ -2,12 +2,14 @@ package com.github.Shimado.api;
 
 import com.github.Shimado.instances.CasinoBet;
 import com.github.Shimado.instances.CasinoGameMode;
+import com.github.Shimado.instances.SingleGameSession;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -49,4 +51,26 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      */
 
     boolean checkIfBusinessTableHasMoney(@Nonnull Player player, @Nullable UUID tableOwnerUUID);
+
+    /**
+     * Handles the player closing the GUI, returns their bet if the game has not yet started.
+     *
+     * @param player         the player who closed the GUI
+     * @param gameSession    the player game session
+     * @param casinoGameMode the game mode itself that was closed
+     * @param runnable       necessary to complement the method. But it's generally used to remove a player from the session map.
+     * **/
+
+    void closeSingleGameGUI(@Nonnull Player player, @Nullable SingleGameSession gameSession, @Nonnull T casinoGameMode, @Nonnull Runnable runnable);
+
+    /**
+     * Handles mode update on /vegas reload, returns their bet if the game has not yet started.
+     *
+     * @param sessions       the map with all players in this mode, where UUID - is the UUID of the player
+     * @param casinoGameMode the game mode itself
+     * **/
+
+    void reloadSingleGameGUI(@Nonnull Map<UUID, SingleGameSession> sessions, @Nonnull T casinoGameMode);
+
+
 }
