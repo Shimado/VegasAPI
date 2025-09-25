@@ -6,7 +6,7 @@
 
     <groupId>com.github.Shimado</groupId>
     <artifactId>VegasAPI</artifactId>
-    <version>1.0.33</version>
+    <version>1.0.34</version>
 
     <name>VegasAPI</name>
     <description>API for minecraft plugin Vegas</description>
@@ -81,7 +81,6 @@
             <groupId>com.github.Shimado</groupId>
             <artifactId>BoomBoxAPI</artifactId>
             <version>v1.1.2</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
