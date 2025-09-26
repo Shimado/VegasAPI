@@ -18,8 +18,9 @@ public class VegasAPI {
         return schedulerAdapter;
     }
 
-    public static void setSchedulerAdapter(SchedulerAdapter s){
+    public static SchedulerAdapter setSchedulerAdapter(SchedulerAdapter s){
         schedulerAdapter = s;
+        return s;
     }
 
 
@@ -27,8 +28,9 @@ public class VegasAPI {
         return casinoGameModeRegister;
     }
 
-    public static void setCasinoGameModeRegister(CasinoGameModeRegister c){
+    public static CasinoGameModeRegister setCasinoGameModeRegister(CasinoGameModeRegister c){
         casinoGameModeRegister = c;
+        return c;
     }
 
 
@@ -36,8 +38,9 @@ public class VegasAPI {
         return dataStorage;
     }
 
-    public static void setDataStorage(DataStorage d){
+    public static DataStorage setDataStorage(DataStorage d){
         dataStorage = d;
+        return d;
     }
 
 
@@ -45,8 +48,9 @@ public class VegasAPI {
         return economyUtil;
     }
 
-    public static void setEconomyUtil(EconomyUtil e){
+    public static EconomyUtil setEconomyUtil(EconomyUtil e){
         economyUtil = e;
+        return e;
     }
 
 
@@ -54,8 +58,9 @@ public class VegasAPI {
         return chipUtil;
     }
 
-    public static void setChipUtil(ChipUtil e){
-        chipUtil = e;
+    public static ChipUtil setChipUtil(ChipUtil c){
+        chipUtil = c;
+        return c;
     }
 
 
@@ -63,8 +68,9 @@ public class VegasAPI {
         return victoryUtil;
     }
 
-    public static void setVictoryUtil(VictoryUtil v){
+    public static VictoryUtil setVictoryUtil(VictoryUtil v){
         victoryUtil = v;
+        return v;
     }
 
 
@@ -72,8 +78,9 @@ public class VegasAPI {
         return casinoGameModeUtil;
     }
 
-    public static void setCasinoGameModeUtil(CasinoGameModeUtil c){
+    public static CasinoGameModeUtil setCasinoGameModeUtil(CasinoGameModeUtil c){
         casinoGameModeUtil = c;
+        return c;
     }
 
 
@@ -81,8 +88,9 @@ public class VegasAPI {
         return invSession;
     }
 
-    public static void setInvSession(InvSession i){
+    public static InvSession setInvSession(InvSession i){
         invSession = i;
+        return i;
     }
 
 }
