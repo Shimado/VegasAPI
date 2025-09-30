@@ -29,9 +29,21 @@ public class CasinoGameMode {
     private double jackpotChance = 0.0;                                      // Chance to hit the jackpot if you win
     private double jackpotBoost = 1.0;                                       // Jackpot Payout Boost
     private double chargedPercentage = 0.0;                                  // Percentage of the bet that goes to the jackpot
+    private boolean sendJackpotTitle = false;                                // Sends jackpot title
+    private String jackpotTitle;                                             // Title itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String jackpotSubtitle;                                          // Subtitle itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private boolean sendJackpotTitleToAll = false;                           // Sends jackpot title to all players
+    private String jackpotTitleToAll;                                        // Title itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String jackpotSubtitleToAll;                                     // Subtitle itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private int jackpotTitleFadeIn = 0;                                      // Title fade in time in ticks
+    private int jackpotTitleStay = 0;                                        // Title stay time in ticks
+    private int jackpotTitleFadeOut = 0;                                     // Title fade out time in ticks
     private boolean sendJackpotMessage = true;                               // Sends jackpot message to the player
+    private String jackpotMessage;                                           // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendJackpotMessageToAll = false;                         // Sends jackpot message to all players
+    private String jackpotMessageToAll;                                      // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendJackpotMessageToDiscord = false;                     // Sends jackpot message to Discord
+    private String jackpotMessageToDiscord;                                  // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean useOnlyJackpotCommands = false;                          // Whether only commands will be executed
     private List<String> jackpotCommandsToDispatch = new ArrayList<>();      // Commands executed when player hits jackpot [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpJackpotURL;                                           // URL to be processed
@@ -39,10 +51,23 @@ public class CasinoGameMode {
     private Map<String, Object> httpJackpotHeaders = new HashMap<>();        // Request headers
     private IBoomboxSong jackpotMusic;                                       // Music in .nbs format from Boombox plugin
 
+    private boolean ifWinMultiplierLessThanOneConsiderAsBonus = true;        // If the winning odds are less than 1.0, the bonus scenario will be processed instead of the win scenario. If there is no bonus scenario, the win scenario will be processed.
+    private boolean sendVictoryTitle = false;                                // Sends victory title
+    private String victoryTitle;                                             // Title itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String victorySubtitle;                                          // Subtitle itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private boolean sendVictoryTitleToAll = false;                           // Sends victory title to all players
+    private String victoryTitleToAll;                                        // Title itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String victorySubtitleToAll;                                     // Subtitle itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private int victoryTitleFadeIn = 0;                                      // Title fade in time in ticks
+    private int victoryTitleStay = 0;                                        // Title stay time in ticks
+    private int victoryTitleFadeOut = 0;                                     // Title fade out time in ticks
     private boolean spawnVictoryFireWorks = false;                           // Whether to spawn fireworks on victory
     private boolean sendVictoryMessage = false;                              // Sends victory message to the winning player
+    private String victoryMessage;                                           // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendVictoryMessageToAll = false;                         // Sends victory message to all players
+    private String victoryMessageToAll;                                      // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendVictoryMessageToDiscord = false;                     // Sends victory message to Discord
+    private String victoryMessageToDiscord;                                  // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean useOnlyVictoryCommands = false;                          // Whether only commands will be executed
     private List<String> victoryCommandsToDispatch = new ArrayList<>();      // Commands executed when player wins [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpVictoryURL;                                           // URL to be processed
@@ -50,6 +75,21 @@ public class CasinoGameMode {
     private Map<String, Object> httpVictoryHeaders = new HashMap<>();        // Request headers
     private IBoomboxSong victoryMusic;                                       // Music in .nbs format from Boombox plugin
 
+    private boolean sendBonusTitle = false;                                  // Sends bonus title
+    private String bonusTitle;                                               // Title itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String bonusSubtitle;                                            // Subtitle itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private boolean sendBonusTitleToAll = false;                             // Sends bonus title to all players
+    private String bonusTitleToAll;                                          // Title itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String bonusSubtitleToAll;                                       // Subtitle itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private int bonusTitleFadeIn = 0;                                        // Title fade in time in ticks
+    private int bonusTitleStay = 0;                                          // Title stay time in ticks
+    private int bonusTitleFadeOut = 0;                                       // Title fade out time in ticks
+    private boolean sendBonusMessage = false;                                // Sends bonus message to the losing player
+    private String bonusMessage;                                             // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private boolean sendBonusMessageToAll = false;                           // Sends bonus message to all players
+    private String bonusMessageToAll;                                        // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private boolean sendBonusMessageToDiscord = false;                       // Sends bonus message to Discord
+    private String bonusMessageToDiscord;                                    // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean useOnlyBonusCommands = false;                            // Whether only commands will be executed
     private List<String> bonusCommandsToDispatch = new ArrayList<>();        // Commands executed when player wins [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpBonusURL;                                             // URL to be processed
@@ -57,9 +97,21 @@ public class CasinoGameMode {
     private Map<String, Object> httpBonusHeaders = new HashMap<>();          // Request headers
     private IBoomboxSong bonusMusic;                                         // Music in .nbs format from Boombox plugin
 
+    private boolean sendDefeatTitle = false;                                 // Sends defeat title
+    private String defeatTitle;                                              // Title itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
+    private String defeatSubtitle;                                           // Subtitle itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
+    private boolean sendDefeatTitleToAll = false;                            // Sends defeat title to all players
+    private String defeatTitleToAll;                                         // Title itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
+    private String defeatSubtitleToAll;                                      // Subtitle itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
+    private int defeatTitleFadeIn = 0;                                       // Title fade in time in ticks
+    private int defeatTitleStay = 0;                                         // Title stay time in ticks
+    private int defeatTitleFadeOut = 0;                                      // Title fade out time in ticks
     private boolean sendDefeatMessage = false;                               // Sends defeat message to the losing player
+    private String defeatMessage;                                            // Message itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
     private boolean sendDefeatMessageToAll = false;                          // Sends defeat message to all players
+    private String defeatMessageToAll;                                       // Message itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
     private boolean sendDefeatMessageToDiscord = false;                      // Sends defeat message to Discord
+    private String defeatMessageToDiscord;                                   // Message itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
     private List<String> defeatCommandsToDispatch = new ArrayList<>();       // Commands executed when player loses [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
     private String httpDefeatURL;                                            // URL to be processed
     private String httpDefeatMethod = "POST";                                // Request method
@@ -209,12 +261,117 @@ public class CasinoGameMode {
     }
 
 
+    public boolean isSendJackpotTitle() {
+        return sendJackpotTitle;
+    }
+
+    public CasinoGameMode setSendJackpotTitle(boolean sendJackpotTitle) {
+        this.sendJackpotTitle = sendJackpotTitle;
+        return this;
+    }
+
+
+    @Nullable
+    public String getJackpotTitle() {
+        return jackpotTitle;
+    }
+
+    public CasinoGameMode setJackpotTitle(@Nullable String jackpotTitle) {
+        this.jackpotTitle = jackpotTitle;
+        return this;
+    }
+
+
+    @Nullable
+    public String getJackpotSubtitle() {
+        return jackpotSubtitle;
+    }
+
+    public CasinoGameMode setJackpotSubtitle(@Nullable String jackpotSubtitle) {
+        this.jackpotSubtitle = jackpotSubtitle;
+        return this;
+    }
+
+
+    public boolean isSendJackpotTitleToAll() {
+        return sendJackpotTitleToAll;
+    }
+
+    public CasinoGameMode setSendJackpotTitleToAll(boolean sendJackpotTitleToAll) {
+        this.sendJackpotTitleToAll = sendJackpotTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getJackpotTitleToAll() {
+        return jackpotTitleToAll;
+    }
+
+    public CasinoGameMode setJackpotTitleToAll(@Nullable String jackpotTitleToAll) {
+        this.jackpotTitleToAll = jackpotTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getJackpotSubtitleToAll() {
+        return jackpotSubtitleToAll;
+    }
+
+    public CasinoGameMode setJackpotSubtitleToAll(@Nullable String jackpotSubtitleToAll) {
+        this.jackpotSubtitleToAll = jackpotSubtitleToAll;
+        return this;
+    }
+
+
+    public int getJackpotTitleFadeIn() {
+        return jackpotTitleFadeIn;
+    }
+
+    public CasinoGameMode setJackpotTitleFadeIn(int jackpotTitleFadeIn) {
+        this.jackpotTitleFadeIn = jackpotTitleFadeIn;
+        return this;
+    }
+
+
+    public int getJackpotTitleStay() {
+        return jackpotTitleStay;
+    }
+
+    public CasinoGameMode setJackpotTitleStay(int jackpotTitleStay) {
+        this.jackpotTitleStay = jackpotTitleStay;
+        return this;
+    }
+
+
+    public int getJackpotTitleFadeOut() {
+        return jackpotTitleFadeOut;
+    }
+
+    public CasinoGameMode setJackpotTitleFadeOut(int jackpotTitleFadeOut) {
+        this.jackpotTitleFadeOut = jackpotTitleFadeOut;
+        return this;
+    }
+
+
     public boolean isSendJackpotMessage() {
         return sendJackpotMessage;
     }
 
     public CasinoGameMode setSendJackpotMessage(boolean sendJackpotMessage) {
         this.sendJackpotMessage = sendJackpotMessage;
+        return this;
+    }
+
+
+    @Nullable
+    public String getJackpotMessage() {
+        return jackpotMessage;
+    }
+
+    public CasinoGameMode setJackpotMessage(@Nullable String jackpotMessage) {
+        this.jackpotMessage = jackpotMessage;
         return this;
     }
 
@@ -229,12 +386,34 @@ public class CasinoGameMode {
     }
 
 
+    @Nullable
+    public String getJackpotMessageToAll() {
+        return jackpotMessageToAll;
+    }
+
+    public CasinoGameMode setJackpotMessageToAll(@Nullable String jackpotMessageToAll) {
+        this.jackpotMessageToAll = jackpotMessageToAll;
+        return this;
+    }
+
+
     public boolean isSendJackpotMessageToDiscord() {
         return sendJackpotMessageToDiscord;
     }
 
     public CasinoGameMode setSendJackpotMessageToDiscord(boolean sendJackpotMessageToDiscord) {
         this.sendJackpotMessageToDiscord = sendJackpotMessageToDiscord;
+        return this;
+    }
+
+
+    @Nullable
+    public String getJackpotMessageToDiscord() {
+        return jackpotMessageToDiscord;
+    }
+
+    public CasinoGameMode setJackpotMessageToDiscord(@Nullable String jackpotMessageToDiscord) {
+        this.jackpotMessageToDiscord = jackpotMessageToDiscord;
         return this;
     }
 
@@ -306,6 +485,110 @@ public class CasinoGameMode {
     }
 
 
+    public boolean isIfWinMultiplierLessThanOneConsiderAsBonus() {
+        return ifWinMultiplierLessThanOneConsiderAsBonus;
+    }
+
+    public CasinoGameMode setIfWinMultiplierLessThanOneConsiderAsBonus(boolean ifWinMultiplierLessThanOneConsiderAsBonus) {
+        this.ifWinMultiplierLessThanOneConsiderAsBonus = ifWinMultiplierLessThanOneConsiderAsBonus;
+        return this;
+    }
+
+
+    public boolean isSendVictoryTitle() {
+        return sendVictoryTitle;
+    }
+
+    public CasinoGameMode setSendVictoryTitle(boolean sendVictoryTitle) {
+        this.sendVictoryTitle = sendVictoryTitle;
+        return this;
+    }
+
+
+    @Nullable
+    public String getVictoryTitle() {
+        return victoryTitle;
+    }
+
+    public CasinoGameMode setVictoryTitle(@Nullable String victoryTitle) {
+        this.victoryTitle = victoryTitle;
+        return this;
+    }
+
+
+    @Nullable
+    public String getVictorySubtitle() {
+        return victorySubtitle;
+    }
+
+    public CasinoGameMode setVictorySubtitle(@Nullable String victorySubtitle) {
+        this.victorySubtitle = victorySubtitle;
+        return this;
+    }
+
+
+    public boolean isSendVictoryTitleToAll() {
+        return sendVictoryTitleToAll;
+    }
+
+    public CasinoGameMode setSendVictoryTitleToAll(boolean sendVictoryTitleToAll) {
+        this.sendVictoryTitleToAll = sendVictoryTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getVictoryTitleToAll() {
+        return victoryTitleToAll;
+    }
+
+    public CasinoGameMode setVictoryTitleToAll(@Nullable String victoryTitleToAll) {
+        this.victoryTitleToAll = victoryTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getVictorySubtitleToAll() {
+        return victorySubtitleToAll;
+    }
+
+    public CasinoGameMode setVictorySubtitleToAll(@Nullable String victorySubtitleToAll) {
+        this.victorySubtitleToAll = victorySubtitleToAll;
+        return this;
+    }
+
+
+    public int getVictoryTitleFadeIn() {
+        return victoryTitleFadeIn;
+    }
+
+    public CasinoGameMode setVictoryTitleFadeIn(int victoryTitleFadeIn) {
+        this.victoryTitleFadeIn = victoryTitleFadeIn;
+        return this;
+    }
+
+
+    public int getVictoryTitleStay() {
+        return victoryTitleStay;
+    }
+
+    public CasinoGameMode setVictoryTitleStay(int victoryTitleStay) {
+        this.victoryTitleStay = victoryTitleStay;
+        return this;
+    }
+
+
+    public int getVictoryTitleFadeOut() {
+        return victoryTitleFadeOut;
+    }
+
+    public CasinoGameMode setVictoryTitleFadeOut(int victoryTitleFadeOut) {
+        this.victoryTitleFadeOut = victoryTitleFadeOut;
+        return this;
+    }
+
+
     public boolean isSpawnVictoryFireWorks() {
         return spawnVictoryFireWorks;
     }
@@ -326,6 +609,17 @@ public class CasinoGameMode {
     }
 
 
+    @Nullable
+    public String getVictoryMessage() {
+        return victoryMessage;
+    }
+
+    public CasinoGameMode setVictoryMessage(@Nullable String victoryMessage) {
+        this.victoryMessage = victoryMessage;
+        return this;
+    }
+
+
     public boolean isSendVictoryMessageToAll() {
         return sendVictoryMessageToAll;
     }
@@ -336,12 +630,34 @@ public class CasinoGameMode {
     }
 
 
+    @Nullable
+    public String getVictoryMessageToAll() {
+        return victoryMessageToAll;
+    }
+
+    public CasinoGameMode setVictoryMessageToAll(@Nullable String victoryMessageToAll) {
+        this.victoryMessageToAll = victoryMessageToAll;
+        return this;
+    }
+
+
     public boolean isSendVictoryMessageToDiscord() {
         return sendVictoryMessageToDiscord;
     }
 
     public CasinoGameMode setSendVictoryMessageToDiscord(boolean sendVictoryMessageToDiscord) {
         this.sendVictoryMessageToDiscord = sendVictoryMessageToDiscord;
+        return this;
+    }
+
+
+    @Nullable
+    public String getVictoryMessageToDiscord() {
+        return victoryMessageToDiscord;
+    }
+
+    public CasinoGameMode setVictoryMessageToDiscord(@Nullable String victoryMessageToDiscord) {
+        this.victoryMessageToDiscord = victoryMessageToDiscord;
         return this;
     }
 
@@ -413,6 +729,163 @@ public class CasinoGameMode {
     }
 
 
+    public boolean isSendBonusTitle() {
+        return sendBonusTitle;
+    }
+
+    public CasinoGameMode setSendBonusTitle(boolean sendBonusTitle) {
+        this.sendBonusTitle = sendBonusTitle;
+        return this;
+    }
+
+
+    @Nullable
+    public String getBonusTitle() {
+        return bonusTitle;
+    }
+
+    public CasinoGameMode setBonusTitle(@Nullable String bonusTitle) {
+        this.bonusTitle = bonusTitle;
+        return this;
+    }
+
+
+    @Nullable
+    public String getBonusSubtitle() {
+        return bonusSubtitle;
+    }
+
+    public CasinoGameMode setBonusSubtitle(@Nullable String bonusSubtitle) {
+        this.bonusSubtitle = bonusSubtitle;
+        return this;
+    }
+
+
+    public boolean isSendBonusTitleToAll() {
+        return sendBonusTitleToAll;
+    }
+
+    public CasinoGameMode setSendBonusTitleToAll(boolean sendBonusTitleToAll) {
+        this.sendBonusTitleToAll = sendBonusTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getBonusTitleToAll() {
+        return bonusTitleToAll;
+    }
+
+    public CasinoGameMode setBonusTitleToAll(@Nullable String bonusTitleToAll) {
+        this.bonusTitleToAll = bonusTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getBonusSubtitleToAll() {
+        return bonusSubtitleToAll;
+    }
+
+    public CasinoGameMode setBonusSubtitleToAll(@Nullable String bonusSubtitleToAll) {
+        this.bonusSubtitleToAll = bonusSubtitleToAll;
+        return this;
+    }
+
+
+    public int getBonusTitleFadeIn() {
+        return bonusTitleFadeIn;
+    }
+
+    public CasinoGameMode setBonusTitleFadeIn(int bonusTitleFadeIn) {
+        this.bonusTitleFadeIn = bonusTitleFadeIn;
+        return this;
+    }
+
+
+    public int getBonusTitleStay() {
+        return bonusTitleStay;
+    }
+
+    public CasinoGameMode setBonusTitleStay(int bonusTitleStay) {
+        this.bonusTitleStay = bonusTitleStay;
+        return this;
+    }
+
+
+    public int getBonusTitleFadeOut() {
+        return bonusTitleFadeOut;
+    }
+
+    public CasinoGameMode setBonusTitleFadeOut(int bonusTitleFadeOut) {
+        this.bonusTitleFadeOut = bonusTitleFadeOut;
+        return this;
+    }
+
+
+    public boolean isSendBonusMessage() {
+        return sendBonusMessage;
+    }
+
+    public CasinoGameMode setSendBonusMessage(boolean sendBonusMessage) {
+        this.sendBonusMessage = sendBonusMessage;
+        return this;
+    }
+
+
+    @Nullable
+    public String getBonusMessage() {
+        return bonusMessage;
+    }
+
+    public CasinoGameMode setBonusMessage(@Nullable String bonusMessage) {
+        this.bonusMessage = bonusMessage;
+        return this;
+    }
+
+
+    public boolean isSendBonusMessageToAll() {
+        return sendBonusMessageToAll;
+    }
+
+    public CasinoGameMode setSendBonusMessageToAll(boolean sendBonusMessageToAll) {
+        this.sendBonusMessageToAll = sendBonusMessageToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getBonusMessageToAll() {
+        return bonusMessageToAll;
+    }
+
+    public CasinoGameMode setBonusMessageToAll(@Nullable String bonusMessageToAll) {
+        this.bonusMessageToAll = bonusMessageToAll;
+        return this;
+    }
+
+
+    public boolean isSendBonusMessageToDiscord() {
+        return sendBonusMessageToDiscord;
+    }
+
+    public CasinoGameMode setSendBonusMessageToDiscord(boolean sendBonusMessageToDiscord) {
+        this.sendBonusMessageToDiscord = sendBonusMessageToDiscord;
+        return this;
+    }
+
+
+    @Nullable
+    public String getBonusMessageToDiscord() {
+        return bonusMessageToDiscord;
+    }
+
+    public CasinoGameMode setBonusMessageToDiscord(@Nullable String bonusMessageToDiscord) {
+        this.bonusMessageToDiscord = bonusMessageToDiscord;
+        return this;
+    }
+
+
     public boolean isUseOnlyBonusCommands(){
         return useOnlyBonusCommands;
     }
@@ -480,12 +953,118 @@ public class CasinoGameMode {
     }
 
 
+    public boolean isSendDefeatTitle() {
+        return sendDefeatTitle;
+    }
+
+    public CasinoGameMode setSendDefeatTitle(boolean sendDefeatTitle) {
+        this.sendDefeatTitle = sendDefeatTitle;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDefeatTitle() {
+        return defeatTitle;
+    }
+
+    public CasinoGameMode setDefeatTitle(@Nullable String defeatTitle) {
+        this.defeatTitle = defeatTitle;
+
+        return this;
+    }
+
+
+    @Nullable
+    public String getDefeatSubtitle() {
+        return defeatSubtitle;
+    }
+
+    public CasinoGameMode setDefeatSubtitle(@Nullable String defeatSubtitle) {
+        this.defeatSubtitle = defeatSubtitle;
+        return this;
+    }
+
+
+    public boolean isSendDefeatTitleToAll() {
+        return sendDefeatTitleToAll;
+    }
+
+    public CasinoGameMode setSendDefeatTitleToAll(boolean sendDefeatTitleToAll) {
+        this.sendDefeatTitleToAll = sendDefeatTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDefeatTitleToAll() {
+        return defeatTitleToAll;
+    }
+
+    public CasinoGameMode setDefeatTitleToAll(@Nullable String defeatTitleToAll) {
+        this.defeatTitleToAll = defeatTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDefeatSubtitleToAll() {
+        return defeatSubtitleToAll;
+    }
+
+    public CasinoGameMode setDefeatSubtitleToAll(@Nullable String defeatSubtitleToAll) {
+        this.defeatSubtitleToAll = defeatSubtitleToAll;
+        return this;
+    }
+
+
+    public int getDefeatTitleFadeIn() {
+        return defeatTitleFadeIn;
+    }
+
+    public CasinoGameMode setDefeatTitleFadeIn(int defeatTitleFadeIn) {
+        this.defeatTitleFadeIn = defeatTitleFadeIn;
+        return this;
+    }
+
+
+    public int getDefeatTitleStay() {
+        return defeatTitleStay;
+    }
+
+    public CasinoGameMode setDefeatTitleStay(int defeatTitleStay) {
+        this.defeatTitleStay = defeatTitleStay;
+        return this;
+    }
+
+
+    public int getDefeatTitleFadeOut() {
+        return defeatTitleFadeOut;
+    }
+
+    public CasinoGameMode setDefeatTitleFadeOut(int defeatTitleFadeOut) {
+        this.defeatTitleFadeOut = defeatTitleFadeOut;
+        return this;
+    }
+
+
     public boolean isSendDefeatMessage() {
         return sendDefeatMessage;
     }
 
     public CasinoGameMode setSendDefeatMessage(boolean sendDefeatMessage) {
         this.sendDefeatMessage = sendDefeatMessage;
+        return this;
+    }
+
+
+    @Nullable
+    public String isDefeatMessage() {
+        return defeatMessage;
+    }
+
+    public CasinoGameMode setDefeatMessage(@Nullable String defeatMessage) {
+        this.defeatMessage = defeatMessage;
         return this;
     }
 
@@ -500,12 +1079,34 @@ public class CasinoGameMode {
     }
 
 
+    @Nullable
+    public String isDefeatMessageToAll() {
+        return defeatMessageToAll;
+    }
+
+    public CasinoGameMode setDefeatMessageToAll(@Nullable String defeatMessageToAll) {
+        this.defeatMessageToAll = defeatMessageToAll;
+        return this;
+    }
+
+
     public boolean isSendDefeatMessageToDiscord() {
         return sendDefeatMessageToDiscord;
     }
 
     public CasinoGameMode setSendDefeatMessageToDiscord(boolean sendDefeatMessageToDiscord) {
         this.sendDefeatMessageToDiscord = sendDefeatMessageToDiscord;
+        return this;
+    }
+
+
+    @Nullable
+    public String isDefeatMessageToDiscord() {
+        return defeatMessageToDiscord;
+    }
+
+    public CasinoGameMode setDefeatMessageToDiscord(@Nullable String defeatMessageToDiscord) {
+        this.defeatMessageToDiscord = defeatMessageToDiscord;
         return this;
     }
 
@@ -878,9 +1479,21 @@ public class CasinoGameMode {
                 "Jackpot-chance: " + jackpotChance + ";" +
                 "Jackpot-boost:" + jackpotBoost + ";" +
                 "Jackpot-charged-percentage:" + chargedPercentage + ";" +
+                "Jackpot-send-title:" + sendJackpotTitle + ";" +
+                "Jackpot-title:" + jackpotTitle + ";" +
+                "Jackpot-subtitle:" + jackpotSubtitle + ";" +
+                "Jackpot-send-title-to-all:" + sendJackpotTitleToAll + ";" +
+                "Jackpot-title-to-all:" + jackpotTitleToAll + ";" +
+                "Jackpot-subtitle-to-all:" + jackpotSubtitleToAll + ";" +
+                "Jackpot-title-fade-in:" + jackpotTitleFadeIn + ";" +
+                "Jackpot-title-stay:" + jackpotTitleStay + ";" +
+                "Jackpot-title-fade-out:" + jackpotTitleFadeOut + ";" +
                 "Jackpot-send-message:" + sendJackpotMessage + ";" +
+                "Jackpot-message:" + jackpotMessage + ";" +
                 "Jackpot-send-message-to-all:" + sendJackpotMessageToAll + ";" +
+                "Jackpot-message-to-all:" + jackpotMessageToAll + ";" +
                 "Jackpot-send-message-to-discord:" + sendJackpotMessageToDiscord + ";" +
+                "Jackpot-message-to-discord:" + jackpotMessageToDiscord + ";" +
                 "Jackpot-only-commands:" + useOnlyJackpotCommands + ";" +
                 "Jackpot-commands-list:" + jackpotCommandsToDispatch.toString() + ";" +
                 "Jackpot-http-url:" + httpJackpotURL + ";" +
@@ -888,10 +1501,23 @@ public class CasinoGameMode {
                 "Jackpot-http-headers:" + httpJackpotHeaders.toString() + ";" +
                 "Jackpot-music:" + (jackpotMusic == null ? null : jackpotMusic.getID()) + ";" +
 
+                "Victory-if-multiplier-less-than-one-consider-as-bonus:" + ifWinMultiplierLessThanOneConsiderAsBonus + ";" +
+                "Victory-send-title:" + sendVictoryTitle + ";" +
+                "Victory-title:" + victoryTitle + ";" +
+                "Victory-subtitle:" + victorySubtitle + ";" +
+                "Victory-send-title-to-all:" + sendVictoryTitleToAll + ";" +
+                "Victory-title-to-all:" + victoryTitleToAll + ";" +
+                "Victory-subtitle-to-all:" + victorySubtitleToAll + ";" +
+                "Victory-title-fade-in:" + victoryTitleFadeIn + ";" +
+                "Victory-title-stay:" + victoryTitleStay + ";" +
+                "Victory-title-fade-out:" + victoryTitleFadeOut + ";" +
                 "Victory-fireworks:" + spawnVictoryFireWorks + ";" +
                 "Victory-send-message:" + sendVictoryMessage + ";" +
+                "Victory-message:" + victoryMessage + ";" +
                 "Victory-send-message-to-all:" + sendVictoryMessageToAll + ";" +
+                "Victory-message-to-all:" + victoryMessageToAll + ";" +
                 "Victory-send-message-to-discord:" + sendVictoryMessageToDiscord + ";" +
+                "Victory-message-to-discord:" + victoryMessageToDiscord + ";" +
                 "Victory-only-commands:" + useOnlyVictoryCommands + ";" +
                 "Victory-commands-list:" + victoryCommandsToDispatch.toString() + ";" +
                 "Victory-http-url:" + httpVictoryURL + ";" +
@@ -899,6 +1525,21 @@ public class CasinoGameMode {
                 "Victory-http-headers:" + httpVictoryHeaders.toString() + ";" +
                 "Victory-music:" + (victoryMusic == null ? null : victoryMusic.getID()) + ";" +
 
+                "Bonus-send-title:" + sendBonusTitle + ";" +
+                "Bonus-title:" + bonusTitle + ";" +
+                "Bonus-subtitle:" + bonusSubtitle + ";" +
+                "Bonus-send-title-to-all:" + sendBonusTitleToAll + ";" +
+                "Bonus-title-to-all:" + bonusTitleToAll + ";" +
+                "Bonus-subtitle-to-all:" + bonusSubtitleToAll + ";" +
+                "Bonus-title-fade-in:" + bonusTitleFadeIn + ";" +
+                "Bonus-title-stay:" + bonusTitleStay + ";" +
+                "Bonus-title-fade-out:" + bonusTitleFadeOut + ";" +
+                "Bonus-send-message:" + sendBonusMessage + ";" +
+                "Bonus-message:" + bonusMessage + ";" +
+                "Bonus-send-message-to-all:" + sendBonusMessageToAll + ";" +
+                "Bonus-message-to-all:" + bonusMessageToAll + ";" +
+                "Bonus-send-message-to-discord:" + sendBonusMessageToDiscord + ";" +
+                "Bonus-message-to-discord:" + bonusMessageToDiscord + ";" +
                 "Bonus-only-commands:" + useOnlyBonusCommands + ";" +
                 "Bonus-commands-list:" + bonusCommandsToDispatch.toString() + ";" +
                 "Bonus-http-url:" + httpBonusURL + ";" +
@@ -906,9 +1547,21 @@ public class CasinoGameMode {
                 "Bonus-http-headers:" + httpBonusHeaders.toString() + ";" +
                 "Bonus-music:" + (bonusMusic == null ? null : bonusMusic.getID()) + ";" +
 
+                "Defeat-send-title:" + sendDefeatTitle + ";" +
+                "Defeat-title:" + defeatTitle + ";" +
+                "Defeat-subtitle:" + defeatSubtitle + ";" +
+                "Defeat-send-title-to-all:" + sendDefeatTitleToAll + ";" +
+                "Defeat-title-to-all:" + defeatTitleToAll + ";" +
+                "Defeat-subtitle-to-all:" + defeatSubtitleToAll + ";" +
+                "Defeat-title-fade-in:" + defeatTitleFadeIn + ";" +
+                "Defeat-title-stay:" + defeatTitleStay + ";" +
+                "Defeat-title-fade-out:" + defeatTitleFadeOut + ";" +
                 "Defeat-send-message:" + sendDefeatMessage + ";" +
+                "Defeat-message:" + defeatMessage + ";" +
                 "Defeat-send-message-to-all:" + sendDefeatMessageToAll + ";" +
+                "Defeat-message-to-all:" + defeatMessageToAll + ";" +
                 "Defeat-send-message-to-discord:" + sendDefeatMessageToDiscord + ";" +
+                "Defeat-message-to-discord:" + defeatMessageToDiscord + ";" +
                 "Defeat-commands-list:" + defeatCommandsToDispatch.toString() + ";" +
                 "Defeat-http-url:" + httpDefeatURL + ";" +
                 "Defeat-http-method:" + httpDefeatMethod + ";" +
