@@ -30,22 +30,22 @@ public class CasinoGameMode {
     private double jackpotBoost = 1.0;                                       // Jackpot Payout Boost
     private double chargedPercentage = 0.0;                                  // Percentage of the bet that goes to the jackpot
     private boolean sendJackpotTitle = false;                                // Sends jackpot title
-    private String jackpotTitle;                                             // Title itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
-    private String jackpotSubtitle;                                          // Subtitle itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String jackpotTitle;                                             // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String jackpotSubtitle;                                          // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendJackpotTitleToAll = false;                           // Sends jackpot title to all players
-    private String jackpotTitleToAll;                                        // Title itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
-    private String jackpotSubtitleToAll;                                     // Subtitle itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String jackpotTitleToAll;                                        // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String jackpotSubtitleToAll;                                     // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private int jackpotTitleFadeIn = 0;                                      // Title fade in time in ticks
     private int jackpotTitleStay = 0;                                        // Title stay time in ticks
     private int jackpotTitleFadeOut = 0;                                     // Title fade out time in ticks
     private boolean sendJackpotMessage = true;                               // Sends jackpot message to the player
-    private String jackpotMessage;                                           // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String jackpotMessage;                                           // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendJackpotMessageToAll = false;                         // Sends jackpot message to all players
-    private String jackpotMessageToAll;                                      // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String jackpotMessageToAll;                                      // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendJackpotMessageToDiscord = false;                     // Sends jackpot message to Discord
-    private String jackpotMessageToDiscord;                                  // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String jackpotMessageToDiscord;                                  // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean useOnlyJackpotCommands = false;                          // Whether only commands will be executed
-    private List<String> jackpotCommandsToDispatch = new ArrayList<>();      // Commands executed when player hits jackpot [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private List<String> jackpotCommandsToDispatch = new ArrayList<>();      // Commands executed when player hits jackpot [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpJackpotURL;                                           // URL to be processed
     private String httpJackpotMethod = "POST";                               // Request method
     private Map<String, Object> httpJackpotHeaders = new HashMap<>();        // Request headers
@@ -53,66 +53,66 @@ public class CasinoGameMode {
 
     private boolean ifWinMultiplierLessThanOneConsiderAsBonus = true;        // If the winning odds are less than 1.0, the bonus scenario will be processed instead of the win scenario. If there is no bonus scenario, the win scenario will be processed.
     private boolean sendVictoryTitle = false;                                // Sends victory title
-    private String victoryTitle;                                             // Title itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
-    private String victorySubtitle;                                          // Subtitle itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String victoryTitle;                                             // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String victorySubtitle;                                          // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendVictoryTitleToAll = false;                           // Sends victory title to all players
-    private String victoryTitleToAll;                                        // Title itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
-    private String victorySubtitleToAll;                                     // Subtitle itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String victoryTitleToAll;                                        // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String victorySubtitleToAll;                                     // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private int victoryTitleFadeIn = 0;                                      // Title fade in time in ticks
     private int victoryTitleStay = 0;                                        // Title stay time in ticks
     private int victoryTitleFadeOut = 0;                                     // Title fade out time in ticks
     private boolean spawnVictoryFireWorks = false;                           // Whether to spawn fireworks on victory
     private boolean sendVictoryMessage = false;                              // Sends victory message to the winning player
-    private String victoryMessage;                                           // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String victoryMessage;                                           // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendVictoryMessageToAll = false;                         // Sends victory message to all players
-    private String victoryMessageToAll;                                      // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String victoryMessageToAll;                                      // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendVictoryMessageToDiscord = false;                     // Sends victory message to Discord
-    private String victoryMessageToDiscord;                                  // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String victoryMessageToDiscord;                                  // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean useOnlyVictoryCommands = false;                          // Whether only commands will be executed
-    private List<String> victoryCommandsToDispatch = new ArrayList<>();      // Commands executed when player wins [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private List<String> victoryCommandsToDispatch = new ArrayList<>();      // Commands executed when player wins [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpVictoryURL;                                           // URL to be processed
     private String httpVictoryMethod = "POST";                               // Request method
     private Map<String, Object> httpVictoryHeaders = new HashMap<>();        // Request headers
     private IBoomboxSong victoryMusic;                                       // Music in .nbs format from Boombox plugin
 
     private boolean sendBonusTitle = false;                                  // Sends bonus title
-    private String bonusTitle;                                               // Title itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
-    private String bonusSubtitle;                                            // Subtitle itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String bonusTitle;                                               // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String bonusSubtitle;                                            // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendBonusTitleToAll = false;                             // Sends bonus title to all players
-    private String bonusTitleToAll;                                          // Title itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
-    private String bonusSubtitleToAll;                                       // Subtitle itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String bonusTitleToAll;                                          // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String bonusSubtitleToAll;                                       // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private int bonusTitleFadeIn = 0;                                        // Title fade in time in ticks
     private int bonusTitleStay = 0;                                          // Title stay time in ticks
     private int bonusTitleFadeOut = 0;                                       // Title fade out time in ticks
     private boolean sendBonusMessage = false;                                // Sends bonus message to the losing player
-    private String bonusMessage;                                             // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String bonusMessage;                                             // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendBonusMessageToAll = false;                           // Sends bonus message to all players
-    private String bonusMessageToAll;                                        // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String bonusMessageToAll;                                        // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendBonusMessageToDiscord = false;                       // Sends bonus message to Discord
-    private String bonusMessageToDiscord;                                    // Message itself [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String bonusMessageToDiscord;                                    // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean useOnlyBonusCommands = false;                            // Whether only commands will be executed
-    private List<String> bonusCommandsToDispatch = new ArrayList<>();        // Commands executed when player wins [Placeholders: %player%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private List<String> bonusCommandsToDispatch = new ArrayList<>();        // Commands executed when player wins [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpBonusURL;                                             // URL to be processed
     private String httpBonusMethod = "POST";                                 // Request method
     private Map<String, Object> httpBonusHeaders = new HashMap<>();          // Request headers
     private IBoomboxSong bonusMusic;                                         // Music in .nbs format from Boombox plugin
 
     private boolean sendDefeatTitle = false;                                 // Sends defeat title
-    private String defeatTitle;                                              // Title itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
-    private String defeatSubtitle;                                           // Subtitle itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
+    private String defeatTitle;                                              // Title itself [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
+    private String defeatSubtitle;                                           // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
     private boolean sendDefeatTitleToAll = false;                            // Sends defeat title to all players
-    private String defeatTitleToAll;                                         // Title itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
-    private String defeatSubtitleToAll;                                      // Subtitle itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
+    private String defeatTitleToAll;                                         // Title itself [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
+    private String defeatSubtitleToAll;                                      // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
     private int defeatTitleFadeIn = 0;                                       // Title fade in time in ticks
     private int defeatTitleStay = 0;                                         // Title stay time in ticks
     private int defeatTitleFadeOut = 0;                                      // Title fade out time in ticks
     private boolean sendDefeatMessage = false;                               // Sends defeat message to the losing player
-    private String defeatMessage;                                            // Message itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
+    private String defeatMessage;                                            // Message itself [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
     private boolean sendDefeatMessageToAll = false;                          // Sends defeat message to all players
-    private String defeatMessageToAll;                                       // Message itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
+    private String defeatMessageToAll;                                       // Message itself [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
     private boolean sendDefeatMessageToDiscord = false;                      // Sends defeat message to Discord
-    private String defeatMessageToDiscord;                                   // Message itself [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
-    private List<String> defeatCommandsToDispatch = new ArrayList<>();       // Commands executed when player loses [Placeholders: %player%, %bet_price%, %bet_price_rounded%]
+    private String defeatMessageToDiscord;                                   // Message itself [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
+    private List<String> defeatCommandsToDispatch = new ArrayList<>();       // Commands executed when player loses [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
     private String httpDefeatURL;                                            // URL to be processed
     private String httpDefeatMethod = "POST";                                // Request method
     private Map<String, Object> httpDefeatHeaders = new HashMap<>();         // Request headers
@@ -1059,7 +1059,7 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public String isDefeatMessage() {
+    public String getDefeatMessage() {
         return defeatMessage;
     }
 
@@ -1080,7 +1080,7 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public String isDefeatMessageToAll() {
+    public String getDefeatMessageToAll() {
         return defeatMessageToAll;
     }
 
@@ -1101,7 +1101,7 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public String isDefeatMessageToDiscord() {
+    public String getDefeatMessageToDiscord() {
         return defeatMessageToDiscord;
     }
 
