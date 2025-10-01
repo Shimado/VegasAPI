@@ -43,6 +43,24 @@ public interface PlayerSettings {
      PlayerSettings setDefaultMoneyBet(double defaultMoneyBet);
 
     /**
+     * Gets a number of free spins. If you receive more than 0,
+     * simply click on the bet slot and start playing!
+     *
+     * @return default bet amount
+     */
+
+    int getFreeSpins();
+
+    /**
+     * Sets a number of free spins.
+     *
+     * @param freeSpins number of free spins
+     * @return this PlayerSettings instance for chaining
+     */
+
+    PlayerSettings setFreeSpins(int freeSpins);
+
+    /**
      * Gets the background song settings for the main GUI.
      *
      * @return main GUI background song settings, or {@code null} if not set
