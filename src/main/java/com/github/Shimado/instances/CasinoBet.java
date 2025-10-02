@@ -19,6 +19,7 @@ public class CasinoBet {
     private double moneyBet = 0.0;
     private ItemStack chipsBet;
     private ItemStack itemsBet;
+    private boolean isFreeSpin = false;
 
 
     /**
@@ -112,6 +113,28 @@ public class CasinoBet {
 
     public CasinoBet setItemsBet(@Nullable ItemStack itemsBet) {
         this.itemsBet = itemsBet;
+        return this;
+    }
+
+    /**
+     * Is the bet placed free?
+     *
+     * @return true if this is a free spin
+     */
+
+    public boolean isFreeSpin() {
+        return isFreeSpin;
+    }
+
+    /**
+     * Sets whether the bet will be free
+     *
+     * @param isFreeSpin is a free spin
+     * @return this instance for chaining
+     */
+
+    public CasinoBet setFreeSpin(boolean isFreeSpin) {
+        this.isFreeSpin = isFreeSpin;
         return this;
     }
 
