@@ -134,11 +134,19 @@ public class CasinoGameMode {
 
     private List<Integer> spotSlots = new ArrayList<>();                     // Betting spots
     private ItemStack spotItem;                                              // Betting spot icon
+    private String spotItemTitle;                                            // Betting spot title
+    private List<String> spotItemLore = new ArrayList<>();                   // Betting spot lore
 
     private List<Integer> leverSlots = new ArrayList<>();                    // Control lever slots
     private ItemStack leverItemInactive;                                     // Inactive lever (when no bet is placed)
+    private String leverItemInactiveTitle;                                   // Inactive lever title
+    private List<String> leverItemInactiveLore = new ArrayList<>();          // Inactive lever lore
     private ItemStack leverItemActive;                                       // Active lever (when player has placed a bet)
+    private String leverItemActiveTitle;                                     // Active lever title
+    private List<String> leverItemActiveLore = new ArrayList<>();            // Active lever lore
     private ItemStack leverItemRolling;                                      // Rolling lever (when player has placed a bet and started the game)
+    private String leverItemRollingTitle;                                    // Rolling lever title
+    private List<String> leverItemRollingLore = new ArrayList<>();           // Rolling lever lore
 
     private IBoomboxSong backgroundMusic;                                    // Background music in .nbs format from Boombox plugin
     private List<Integer> musicButtonSlots = new ArrayList<>();              // Slot occupied by the button
@@ -1317,6 +1325,29 @@ public class CasinoGameMode {
     }
 
 
+    @Nullable
+    public String getSpotItemTitle() {
+        return spotItemTitle;
+    }
+
+    public CasinoGameMode setSpotItemTitle(@Nullable String spotItemTitle) {
+        this.spotItemTitle = spotItemTitle;
+        return this;
+    }
+
+
+
+    @Nonnull
+    public List<String> getSpotItemLore() {
+        return spotItemLore;
+    }
+
+    public CasinoGameMode setSpotItemLore(@Nonnull List<String> spotItemLore) {
+        this.spotItemLore = spotItemLore;
+        return this;
+    }
+
+
     @Nonnull
     public List<Integer> getLeverSlots() {
         return leverSlots;
@@ -1341,6 +1372,28 @@ public class CasinoGameMode {
 
 
     @Nullable
+    public String getLeverItemInactiveTitle() {
+        return leverItemInactiveTitle;
+    }
+
+    public CasinoGameMode setLeverItemInactiveTitle(@Nullable String leverItemInactiveTitle) {
+        this.leverItemInactiveTitle = leverItemInactiveTitle;
+        return this;
+    }
+
+
+    @Nonnull
+    public List<String> getLeverItemInactiveLore() {
+        return leverItemInactiveLore;
+    }
+
+    public CasinoGameMode setLeverItemInactiveLore(@Nonnull List<String> leverItemInactiveLore) {
+        this.leverItemInactiveLore = leverItemInactiveLore;
+        return this;
+    }
+
+
+    @Nullable
     public ItemStack getLeverItemActive() {
         return leverItemActive;
     }
@@ -1352,12 +1405,56 @@ public class CasinoGameMode {
 
 
     @Nullable
+    public String getLeverItemActiveTitle() {
+        return leverItemActiveTitle;
+    }
+
+    public CasinoGameMode setLeverItemActiveTitle(@Nullable String leverItemActiveTitle) {
+        this.leverItemActiveTitle = leverItemActiveTitle;
+        return this;
+    }
+
+
+    @Nonnull
+    public List<String> getLeverItemActiveLore() {
+        return leverItemActiveLore;
+    }
+
+    public CasinoGameMode setLeverItemActiveLore(@Nonnull List<String> leverItemActiveLore) {
+        this.leverItemActiveLore = leverItemActiveLore;
+        return this;
+    }
+
+
+    @Nullable
     public ItemStack getLeverItemRolling() {
         return leverItemRolling;
     }
 
     public CasinoGameMode setLeverItemRolling(@Nullable ItemStack leverItemRolling) {
         this.leverItemRolling = leverItemRolling;
+        return this;
+    }
+
+
+    @Nullable
+    public String getLeverItemRollingTitle() {
+        return leverItemRollingTitle;
+    }
+
+    public CasinoGameMode setLeverItemRollingTitle(@Nullable String leverItemRollingTitle) {
+        this.leverItemRollingTitle = leverItemRollingTitle;
+        return this;
+    }
+
+
+    @Nonnull
+    public List<String> getLeverItemRollingLore() {
+        return leverItemRollingLore;
+    }
+
+    public CasinoGameMode setLeverItemRollingLore(@Nonnull List<String> leverItemRollingLore) {
+        this.leverItemRollingLore = leverItemRollingLore;
         return this;
     }
 
@@ -1584,11 +1681,19 @@ public class CasinoGameMode {
 
                 "Spot-slots:" + spotSlots.toString() + ";" +
                 "Spot-item:" + spotItem + ";" +
+                "Spot-item-title:" + spotItemTitle + ";" +
+                "Spot-item-lore:" + spotItemLore.toString() + ";" +
 
                 "Lever-slots:" + leverSlots.toString() + ";" +
                 "Lever-item-inactive:" + leverItemInactive + ";" +
+                "Lever-item-inactive-title:" + leverItemInactiveTitle + ";" +
+                "Lever-item-inactive-lore:" + leverItemInactiveLore.toString() + ";" +
                 "Lever-item-active:" + leverItemActive + ";" +
+                "Lever-item-active-title:" + leverItemActiveTitle + ";" +
+                "Lever-item-active-lore:" + leverItemActiveLore.toString() + ";" +
                 "Lever-item-rolling:" + leverItemRolling + ";" +
+                "Lever-item-rolling-title:" + leverItemRollingTitle + ";" +
+                "Lever-item-rolling-lore:" + leverItemRollingLore.toString() + ";" +
 
                 "Background-music:" + (backgroundMusic == null ? null : backgroundMusic.getID()) + ";" +
                 "Background-music-button-slots:" + musicButtonSlots.toString() + ";" +
