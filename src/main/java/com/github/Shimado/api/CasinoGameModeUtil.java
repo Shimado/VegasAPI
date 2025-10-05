@@ -6,6 +6,7 @@ import com.github.Shimado.instances.SingleGameSession;
 import com.github.Shimado.interfaces.ItemRunnable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -63,6 +64,16 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * **/
 
     void closeSingleGameGUI(@Nonnull Player player, @Nullable SingleGameSession gameSession, @Nonnull T casinoGameMode, @Nonnull Runnable runnable);
+
+    /**
+     * Sets the bid buttons, replacing all placeholders.
+     *
+     * @param player         for whom is the button installed and whose data will be taken
+     * @param inv            inventory where it will be installed
+     * @param casinoGameMode the game mode itself
+     * **/
+
+    void setSpotItem(@Nonnull Player player, @Nonnull Inventory inv, @Nonnull CasinoGameMode casinoGameMode);
 
     /**
      * Handles mode update on /vegas reload, returns their bet if the game has not yet started.
