@@ -153,6 +153,7 @@ public class CasinoGameMode {
     private ItemStack musicButtonItemInactive;                               // Background music button (inactive)
     private ItemStack musicButtonItemActive;                                 // Background music button (active)
     private String musicButtonItemActiveTitle;                               // Active background button title
+    private List<String> musicButtonItemActiveLore = new ArrayList<>();      // Active background button lore
     private List<Integer> statsButtonSlots = new ArrayList<>();              // This game mode statistics slots
     private ItemStack statsButtonItem;                                       // This game mode statistics item
     private List<String> statsButtonLore = new ArrayList<>();                // This game mode statistics item lore with all placeholders
@@ -1511,6 +1512,17 @@ public class CasinoGameMode {
 
     public CasinoGameMode setMusicButtonItemActiveTitle(@Nullable String musicButtonItemActiveTitle) {
         this.musicButtonItemActiveTitle = musicButtonItemActiveTitle;
+        return this;
+    }
+
+
+    @Nonnull
+    public List<String> getMusicButtonItemActiveLore() {
+        return musicButtonItemActiveLore;
+    }
+
+    public CasinoGameMode setMusicButtonItemActiveLore(@Nonnull List<String> musicButtonItemActiveLore) {
+        this.musicButtonItemActiveLore = musicButtonItemActiveLore;
         return this;
     }
 

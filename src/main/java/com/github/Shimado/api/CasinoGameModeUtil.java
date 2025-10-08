@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -70,10 +71,11 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      *
      * @param player         for whom is the button installed and whose data will be taken
      * @param inv            inventory where it will be installed
+     * @param spotSlots      slots in the GUI to set
      * @param casinoGameMode the game mode itself
      * **/
 
-    void setSpotItem(@Nonnull Player player, @Nonnull Inventory inv, @Nonnull CasinoGameMode casinoGameMode);
+    void setSpotItems(@Nonnull Player player, @Nonnull Inventory inv, @Nonnull List<Integer> spotSlots, @Nonnull CasinoGameMode casinoGameMode);
 
     /**
      * Handles mode update on /vegas reload, returns their bet if the game has not yet started.
