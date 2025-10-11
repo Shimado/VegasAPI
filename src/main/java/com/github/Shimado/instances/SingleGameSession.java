@@ -9,6 +9,7 @@ public class SingleGameSession {
 
     private CasinoBet bet;
     private CycleTask cycle;
+    private boolean opened = true;
 
 
     @Nonnull
@@ -21,7 +22,7 @@ public class SingleGameSession {
     }
 
 
-    public boolean isSessionActive(){
+    public boolean isCycleActive(){
         return cycle != null;
     }
 
@@ -36,4 +37,17 @@ public class SingleGameSession {
         }
     }
 
+
+    public boolean isOpened() {
+        return opened;
+    }
+
+    public void setOpened(boolean opened) {
+        this.opened = opened;
+    }
+
+
+    public boolean isSessionActive(){
+        return cycle != null && !opened;
+    }
 }
