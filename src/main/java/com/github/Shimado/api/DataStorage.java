@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Map;
+import java.util.Queue;
 import java.util.UUID;
 
 /**
@@ -117,5 +118,26 @@ public interface DataStorage {
 
     @Nullable
     CasinoGameModeStats getCasinoGameStats(@Nullable String gameName);
+
+    /**
+     * Gets a queue of all player logs that contain data on the game played and its results:
+     * Prizes, victory/defeat, player UUID/name, game mode and etc
+     *
+     * @return a queue of all player logs.
+     */
+
+    @Nonnull
+    Queue getGameLogs();
+
+    /**
+     * Gets a queue of the player logs that contain data on the game played and its results:
+     * Prizes, victory/defeat, player UUID/name, game mode and etc
+     *
+     * @param playerUUID the unique identifier of the player
+     * @return a queue of all logs for a given player, or {@code null} if not found
+     */
+
+    @Nullable
+    Queue getPlayerGameLogs(@Nullable UUID playerUUID);
 
 }
