@@ -9,6 +9,7 @@ public enum InventoryType {
     STATISTICS_COMMANDS,
     MUSIC,
     MUSIC_COMMANDS,
+    DECORATIONS_COMMANDS,
     GAME_MODE,
     GAME_MODE_COMMANDS
 

@@ -134,10 +134,10 @@ public interface DataStorage {
      * Prizes, victory/defeat, player UUID/name, game mode and etc
      *
      * @param playerUUID the unique identifier of the player
-     * @return a queue of all logs for a given player, or {@code null} if not found
+     * @return a queue of all logs for a given player, or empty queue
      */
 
-    @Nullable
+    @Nonnull
     Queue getPlayerGameLogs(@Nullable UUID playerUUID);
 
 }
