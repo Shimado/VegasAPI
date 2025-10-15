@@ -140,36 +140,36 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
     void setCasinoTable(@Nullable PlacedCasinoTable casinoTable);
 
     /**
-     * Gets the current music page index.
+     * Gets the current page index.
      *
-     * @return the music page number
+     * @return the page number
      */
 
-    int getMusicPage();
+    int getPage();
 
     /**
-     * Sets the current music page index.
+     * Sets the current page index.
      *
-     * @param musicPage the music page number
+     * @param page the page number
      */
 
-    void setMusicPage(int musicPage);
+    void setPage(int page);
 
     /**
-     * Advances to the next music page and returns the new index.
+     * Advances to the next page and returns the new index.
      *
-     * @return the next music page number
+     * @return the next page number
      */
 
-    int nextMusicPage();
+    int nextPage();
 
     /**
-     * Goes back to the previous music page and returns the new index.
+     * Goes back to the previous page and returns the new index.
      *
-     * @return the previous music page number
+     * @return the previous page number
      */
 
-    int previousMusicPage();
+    int previousPage();
 
     /**
      * Closes the GUI for the given player.
