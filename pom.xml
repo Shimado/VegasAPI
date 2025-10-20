@@ -6,7 +6,7 @@
 
     <groupId>com.github.Shimado</groupId>
     <artifactId>VegasAPI</artifactId>
-    <version>1.0.48</version>
+    <version>1.0.49</version>
 
     <name>VegasAPI</name>
     <description>API for minecraft plugin Vegas</description>

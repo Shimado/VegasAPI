@@ -25,6 +25,18 @@ public interface ChipUtil {
     @Nullable
     ItemStack getChip(double price);
 
+
+    /**
+     * Creates a chip with the specified price.
+     *
+     * @param price  the chip price
+     * @param amount number of chips
+     * @return a chip item, or {@code null} if creation is not possible
+     */
+
+    @Nullable
+    ItemStack getChip(double price, int amount);
+
     /**
      * Checks if the given item is a chip.
      *
