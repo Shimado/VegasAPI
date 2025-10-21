@@ -41,4 +41,20 @@ public interface Deck {
     @Nullable
     ItemStack getCard(int cardNumber);
 
+    /**
+     * Returns a random card number.
+     *
+     * @return the card number
+     */
+
+    int getRandomCardNumber();
+
+    /**
+     * Returns a random card number and removes it from the deck's card list.
+     *
+     * @return the card number
+     */
+
+    int getRandomCardNumberAndRemoveFromDeck();
+
 }

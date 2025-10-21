@@ -53,4 +53,32 @@ public interface CardDeck {
     @Nullable
     ItemStack getCardItem(@Nonnull CardSuit cardSuit, int cardNumber);
 
+    /**
+     * Removes a card from the deck by suit and card number.
+     *
+     * @param cardSuit   the suit of the card.
+     * @param cardNumber the card number (2–14).
+     */
+
+    void removeCardItem(@Nonnull CardSuit cardSuit, int cardNumber);
+
+    /**
+     * Returns a random card, namely an array of suit and card number.
+     *
+     * @return the array, where [0] - CardSuit, [1] - cardNumber
+     */
+
+    @Nonnull
+    Object[] getRandomCardItem();
+
+    /**
+     * Returns a random card, namely an array of suit and card number.
+     * And removes it from the deck's card list.
+     *
+     * @return the array, where [0] - CardSuit, [1] - cardNumber
+     */
+
+    @Nonnull
+    Object[] getRandomCardItemAndRemoveFromDeck();
+
 }

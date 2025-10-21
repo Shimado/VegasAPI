@@ -38,12 +38,13 @@ public interface CasinoGameModeMethods {
     /**
      * Handles logic when the player interacts with the game GUI (clicking items, etc.).
      *
-     * @param e      the inventory click event
-     * @param player the player who clicked
+     * @param e       the inventory click event
+     * @param player  the player who clicked
      * @param session the inventory session that stores some data
+     * @param slot    the clicked slot in the GUI
      */
 
-    void clickGUI(@Nonnull InventoryClickEvent e, @Nonnull Player player, @Nonnull ISession session);
+    void clickGUI(@Nonnull InventoryClickEvent e, @Nonnull Player player, @Nonnull ISession session, int slot);
 
     /**
      * Reloads the game mode, refreshing configuration or resetting state if needed.
