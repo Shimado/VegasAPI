@@ -36,10 +36,10 @@ public interface CardDeck {
      * Returns the deck for the specified suit.
      *
      * @param cardSuit the suit whose deck is requested.
-     * @return a non-null deck for the given suit.
+     * @return the deck for the given suit, or {@code null}
      */
 
-    @Nonnull
+    @Nullable
     Deck getDeck(@Nonnull CardSuit cardSuit);
 
     /**

@@ -1,5 +1,6 @@
 package com.github.Shimado.instances;
 
+import com.github.Shimado.enums.ChipType;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
@@ -146,6 +147,15 @@ public class CasinoBet {
 
     public boolean isAnyBet() {
         return moneyBet > 0 || chipsBet != null || itemsBet != null;
+    }
+
+
+    @Nullable
+    public ChipType getChipType(){
+        if(moneyBet > 0) return ChipType.MONEY;
+        if(chipsBet != null) return ChipType.CHIPS;
+        if(itemsBet != null) return ChipType.ITEMS;
+        return null;
     }
 
 }
