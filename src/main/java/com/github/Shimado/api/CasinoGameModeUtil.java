@@ -4,6 +4,7 @@ import com.github.Shimado.instances.CasinoBet;
 import com.github.Shimado.instances.CasinoGameMode;
 import com.github.Shimado.instances.SingleGameSession;
 import com.github.Shimado.interfaces.ItemRunnable;
+import com.github.Shimado.interfaces.PlacedCasinoTable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
@@ -54,6 +55,16 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      */
 
     boolean checkIfBusinessTableHasMoney(@Nonnull Player player, @Nullable UUID tableOwnerUUID);
+
+    /**
+     * Checks whether a business-owned table has enough funds.
+     *
+     * @param player         the player attempting to use the table
+     * @param casinoTable    the placed casino table instance with owner's data
+     * @return {@code true} if the business table has sufficient money, {@code false} otherwise
+     */
+
+    boolean checkIfBusinessTableHasMoney(@Nonnull Player player, @Nullable PlacedCasinoTable casinoTable);
 
     /**
      * Handles the player closing the GUI, returns their bet if the game has not yet started.
