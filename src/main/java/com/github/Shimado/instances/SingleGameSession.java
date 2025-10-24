@@ -9,6 +9,7 @@ public class SingleGameSession {
 
     private CasinoBet bet;
     private CycleTask cycle;
+    private int timer = 0;
     private boolean opened = true;
 
 
@@ -47,7 +48,22 @@ public class SingleGameSession {
     }
 
 
-    public boolean isSessionActive(){
-        return cycle != null && !opened;
+    public int getTimer() {
+        return timer;
     }
+
+    public void setTimer(int timer) {
+        this.timer = timer;
+    }
+
+    public void addTime(){
+        timer++;
+    }
+
+    public void removeTime(){
+        timer--;
+    }
+
+
+
 }
