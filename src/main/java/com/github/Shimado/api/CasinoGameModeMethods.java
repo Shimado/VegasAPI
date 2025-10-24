@@ -30,10 +30,11 @@ public interface CasinoGameModeMethods {
      * Here you can specify the return of the bet if the session has not started.
      * And the deletion of the player's data from the session.
      *
-     * @param player the player who closed the game inventory
+     * @param player   the player who closed the game inventory
+     * @param session  the inventory session with some data
      */
 
-    void closeGUI(@Nonnull Player player);
+    void closeGUI(@Nonnull Player player, @Nonnull ISession session);
 
     /**
      * Handles logic when the player interacts with the game GUI (clicking items, etc.).
