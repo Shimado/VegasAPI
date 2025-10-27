@@ -34,6 +34,8 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
 
     void placeBet(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull T casinoGameMode, @Nullable ItemRunnable betRunnable);
 
+    void placeBetToInventory(@Nonnull Player player, @Nonnull Inventory inv, @Nonnull T casinoGameMode, @Nonnull ItemStack itemToSet, int slot);
+
     /**
      * Refunds a bet back to the player.
      *
