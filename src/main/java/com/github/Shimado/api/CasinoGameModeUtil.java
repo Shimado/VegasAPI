@@ -97,5 +97,16 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
 
     void reloadSingleGameGUI(@Nonnull Map<UUID, SingleGameSession> sessions, @Nonnull T casinoGameMode);
 
+    /**
+     * Sets the delay for recharging the mode + responds to the restart music.
+     *
+     * @param delay       the delay in ticks before starting a new game
+     * @param player      the player who plays in this mode
+     * @param gameSession the game session that requires a restart
+     * @param runnable    where the method itself is implemented that restarts the mode
+     * **/
+
+    void restartSingleGameWithDelay(int delay, @Nonnull Player player, @Nonnull SingleGameSession gameSession, @Nonnull Runnable runnable);
+
 
 }
