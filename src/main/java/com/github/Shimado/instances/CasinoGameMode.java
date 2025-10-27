@@ -118,6 +118,27 @@ public class CasinoGameMode {
     private Map<String, Object> httpDefeatHeaders = new HashMap<>();         // Request headers
     private IBoomboxSong defeatMusic;                                        // Music in .nbs format from Boombox plugin
 
+    private boolean sendDrawTitle = false;                                   // Sends draw title
+    private String drawTitle;                                                // Title itself [Placeholders: %player%, %mode%, %bet_price%]
+    private String drawSubtitle;                                             // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%]
+    private boolean sendDrawTitleToAll = false;                              // Sends draw title to all players
+    private String drawTitleToAll;                                           // Title itself [Placeholders: %player%, %mode%, %bet_price%]
+    private String drawSubtitleToAll;                                        // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%]
+    private int drawTitleFadeIn = 0;                                         // Title fade in time in ticks
+    private int drawTitleStay = 0;                                           // Title stay time in ticks
+    private int drawTitleFadeOut = 0;                                        // Title fade out time in ticks
+    private boolean sendDrawMessage = false;                                 // Sends draw message to the losing player
+    private String drawMessage;                                              // Message itself [Placeholders: %player%, %mode%, %bet_price%]
+    private boolean sendDrawMessageToAll = false;                            // Sends draw message to all players
+    private String drawMessageToAll;                                         // Message itself [Placeholders: %player%, %mode%, %bet_price%]
+    private boolean sendDrawMessageToDiscord = false;                        // Sends draw message to Discord
+    private String drawMessageToDiscord;                                     // Message itself [Placeholders: %player%, %mode%, %bet_price%]
+    private List<String> drawCommandsToDispatch = new ArrayList<>();         // Commands executed when player loses [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
+    private String httpDrawURL;                                              // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
+    private String httpDrawMethod = "POST";                                  // Request method
+    private Map<String, Object> httpDrawHeaders = new HashMap<>();           // Request headers
+    private IBoomboxSong drawMusic;                                          // Music in .nbs format from Boombox plugin
+
     private double minBetPrice = 0.01;                                       // Minimum bet amount in currency
     private int minBetPriceInItems = 1;                                      // Minimum number of items a player can bet
     private double maxBetPrice = 10000000.0;                                 // Maximum bet amount in currency
@@ -1177,6 +1198,221 @@ public class CasinoGameMode {
     }
 
 
+    public boolean isSendDrawTitle() {
+        return sendDrawTitle;
+    }
+
+    public CasinoGameMode setSendDrawTitle(boolean sendDrawTitle) {
+        this.sendDrawTitle = sendDrawTitle;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawTitle() {
+        return drawTitle;
+    }
+
+    public CasinoGameMode setDrawTitle(@Nullable String drawTitle) {
+        this.drawTitle = drawTitle;
+
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawSubtitle() {
+        return drawSubtitle;
+    }
+
+    public CasinoGameMode setDrawSubtitle(@Nullable String drawSubtitle) {
+        this.drawSubtitle = drawSubtitle;
+        return this;
+    }
+
+
+    public boolean isSendDrawTitleToAll() {
+        return sendDrawTitleToAll;
+    }
+
+    public CasinoGameMode setSendDrawTitleToAll(boolean sendDrawTitleToAll) {
+        this.sendDrawTitleToAll = sendDrawTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawTitleToAll() {
+        return drawTitleToAll;
+    }
+
+    public CasinoGameMode setDrawTitleToAll(@Nullable String drawTitleToAll) {
+        this.drawTitleToAll = drawTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawSubtitleToAll() {
+        return drawSubtitleToAll;
+    }
+
+    public CasinoGameMode setDrawSubtitleToAll(@Nullable String drawSubtitleToAll) {
+        this.drawSubtitleToAll = drawSubtitleToAll;
+        return this;
+    }
+
+
+    public int getDrawTitleFadeIn() {
+        return drawTitleFadeIn;
+    }
+
+    public CasinoGameMode setDrawTitleFadeIn(int drawTitleFadeIn) {
+        this.drawTitleFadeIn = drawTitleFadeIn;
+        return this;
+    }
+
+
+    public int getDrawTitleStay() {
+        return drawTitleStay;
+    }
+
+    public CasinoGameMode setDrawTitleStay(int drawTitleStay) {
+        this.drawTitleStay = drawTitleStay;
+        return this;
+    }
+
+
+    public int getDrawTitleFadeOut() {
+        return drawTitleFadeOut;
+    }
+
+    public CasinoGameMode setDrawTitleFadeOut(int drawTitleFadeOut) {
+        this.drawTitleFadeOut = drawTitleFadeOut;
+        return this;
+    }
+
+
+    public boolean isSendDrawMessage() {
+        return sendDrawMessage;
+    }
+
+    public CasinoGameMode setSendDrawMessage(boolean sendDrawMessage) {
+        this.sendDrawMessage = sendDrawMessage;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawMessage() {
+        return drawMessage;
+    }
+
+    public CasinoGameMode setDrawMessage(@Nullable String drawMessage) {
+        this.drawMessage = drawMessage;
+        return this;
+    }
+
+
+    public boolean isSendDrawMessageToAll() {
+        return sendDrawMessageToAll;
+    }
+
+    public CasinoGameMode setSendDrawMessageToAll(boolean sendDrawMessageToAll) {
+        this.sendDrawMessageToAll = sendDrawMessageToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawMessageToAll() {
+        return drawMessageToAll;
+    }
+
+    public CasinoGameMode setDrawMessageToAll(@Nullable String drawMessageToAll) {
+        this.drawMessageToAll = drawMessageToAll;
+        return this;
+    }
+
+
+    public boolean isSendDrawMessageToDiscord() {
+        return sendDrawMessageToDiscord;
+    }
+
+    public CasinoGameMode setSendDrawMessageToDiscord(boolean sendDrawMessageToDiscord) {
+        this.sendDrawMessageToDiscord = sendDrawMessageToDiscord;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawMessageToDiscord() {
+        return drawMessageToDiscord;
+    }
+
+    public CasinoGameMode setDrawMessageToDiscord(@Nullable String drawMessageToDiscord) {
+        this.drawMessageToDiscord = drawMessageToDiscord;
+        return this;
+    }
+
+
+    @Nonnull
+    public List<String> getDrawCommandsToDispatch() {
+        return drawCommandsToDispatch;
+    }
+
+    public CasinoGameMode setDrawCommandsToDispatch(@Nonnull List<String> drawCommandsToDispatch) {
+        if(drawCommandsToDispatch == null) return this;
+        this.drawCommandsToDispatch = drawCommandsToDispatch;
+        return this;
+    }
+
+
+    @Nullable
+    public String getHttpDrawURL() {
+        return httpDrawURL;
+    }
+
+    public CasinoGameMode setHttpDrawURL(@Nullable String httpDrawURL) {
+        this.httpDrawURL = httpDrawURL;
+        return this;
+    }
+
+
+    @Nullable
+    public String getHttpDrawMethod() {
+        return httpDrawMethod;
+    }
+
+    public CasinoGameMode setHttpDrawMethod(@Nullable String httpDrawMethod) {
+        this.httpDrawMethod = httpDrawMethod;
+        return this;
+    }
+
+
+    @Nonnull
+    public Map<String, Object> getHttpDrawHeaders() {
+        return httpDrawHeaders;
+    }
+
+    public CasinoGameMode setHttpDrawHeaders(@Nonnull Map<String, Object> httpDrawHeaders) {
+        if(httpDrawHeaders == null) return this;
+        this.httpDrawHeaders = httpDrawHeaders;
+        return this;
+    }
+
+
+    @Nullable
+    public IBoomboxSong getDrawMusic() {
+        return drawMusic;
+    }
+
+    public CasinoGameMode setDrawMusic(@Nullable IBoomboxSong drawMusic) {
+        this.drawMusic = drawMusic;
+        return this;
+    }
+
+
     public double getMinBetPrice() {
         return minBetPrice;
     }
@@ -1676,6 +1912,27 @@ public class CasinoGameMode {
                 "Defeat-http-method:" + httpDefeatMethod + ";" +
                 "Defeat-http-headers:" + httpDefeatHeaders.toString() + ";" +
                 "Defeat-music:" + (defeatMusic == null ? null : defeatMusic.getID()) + ";" +
+
+                "Draw-send-title:" + sendDrawTitle + ";" +
+                "Draw-title:" + drawTitle + ";" +
+                "Draw-subtitle:" + drawSubtitle + ";" +
+                "Draw-send-title-to-all:" + sendDrawTitleToAll + ";" +
+                "Draw-title-to-all:" + drawTitleToAll + ";" +
+                "Draw-subtitle-to-all:" + drawSubtitleToAll + ";" +
+                "Draw-title-fade-in:" + drawTitleFadeIn + ";" +
+                "Draw-title-stay:" + drawTitleStay + ";" +
+                "Draw-title-fade-out:" + drawTitleFadeOut + ";" +
+                "Draw-send-message:" + sendDrawMessage + ";" +
+                "Draw-message:" + drawMessage + ";" +
+                "Draw-send-message-to-all:" + sendDrawMessageToAll + ";" +
+                "Draw-message-to-all:" + drawMessageToAll + ";" +
+                "Draw-send-message-to-discord:" + sendDrawMessageToDiscord + ";" +
+                "Draw-message-to-discord:" + drawMessageToDiscord + ";" +
+                "Draw-commands-list:" + drawCommandsToDispatch.toString() + ";" +
+                "Draw-http-url:" + httpDrawURL + ";" +
+                "Draw-http-method:" + httpDrawMethod + ";" +
+                "Draw-http-headers:" + httpDrawHeaders.toString() + ";" +
+                "Draw-music:" + (drawMusic == null ? null : drawMusic.getID()) + ";" +
 
                 "Bet-min-price:" + minBetPrice + ";" +
                 "Bet-min-items-amount:" + minBetPriceInItems + ";" +

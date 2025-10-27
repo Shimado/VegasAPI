@@ -35,6 +35,9 @@ public interface GameLog {
     boolean isDefeat();
 
 
+    boolean isDraw();
+
+
     @Nonnull
     String getPrize();
 

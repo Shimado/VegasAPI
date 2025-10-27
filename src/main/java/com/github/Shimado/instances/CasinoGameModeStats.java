@@ -33,13 +33,14 @@ public class CasinoGameModeStats extends VegasStats{
      * @param victories   number of victories
      * @param bonuses     number of bonuses
      * @param defeats     number of defeats
+     * @param draws       number of draws
      * @param jackpots    number of jackpots
      * @param wonMoney    total money won
      * @param lostMoney   total money lost
      */
 
-    public CasinoGameModeStats(@Nonnull String gameName, int gamesPlayed, int victories, int bonuses, int defeats, int jackpots, double wonMoney, double lostMoney) {
-        super(gamesPlayed, victories, bonuses, defeats, jackpots, wonMoney, lostMoney);
+    public CasinoGameModeStats(@Nonnull String gameName, int gamesPlayed, int victories, int bonuses, int defeats, int draws, int jackpots, double wonMoney, double lostMoney) {
+        super(gamesPlayed, victories, bonuses, defeats, draws, jackpots, wonMoney, lostMoney);
         this.gameName = gameName;
     }
 

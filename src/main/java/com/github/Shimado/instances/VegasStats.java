@@ -6,6 +6,7 @@ public class VegasStats {
     private int victories = 0;
     private int bonuses = 0;
     private int defeats = 0;
+    private int draws = 0;
     private int jackpots = 0;
     private double wonMoney = 0.0;
     private double lostMoney = 0.0;
@@ -13,11 +14,12 @@ public class VegasStats {
 
     public VegasStats(){}
 
-    public VegasStats(int gamesPlayed, int victories, int bonuses, int defeats, int jackpots, double wonMoney, double lostMoney){
+    public VegasStats(int gamesPlayed, int victories, int bonuses, int defeats, int draws, int jackpots, double wonMoney, double lostMoney){
         this.gamesPlayed = gamesPlayed;
         this.victories = victories;
         this.bonuses = bonuses;
         this.defeats = defeats;
+        this.draws = draws;
         this.jackpots = jackpots;
         this.wonMoney = wonMoney;
         this.lostMoney = lostMoney;
@@ -73,6 +75,19 @@ public class VegasStats {
 
     public void addDefeat() {
         defeats++;
+    }
+
+
+    public int getDraws() {
+        return draws;
+    }
+
+    public void setDraws(int draws) {
+        this.draws = draws;
+    }
+
+    public void addDraws() {
+        draws++;
     }
 
 
