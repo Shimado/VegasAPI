@@ -29,12 +29,10 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param player           the player placing the bet
      * @param bet              the bet object containing bet details
      * @param casinoGameMode   the casino game mode where the bet is placed
-     * @param chipsRunnable    action to run if the bet is made with chips. Handles further actions after a bet has been placed
-     * @param moneyRunnable    action to run if the bet is made with money. Handles further actions after a bet has been placed
-     * @param itemsRunnable    action to run if the bet is made with items. Handles further actions after a bet has been placed
+     * @param betRunnable    action to run if the bet is made with chips/money/items. Handles further actions after a bet has been placed
      */
 
-    void placeBet(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull T casinoGameMode, @Nullable ItemRunnable chipsRunnable, @Nullable ItemRunnable moneyRunnable, @Nullable ItemRunnable itemsRunnable);
+    void placeBet(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull T casinoGameMode, @Nullable ItemRunnable betRunnable);
 
     /**
      * Refunds a bet back to the player.
