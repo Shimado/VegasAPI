@@ -112,6 +112,7 @@ public class CasinoGameMode {
     private String defeatMessageToAll;                                       // Message itself [Placeholders: %player%, %mode%, %bet_price%]
     private boolean sendDefeatMessageToDiscord = false;                      // Sends defeat message to Discord
     private String defeatMessageToDiscord;                                   // Message itself [Placeholders: %player%, %mode%, %bet_price%]
+    private boolean useOnlyDefeatCommands = false;                           // Whether only commands will be executed
     private List<String> defeatCommandsToDispatch = new ArrayList<>();       // Commands executed when player loses [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
     private String httpDefeatURL;                                            // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
     private String httpDefeatMethod = "POST";                                // Request method
@@ -133,6 +134,7 @@ public class CasinoGameMode {
     private String drawMessageToAll;                                         // Message itself [Placeholders: %player%, %mode%, %bet_price%]
     private boolean sendDrawMessageToDiscord = false;                        // Sends draw message to Discord
     private String drawMessageToDiscord;                                     // Message itself [Placeholders: %player%, %mode%, %bet_price%]
+    private boolean useOnlyDrawCommands = false;                             // Whether only commands will be executed
     private List<String> drawCommandsToDispatch = new ArrayList<>();         // Commands executed when player loses [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
     private String httpDrawURL;                                              // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
     private String httpDrawMethod = "POST";                                  // Request method
@@ -1141,6 +1143,16 @@ public class CasinoGameMode {
     }
 
 
+    public boolean isUseOnlyDefeatCommands(){
+        return useOnlyDefeatCommands;
+    }
+
+    public CasinoGameMode setUseOnlyDefeatCommands(boolean useOnlyDefeatCommands){
+        this.useOnlyDefeatCommands = useOnlyDefeatCommands;
+        return this;
+    }
+
+
     @Nonnull
     public List<String> getDefeatCommandsToDispatch() {
         return defeatCommandsToDispatch;
@@ -1352,6 +1364,16 @@ public class CasinoGameMode {
 
     public CasinoGameMode setDrawMessageToDiscord(@Nullable String drawMessageToDiscord) {
         this.drawMessageToDiscord = drawMessageToDiscord;
+        return this;
+    }
+
+
+    public boolean isUseOnlyDrawCommands(){
+        return useOnlyDrawCommands;
+    }
+
+    public CasinoGameMode setUseOnlyDrawCommands(boolean useOnlyDrawCommands){
+        this.useOnlyDrawCommands = useOnlyDrawCommands;
         return this;
     }
 
@@ -1907,6 +1929,7 @@ public class CasinoGameMode {
                 "Defeat-message-to-all:" + defeatMessageToAll + ";" +
                 "Defeat-send-message-to-discord:" + sendDefeatMessageToDiscord + ";" +
                 "Defeat-message-to-discord:" + defeatMessageToDiscord + ";" +
+                "Defeat-only-commands:" + useOnlyDefeatCommands + ";" +
                 "Defeat-commands-list:" + defeatCommandsToDispatch.toString() + ";" +
                 "Defeat-http-url:" + httpDefeatURL + ";" +
                 "Defeat-http-method:" + httpDefeatMethod + ";" +
@@ -1928,6 +1951,7 @@ public class CasinoGameMode {
                 "Draw-message-to-all:" + drawMessageToAll + ";" +
                 "Draw-send-message-to-discord:" + sendDrawMessageToDiscord + ";" +
                 "Draw-message-to-discord:" + drawMessageToDiscord + ";" +
+                "Draw-only-commands:" + useOnlyDrawCommands + ";" +
                 "Draw-commands-list:" + drawCommandsToDispatch.toString() + ";" +
                 "Draw-http-url:" + httpDrawURL + ";" +
                 "Draw-http-method:" + httpDrawMethod + ";" +
