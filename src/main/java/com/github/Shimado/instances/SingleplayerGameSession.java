@@ -5,7 +5,7 @@ import com.github.Shimado.interfaces.CycleTask;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class SingleGameSession {
+public class SingleplayerGameSession {
 
     private CasinoBet bet;
     private CycleTask cycle;

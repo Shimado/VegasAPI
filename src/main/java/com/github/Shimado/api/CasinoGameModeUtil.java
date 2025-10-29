@@ -2,7 +2,7 @@ package com.github.Shimado.api;
 
 import com.github.Shimado.instances.CasinoBet;
 import com.github.Shimado.instances.CasinoGameMode;
-import com.github.Shimado.instances.SingleGameSession;
+import com.github.Shimado.instances.SingleplayerGameSession;
 import com.github.Shimado.instances.multiplayer.MultiplayerGameSession;
 import com.github.Shimado.instances.multiplayer.MultiplayerGameSessionHandler;
 import com.github.Shimado.instances.multiplayer.MultiplayerGameSessionsHub;
@@ -37,7 +37,7 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
 
     void placeBet(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull T casinoGameMode, @Nullable ItemRunnable betRunnable);
 
-    void placeBetToSingleGameInventory(@Nonnull Player player, @Nonnull Inventory inv, @Nonnull T casinoGameMode, @Nonnull ItemStack itemToSet, int slot);
+    void placeBetToSingleplayerGameInventory(@Nonnull Player player, @Nonnull Inventory inv, @Nonnull T casinoGameMode, @Nonnull ItemStack itemToSet, int slot);
 
     void placeBetToMultiplayerGameInventory(@Nonnull Player player, @Nonnull MultiplayerGameSessionsHub sessionHub, @Nonnull MultiplayerGameSession gameSession, @Nonnull T casinoGameMode, @Nullable PlacedCasinoTable casinoTable, @Nonnull ItemStack itemToSet, int slot);
 
@@ -80,9 +80,9 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param runnable       necessary to complement the method. But it's generally used to remove a player from the session map.
      * **/
 
-    void closeSingleGameGUI(@Nonnull Player player, @Nullable SingleGameSession gameSession, @Nonnull T casinoGameMode, @Nonnull Runnable runnable);
+    void closeSingleplayerGameGUI(@Nonnull Player player, @Nullable SingleplayerGameSession gameSession, @Nonnull T casinoGameMode, @Nonnull Runnable runnable);
 
-    void closeMultiplayerGameGUI(@Nonnull Player player, @Nullable MultiplayerGameSessionHandler sessionHandler, @Nonnull T casinoGameMode, @Nonnull CloseInvRunnable inactiveRunnable, @Nonnull CloseInvRunnable activeRunnable);
+    void closeMultiplayerGameGUI(@Nonnull Player player, @Nullable MultiplayerGameSessionHandler sessionHandler, @Nonnull T casinoGameMode, int refreshInvDelay, @Nonnull CloseInvRunnable inactiveRunnable, @Nonnull CloseInvRunnable activeRunnable, @Nonnull CloseInvRunnable refreshInvRunnable);
 
     /**
      * Sets the bid buttons, replacing all placeholders.
@@ -102,7 +102,7 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param casinoGameMode the game mode itself
      * **/
 
-    void reloadSingleGameGUI(@Nonnull Map<UUID, SingleGameSession> sessions, @Nonnull T casinoGameMode);
+    void reloadSingleplayerGameGUI(@Nonnull Map<UUID, SingleplayerGameSession> sessions, @Nonnull T casinoGameMode);
 
     /**
      * Sets the delay for recharging the mode + responds to the restart music.
@@ -113,7 +113,7 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param runnable    where the method itself is implemented that restarts the mode
      * **/
 
-    void restartSingleGameWithDelay(int delay, @Nonnull Player player, @Nonnull SingleGameSession gameSession, @Nonnull Runnable runnable);
+    void restartSingleplayerGameWithDelay(int delay, @Nonnull Player player, @Nonnull SingleplayerGameSession gameSession, @Nonnull Runnable runnable);
 
     void restartMultiplayerGameWithDelay(int delay, @Nonnull MultiplayerGameSessionsHub sessionHub, @Nonnull Runnable runnable);
 

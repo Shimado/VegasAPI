@@ -92,7 +92,7 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSessionsHub,
     public void reload(@Nonnull CasinoGameMode casinoGameMode){
         for (S session : sessions.values()) {
             session.cancelCycleID();
-            casinoGameModeUtil.reloadSingleGameGUI(session.getPlayerSessions(), casinoGameMode);
+            casinoGameModeUtil.reloadSingleplayerGameGUI(session.getPlayerSessions(), casinoGameMode);
             session.setPlayerSessions(new HashMap<>());
             session.setOpened(false);
         }
