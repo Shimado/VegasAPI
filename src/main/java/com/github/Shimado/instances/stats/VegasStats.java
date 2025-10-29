@@ -1,4 +1,4 @@
-package com.github.Shimado.instances;
+package com.github.Shimado.instances.stats;
 
 public class VegasStats {
 

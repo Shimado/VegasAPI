@@ -1,6 +1,7 @@
 package com.github.Shimado.api;
 
-import com.github.Shimado.instances.*;
+import com.github.Shimado.instances.stats.CasinoGameModeStats;
+import com.github.Shimado.instances.stats.PlayerStats;
 import com.github.Shimado.interfaces.Jackpot;
 import com.github.Shimado.interfaces.PlayerSettings;
 import com.github.Shimado.interfaces.ShopItem;

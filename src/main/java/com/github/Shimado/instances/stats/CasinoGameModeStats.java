@@ -1,4 +1,4 @@
-package com.github.Shimado.instances;
+package com.github.Shimado.instances.stats;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

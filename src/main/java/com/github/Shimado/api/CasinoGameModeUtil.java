@@ -3,10 +3,13 @@ package com.github.Shimado.api;
 import com.github.Shimado.instances.CasinoBet;
 import com.github.Shimado.instances.CasinoGameMode;
 import com.github.Shimado.instances.SingleGameSession;
+import com.github.Shimado.instances.multiplayer.MultiplayerGameSession;
+import com.github.Shimado.instances.multiplayer.MultiplayerGameSessionHandler;
+import com.github.Shimado.instances.multiplayer.MultiplayerGameSessionsHub;
+import com.github.Shimado.interfaces.CloseInvRunnable;
 import com.github.Shimado.interfaces.ItemRunnable;
 import com.github.Shimado.interfaces.PlacedCasinoTable;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -34,7 +37,9 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
 
     void placeBet(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull T casinoGameMode, @Nullable ItemRunnable betRunnable);
 
-    void placeBetToInventory(@Nonnull Player player, @Nonnull Inventory inv, @Nonnull T casinoGameMode, @Nonnull ItemStack itemToSet, int slot);
+    void placeBetToSingleGameInventory(@Nonnull Player player, @Nonnull Inventory inv, @Nonnull T casinoGameMode, @Nonnull ItemStack itemToSet, int slot);
+
+    void placeBetToMultiplayerGameInventory(@Nonnull Player player, @Nonnull MultiplayerGameSessionsHub sessionHub, @Nonnull MultiplayerGameSession gameSession, @Nonnull T casinoGameMode, @Nullable PlacedCasinoTable casinoTable, @Nonnull ItemStack itemToSet, int slot);
 
     /**
      * Refunds a bet back to the player.
@@ -77,6 +82,8 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
 
     void closeSingleGameGUI(@Nonnull Player player, @Nullable SingleGameSession gameSession, @Nonnull T casinoGameMode, @Nonnull Runnable runnable);
 
+    void closeMultiplayerGameGUI(@Nonnull Player player, @Nullable MultiplayerGameSessionHandler sessionHandler, @Nonnull T casinoGameMode, @Nonnull CloseInvRunnable inactiveRunnable, @Nonnull CloseInvRunnable activeRunnable);
+
     /**
      * Sets the bid buttons, replacing all placeholders.
      *
@@ -107,6 +114,8 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * **/
 
     void restartSingleGameWithDelay(int delay, @Nonnull Player player, @Nonnull SingleGameSession gameSession, @Nonnull Runnable runnable);
+
+    void restartMultiplayerGameWithDelay(int delay, @Nonnull MultiplayerGameSessionsHub sessionHub, @Nonnull Runnable runnable);
 
 
 }
