@@ -9,6 +9,7 @@ import com.github.Shimado.instances.multiplayer.MultiplayerGameSessionsHub;
 import com.github.Shimado.interfaces.CloseInvRunnable;
 import com.github.Shimado.interfaces.ItemRunnable;
 import com.github.Shimado.interfaces.PlacedCasinoTable;
+import com.github.Shimado.interfaces.RefreshInvRunnable;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -82,7 +83,7 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
 
     void closeSingleplayerGameGUI(@Nonnull Player player, @Nullable SingleplayerGameSession gameSession, @Nonnull T casinoGameMode, @Nonnull Runnable runnable);
 
-    void closeMultiplayerGameGUI(@Nonnull Player player, @Nullable MultiplayerGameSessionHandler sessionHandler, @Nonnull T casinoGameMode, int refreshInvDelay, @Nonnull CloseInvRunnable inactiveRunnable, @Nonnull CloseInvRunnable activeRunnable, @Nonnull CloseInvRunnable refreshInvRunnable);
+    void closeMultiplayerGameGUI(@Nonnull Player player, @Nullable MultiplayerGameSessionHandler sessionHandler, @Nonnull T casinoGameMode, int refreshInvDelay, @Nonnull CloseInvRunnable inactiveRunnable, @Nonnull CloseInvRunnable activeRunnable, @Nonnull RefreshInvRunnable refreshInvRunnable);
 
     /**
      * Sets the bid buttons, replacing all placeholders.
