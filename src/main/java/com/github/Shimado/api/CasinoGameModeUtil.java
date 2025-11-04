@@ -83,8 +83,6 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
 
     void closeSingleplayerGameGUI(@Nonnull Player player, @Nullable SingleplayerGameSession gameSession, @Nonnull T casinoGameMode, @Nonnull Runnable runnable);
 
-    void closeMultiplayerGameGUI(@Nonnull Player player, @Nullable MultiplayerGameSessionHandler sessionHandler, @Nonnull T casinoGameMode, int refreshInvDelay, @Nonnull CloseInvRunnable inactiveRunnable, @Nonnull CloseInvRunnable activeRunnable, @Nonnull RefreshInvRunnable refreshInvRunnable);
-
     /**
      * Sets the bid buttons, replacing all placeholders.
      *
