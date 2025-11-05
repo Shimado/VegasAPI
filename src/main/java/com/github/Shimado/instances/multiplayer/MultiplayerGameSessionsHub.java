@@ -16,6 +16,7 @@ public class MultiplayerGameSessionsHub<M extends MultiplayerGameSession> {
     private CycleTask cycle;
     private int timer = 0;
     private boolean opened = true;
+    private boolean ended = false;
 
     public MultiplayerGameSessionsHub(@Nonnull UUID sessionUUID){
         this.sessionUUID = sessionUUID;
@@ -123,4 +124,12 @@ public class MultiplayerGameSessionsHub<M extends MultiplayerGameSession> {
         this.opened = opened;
     }
 
+
+    public boolean isEnded() {
+        return ended;
+    }
+
+    public void setEnded(boolean ended) {
+        this.ended = ended;
+    }
 }
