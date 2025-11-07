@@ -13,11 +13,27 @@ import javax.annotation.Nullable;
 
 public class SingleplayerGameSession {
 
+    private int slot = -1;
     private CasinoBet bet;
     private CycleTask cycle;
     private int timer = 0;
     private boolean opened = true;
     private boolean ended = false;
+
+
+    /**
+     * Gets the bet slot of the player in the game session GUI.
+     *
+     * @return the slot position, or -1 if no slot is assigned
+     */
+
+    public int getSlot() {
+        return slot;
+    }
+
+    public void setSlot(int slot) {
+        this.slot = slot;
+    }
 
     /**
      * Gets the current casino bet of the player placed in this session.
