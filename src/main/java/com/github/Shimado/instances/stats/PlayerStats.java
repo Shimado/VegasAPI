@@ -76,7 +76,7 @@ public class PlayerStats extends VegasStats{
     /**
      * Gets statistics for all game modes.
      *
-     * @return map of game statistics, never {@code null}
+     * @return map of game statistics
      */
 
     @Nonnull

@@ -22,6 +22,7 @@ public interface VictoryUtil {
 
     /**
      * Processes the player's win by multiplying his bet by the multiplier.
+     * Does not clear chip information after implementation.
      *
      * @param player          the winning player
      * @param bet             the bet placed by the player
@@ -35,6 +36,7 @@ public interface VictoryUtil {
 
     /**
      * Processes the player's win by multiplying his bet by the multiplier.
+     * Does not clear chip information after implementation.
      *
      * @param player          the winning player
      * @param bet             the bet placed by the player
@@ -47,6 +49,7 @@ public interface VictoryUtil {
 
     /**
      * Handles a player win when a player wins other players' bets.
+     * Does not clear chip information after implementation.
      *
      * @param player          the winning player
      * @param bet             the main bet placed by the player
@@ -59,6 +62,7 @@ public interface VictoryUtil {
 
     /**
      * Handles a player win when a player wins other players' bets.
+     * Does not clear chip information after implementation.
      *
      * @param player          the winning player
      * @param bet             the main bet placed by the player
@@ -71,6 +75,7 @@ public interface VictoryUtil {
 
     /**
      * Processes the receipt of bonus winnings.
+     * Does not clear chip information after implementation.
      *
      * @param player          the player receiving the bonus
      * @param bet             the bet placed by the player
@@ -84,6 +89,7 @@ public interface VictoryUtil {
 
     /**
      * Processes the receipt of bonus winnings.
+     * Does not clear chip information after implementation.
      *
      * @param player          the player receiving the bonus
      * @param bet             the bet placed by the player
@@ -96,6 +102,7 @@ public interface VictoryUtil {
 
     /**
      * Handles a player's loss.
+     * Does not clear chip information after implementation.
      *
      * @param player          the player who lost
      * @param bet             the bet placed by the player
@@ -108,6 +115,7 @@ public interface VictoryUtil {
 
     /**
      * Handles a player's loss.
+     * Does not clear chip information after implementation.
      *
      * @param player          the player who lost
      * @param bet             the bet placed by the player
@@ -119,6 +127,7 @@ public interface VictoryUtil {
 
     /**
      * Handles a player's loss.
+     * Does not clear chip information after implementation.
      *
      * @param player          the player who lost
      * @param bet             the bet placed by the player
@@ -132,6 +141,7 @@ public interface VictoryUtil {
 
     /**
      * Handles a player's loss.
+     * Does not clear chip information after implementation.
      *
      * @param player          the player who lost
      * @param bet             the bet placed by the player
@@ -144,6 +154,7 @@ public interface VictoryUtil {
 
     /**
      * Handles a player's draw.
+     * Does not clear chip information after implementation.
      *
      * @param player          the player who lost
      * @param bet             the bet placed by the player

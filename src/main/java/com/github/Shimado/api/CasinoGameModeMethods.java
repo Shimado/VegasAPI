@@ -17,10 +17,12 @@ public interface CasinoGameModeMethods {
 
     /**
      * Opens the game GUI for a given player.
+     * Checks permissions to see if the player can access this mode.
+     * Sets the music, statistics, bet change, and background items buttons.
      *
      * @param player the player who is opening the game
      * @param inv    the inventory (GUI) that will be shown to the player.
-     *               It will already contain a title and items from "empty-slots:"
+     *               It will already contain a title and some common items
      */
 
     void openGame(@Nonnull Player player, @Nonnull Inventory inv);
@@ -38,10 +40,12 @@ public interface CasinoGameModeMethods {
 
     /**
      * Handles logic when the player interacts with the game GUI (clicking items, etc.).
+     * Checks permissions to see if the player can access this mode. Processes clicks
+     * to change the bid, where ChipType.MONEY is specified,and processes clicks to change the music.
      *
      * @param e       the inventory click event
      * @param player  the player who clicked
-     * @param session the inventory session that stores some data
+     * @param session the inventory session that stores some data {@link ISession}
      * @param slot    the clicked slot in the GUI
      */
 
@@ -49,6 +53,7 @@ public interface CasinoGameModeMethods {
 
     /**
      * Reloads the game mode, refreshing configuration or resetting state if needed.
+     * Initially it comes empty in implementation.
      */
 
     void reload();

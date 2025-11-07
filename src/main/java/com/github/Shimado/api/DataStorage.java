@@ -2,6 +2,7 @@ package com.github.Shimado.api;
 
 import com.github.Shimado.instances.stats.CasinoGameModeStats;
 import com.github.Shimado.instances.stats.PlayerStats;
+import com.github.Shimado.interfaces.GameLog;
 import com.github.Shimado.interfaces.Jackpot;
 import com.github.Shimado.interfaces.PlayerSettings;
 import com.github.Shimado.interfaces.ShopItem;
@@ -53,7 +54,8 @@ public interface DataStorage {
     PlayerSettings getPlayerSettings(@Nullable UUID playerUUID);
 
     /**
-     * Gets the player's internal in-plugin balance. Use {@link EconomyUtil}
+     * Gets the player's internal in-plugin balance.
+     * Use {@link EconomyUtil} to get the balance.
      *
      * @param playerUUID the unique identifier of the player
      * @return the balance as a double
@@ -128,7 +130,7 @@ public interface DataStorage {
      */
 
     @Nonnull
-    Queue getGameLogs();
+    Queue<GameLog> getGameLogs();
 
     /**
      * Gets a queue of the player logs that contain data on the game played and its results:
@@ -139,6 +141,6 @@ public interface DataStorage {
      */
 
     @Nonnull
-    Queue getPlayerGameLogs(@Nullable UUID playerUUID);
+    Queue<GameLog> getPlayerGameLogs(@Nullable UUID playerUUID);
 
 }

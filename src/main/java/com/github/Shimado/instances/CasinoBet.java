@@ -33,37 +33,15 @@ public class CasinoBet {
         return moneyBet;
     }
 
-    /**
-     * Sets the money bet value.
-     *
-     * @param moneyBet the new money bet value
-     * @return this instance for chaining
-     */
-
     public CasinoBet setMoneyBet(double moneyBet) {
         this.moneyBet = moneyBet;
         return this;
     }
 
-    /**
-     * Adds money to the current money bet.
-     *
-     * @param moneyBet the amount to add
-     * @return this instance for chaining
-     */
-
     public CasinoBet addMoneyBet(double moneyBet) {
         this.moneyBet += moneyBet;
         return this;
     }
-
-    /**
-     * Removes money from the current money bet.
-     * If the result is negative, it will reset to zero.
-     *
-     * @param moneyBet the amount to remove
-     * @return this instance for chaining
-     */
 
     public CasinoBet removeMoneyBet(double moneyBet) {
         this.moneyBet -= moneyBet;
@@ -82,13 +60,6 @@ public class CasinoBet {
         return chipsBet;
     }
 
-    /**
-     * Sets the chips bet.
-     *
-     * @param chipsBet the chips bet
-     * @return this instance for chaining
-     */
-
     public CasinoBet setChipsBet(@Nullable ItemStack chipsBet) {
         this.chipsBet = chipsBet;
         return this;
@@ -105,13 +76,6 @@ public class CasinoBet {
         return itemsBet;
     }
 
-    /**
-     * Sets the items bet.
-     *
-     * @param itemsBet the items bet
-     * @return this instance for chaining
-     */
-
     public CasinoBet setItemsBet(@Nullable ItemStack itemsBet) {
         this.itemsBet = itemsBet;
         return this;
@@ -119,6 +83,7 @@ public class CasinoBet {
 
     /**
      * Is the bet placed free?
+     * You need to set the bet (money, chips, or items) itself.
      *
      * @return true if this is a free spin
      */
@@ -126,13 +91,6 @@ public class CasinoBet {
     public boolean isFreeSpin() {
         return isFreeSpin;
     }
-
-    /**
-     * Sets whether the bet will be free
-     *
-     * @param isFreeSpin is a free spin
-     * @return this instance for chaining
-     */
 
     public CasinoBet setFreeSpin(boolean isFreeSpin) {
         this.isFreeSpin = isFreeSpin;
@@ -149,6 +107,12 @@ public class CasinoBet {
         return moneyBet > 0 || chipsBet != null || itemsBet != null;
     }
 
+
+    /**
+     * Gets the bet type.
+     *
+     * @return the chip type, or {@code null} if none
+     * **/
 
     @Nullable
     public ChipType getChipType(){

@@ -2,7 +2,6 @@ package com.github.Shimado.api;
 
 import com.github.Shimado.instances.CasinoGameMode;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.event.Listener;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -58,7 +57,7 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
     Map<String, T> getGames();
 
     /**
-     * Registers a new casino game mode in the registry.
+     * Registers a new casino game mode in the plugin.
      *
      * @param casinoGameMode the game mode instance to register
      */

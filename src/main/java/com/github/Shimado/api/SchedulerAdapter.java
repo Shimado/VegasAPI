@@ -56,9 +56,9 @@ public interface SchedulerAdapter {
     /**
      * Schedules a synchronous repeating task.
      *
-     * @param task            the task to execute
+     * @param task             the task to execute
      * @param delayBeforeStart the delay in ticks before the first execution
-     * @param delay           the delay in ticks between repetitions
+     * @param delay            the delay in ticks between repetitions
      * @return a handle to the scheduled task or {@code null} if delayBeforeStart < 0 or delay < 1
      */
 
@@ -68,10 +68,10 @@ public interface SchedulerAdapter {
     /**
      * Schedules a synchronous repeating task associated with a specific location.
      *
-     * @param loc             the location context for the task
-     * @param task            the task to execute
+     * @param loc              the location context for the task
+     * @param task             the task to execute
      * @param delayBeforeStart the delay in ticks before the first execution
-     * @param delay           the delay in ticks between repetitions
+     * @param delay            the delay in ticks between repetitions
      * @return a handle to the scheduled task or {@code null} if delayBeforeStart < 0 or delay < 1
      */
 
@@ -81,10 +81,10 @@ public interface SchedulerAdapter {
     /**
      * Schedules a synchronous repeating task associated with a specific player.
      *
-     * @param player          the player context for the task
-     * @param task            the task to execute
+     * @param player           the player context for the task
+     * @param task             the task to execute
      * @param delayBeforeStart the delay in ticks before the first execution
-     * @param delay           the delay in ticks between repetitions
+     * @param delay            the delay in ticks between repetitions
      * @return a handle to the scheduled task or {@code null} if delayBeforeStart < 0 or delay < 1
      */
 

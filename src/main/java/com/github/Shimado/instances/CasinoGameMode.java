@@ -22,8 +22,8 @@ public class CasinoGameMode {
     private int guiSize = 6;                                                 // The size of the GUI (lines)
     private String guiTitle = "";                                            // Title of the GUI
     private String permission = "";                                          // The permission to open the game mode
-    private List<Integer> slotInGUI = new ArrayList<>();                     // Slots occupied by the icon in the main GUI
-    private List<Integer> slotInOneGameGUI = new ArrayList<>();              // Slots occupied by an icon in the main GUI for one game
+    private List<Integer> slotsInGUI = new ArrayList<>();                    // Slots occupied by the icon in the main GUI
+    private List<Integer> slotsInOneGameGUI = new ArrayList<>();             // Slots occupied by an icon in the main GUI for one game
     private ItemStack iconItem;                                              // The icon in the main GUI
 
     private double jackpotChance = 0.0;                                      // Chance to hit the jackpot if you win
@@ -190,13 +190,13 @@ public class CasinoGameMode {
 
     @Nonnull
     public String getModeName(){
-        return this.modeName;
+        return modeName;
     }
 
 
-    @Nonnull
+    @Nullable
     public String getGuiTitle(){
-        return this.guiTitle;
+        return guiTitle;
     }
 
     public CasinoGameMode setGuiTitle(@Nonnull String guiTitle){
@@ -207,7 +207,7 @@ public class CasinoGameMode {
 
 
     public int getGuiSize(){
-        return this.guiSize;
+        return guiSize;
     }
 
     public CasinoGameMode setGuiSize(int guiSize){
@@ -216,9 +216,9 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @Nullable
     public String getPermission(){
-        return this.permission;
+        return permission;
     }
 
     public CasinoGameMode setPermission(@Nonnull String permission){
@@ -229,25 +229,25 @@ public class CasinoGameMode {
 
 
     @Nonnull
-    public List<Integer> getSlotInGUI() {
-        return slotInGUI;
+    public List<Integer> getSlotsInGUI() {
+        return slotsInGUI;
     }
 
-    public CasinoGameMode setSlotInGUI(@Nonnull List<Integer> slotInGUI) {
-        if(slotInGUI == null) return this;
-        this.slotInGUI = slotInGUI;
+    public CasinoGameMode setSlotsInGUI(@Nonnull List<Integer> slotsInGUI) {
+        if(slotsInGUI == null) return this;
+        this.slotsInGUI = slotsInGUI;
         return this;
     }
 
 
     @Nonnull
-    public List<Integer> getSlotInOneGameGUI() {
-        return slotInOneGameGUI;
+    public List<Integer> getSlotsInOneGameGUI() {
+        return slotsInOneGameGUI;
     }
 
-    public CasinoGameMode setSlotInOneGameGUI(@Nonnull List<Integer> slotInOneGameGUI) {
-        if(slotInOneGameGUI == null) return this;
-        this.slotInOneGameGUI = slotInOneGameGUI;
+    public CasinoGameMode setSlotsInOneGameGUI(@Nonnull List<Integer> slotsInOneGameGUI) {
+        if(slotsInOneGameGUI == null) return this;
+        this.slotsInOneGameGUI = slotsInOneGameGUI;
         return this;
     }
 
@@ -1602,6 +1602,7 @@ public class CasinoGameMode {
     }
 
     public CasinoGameMode setSpotItemLore(@Nonnull List<String> spotItemLore) {
+        if(spotItemLore == null) return this;
         this.spotItemLore = spotItemLore;
         return this;
     }
@@ -1647,6 +1648,7 @@ public class CasinoGameMode {
     }
 
     public CasinoGameMode setLeverItemInactiveLore(@Nonnull List<String> leverItemInactiveLore) {
+        if(leverItemInactiveLore == null) return this;
         this.leverItemInactiveLore = leverItemInactiveLore;
         return this;
     }
@@ -1680,6 +1682,7 @@ public class CasinoGameMode {
     }
 
     public CasinoGameMode setLeverItemActiveLore(@Nonnull List<String> leverItemActiveLore) {
+        if(leverItemActiveLore == null) return this;
         this.leverItemActiveLore = leverItemActiveLore;
         return this;
     }
@@ -1713,6 +1716,7 @@ public class CasinoGameMode {
     }
 
     public CasinoGameMode setLeverItemRollingLore(@Nonnull List<String> leverItemRollingLore) {
+        if(leverItemRollingLore == null) return this;
         this.leverItemRollingLore = leverItemRollingLore;
         return this;
     }
@@ -1780,6 +1784,7 @@ public class CasinoGameMode {
     }
 
     public CasinoGameMode setMusicButtonItemActiveLore(@Nonnull List<String> musicButtonItemActiveLore) {
+        if(musicButtonItemActiveLore == null) return this;
         this.musicButtonItemActiveLore = musicButtonItemActiveLore;
         return this;
     }
@@ -1814,7 +1819,7 @@ public class CasinoGameMode {
     }
 
     public CasinoGameMode setStatsButtonLore(@Nonnull List<String> statsButtonLore) {
-        if(statsButtonSlots == null) return this;
+        if(statsButtonLore == null) return this;
         this.statsButtonLore = statsButtonLore;
         return this;
     }
@@ -1839,8 +1844,8 @@ public class CasinoGameMode {
                 "GUI-size: " + guiSize + ";" +
                 "GUI-title: " + guiTitle + ";" +
                 "Permission: " + permission + ";" +
-                "GUI-icon-slots: " + slotInGUI.toString() + ";" +
-                "GUI-one-game-icon-slots: " + slotInOneGameGUI.toString() + ";" +
+                "GUI-icon-slots: " + slotsInGUI.toString() + ";" +
+                "GUI-one-game-icon-slots: " + slotsInOneGameGUI.toString() + ";" +
                 "Icon-item: " + iconItem + ";" +
 
                 "Jackpot-chance: " + jackpotChance + ";" +

@@ -11,6 +11,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * A handler that manages multiple multiplayer game session hubs and their associated player sessions.
+ * This class serves as a high-level manager for coordinating multiple game instances, handling player
+ * join operations, session allocation, and bulk operations across all active game sessions.
+ *
+ * @param <S> the type of multiplayer game sessions hub managed by this handler, must extend {@link MultiplayerGameSessionsHub}
+ * @param <M> the type of multiplayer game session managed by the hubs, must extend {@link MultiplayerGameSession}
+ */
+
 public class MultiplayerGameSessionHandler<S extends MultiplayerGameSessionsHub, M extends MultiplayerGameSession> {
 
     private CasinoGameModeUtil casinoGameModeUtil = VegasAPI.getCasinoGameModeUtil();
@@ -18,13 +27,30 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSessionsHub,
     private int maxPlayers = 0;
     private Map<UUID, S> sessions = new HashMap<>();
 
-    public MultiplayerGameSessionHandler(){}
+    /**
+     * Constructs a new multiplayer game session handler with no maximum player limit.
+     * Sessions created by this handler will not enforce player limits.
+     */
 
-    public MultiplayerGameSessionHandler(int maxPlayers){
+    public MultiplayerGameSessionHandler() {}
+
+    /**
+     * Constructs a new multiplayer game session handler with the specified maximum player limit.
+     * Once the limit is reached, new players will not be able to connect.
+     *
+     * @param maxPlayers the maximum number of players allowed per session hub
+     */
+
+    public MultiplayerGameSessionHandler(int maxPlayers) {
         this.maxPlayers = maxPlayers;
     }
 
-
+    /**
+     * Gets the maximum number of players allowed per session hub.
+     * Once the limit is reached, new players will not be able to connect.
+     *
+     * @return the maximum players per session, or 0 if no limit is set
+     */
     public int getMaxPlayers() {
         return maxPlayers;
     }
@@ -34,25 +60,46 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSessionsHub,
         return this;
     }
 
+    /**
+     * Gets all session hubs managed by this handler.
+     *
+     * @return a map of session UUIDs to their respective session hubs
+     */
 
     @Nonnull
-    public Map<UUID, S> getSessions(){
+    public Map<UUID, S> getSessions() {
         return sessions;
     }
 
+    /**
+     * Joins a player to an appropriate game session, creating a new session if necessary.
+     * This method implements a matchmaking system that:
+     * <ol>
+     *   <li>First searches for existing open sessions that have available slots</li>
+     *   <li>If no suitable session is found, creates a new session with a random UUID</li>
+     *   <li>Adds the player's game session to the selected hub</li>
+     * </ol>
+     *
+     * <p>The method respects the maximum player limit set for this handler when searching
+     * for available sessions.</p>
+     *
+     * @param player the player to join to a game session
+     * @param gameSession the game session instance for the player
+     * @return the session hub that the player was joined to
+     */
 
     @Nonnull
-    public S joinPlayerToGame(@Nonnull Player player, @Nonnull M gameSession){
+    public S joinPlayerToGame(@Nonnull Player player, @Nonnull M gameSession) {
         S result = null;
 
-        for(S session : sessions.values()){
-            if(session.isOpened() && session.getPlayerSessions().size() < maxPlayers){
+        for (S session : sessions.values()) {
+            if (session.isOpened() && session.getPlayerSessions().size() < maxPlayers) {
                 result = session;
                 break;
             }
         }
 
-        if(result == null){
+        if (result == null) {
             UUID sessionUUID = UUID.randomUUID();
             result = sessions.computeIfAbsent(sessionUUID, k -> (S) new MultiplayerGameSessionsHub<>(sessionUUID));
         }
@@ -61,35 +108,67 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSessionsHub,
         return result;
     }
 
+    /**
+     * Gets the session hub that contains the specified player.
+     *
+     * @param player the player to search for
+     * @return the session hub containing the player, or null if the player is not in any session
+     */
 
     @Nullable
-    public S getMultiplayerGameSessionHub(@Nonnull Player player){
-        for(S session : sessions.values()){
-            if(session.getPlayerSessions().containsKey(player)){
+    public S getMultiplayerGameSessionHub(@Nonnull Player player) {
+        for (S session : sessions.values()) {
+            if (session.getPlayerSessions().containsKey(player)) {
                 return session;
             }
         }
         return null;
     }
 
+    /**
+     * Gets the specific game session for a player.
+     *
+     * @param player the player whose game session to retrieve
+     * @return the player's game session, or null if the player is not in any session
+     */
 
     @Nullable
-    public M getGameSession(@Nonnull Player player){
-        for(S session : sessions.values()){
-            if(session.getPlayerSessions().containsKey(player)){
+    public M getGameSession(@Nonnull Player player) {
+        for (S session : sessions.values()) {
+            if (session.getPlayerSessions().containsKey(player)) {
                 return (M) session.getPlayerSessions().get(player);
             }
         }
         return null;
     }
 
+    /**
+     * Removes a specific session hub from the handler.
+     *
+     * @param sessionUUID the UUID of the session hub to remove
+     */
 
-    public void removeSession(@Nonnull UUID sessionUUID){
+    public void removeSession(@Nonnull UUID sessionUUID) {
         sessions.remove(sessionUUID);
     }
 
+    /**
+     * Reloads all session hubs and performs cleanup operations.
+     * This method:
+     * <ol>
+     *   <li>Cancels all cycle tasks in all sessions</li>
+     *   <li>Reloads the game GUI for all players in all sessions</li>
+     *   <li>Clears all player sessions from each hub</li>
+     *   <li>Marks all sessions as closed</li>
+     *   <li>Clears all sessions from the handler</li>
+     * </ol>
+     *
+     * <p>This is typically used during game mode reload</p>
+     *
+     * @param casinoGameMode the casino game mode instance to use for reloading GUIs
+     */
 
-    public void reload(@Nonnull CasinoGameMode casinoGameMode){
+    public void reload(@Nonnull CasinoGameMode casinoGameMode) {
         for (S session : sessions.values()) {
             session.cancelCycleID();
             casinoGameModeUtil.reloadSingleplayerGameGUI(session.getPlayerSessions(), casinoGameMode);
@@ -98,5 +177,4 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSessionsHub,
         }
         sessions.clear();
     }
-
 }

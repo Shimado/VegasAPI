@@ -68,10 +68,10 @@ public interface InvSession {
     /**
      * Removes a specific casino table from any session it is associated with.
      *
-     * @param casinoTable the placed casino table to remove from session
+     * @param placedCasinoTable the placed casino table to remove from session
      */
 
-    void removeTableFromSession(@Nonnull PlacedCasinoTable casinoTable);
+    void removeTableFromSession(@Nullable PlacedCasinoTable placedCasinoTable);
 
     /**
      * Returns the player to their previous inventory page,
