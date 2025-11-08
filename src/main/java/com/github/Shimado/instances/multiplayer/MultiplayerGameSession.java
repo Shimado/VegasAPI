@@ -16,25 +16,10 @@ import javax.annotation.Nullable;
 
 public class MultiplayerGameSession {
 
-    private int slot = -1;
     private Inventory inv;
     private CasinoBet bet;
     private ItemStack visualBetItem;
-    private PlacedCasinoTable casinoTable;
 
-    /**
-     * Gets the bet slot of the player in the game session GUI.
-     *
-     * @return the slot position, or -1 if no slot is assigned
-     */
-
-    public int getSlot() {
-        return slot;
-    }
-
-    public void setSlot(int slot) {
-        this.slot = slot;
-    }
 
     /**
      * Gets the inventory associated with this game session.
@@ -82,18 +67,4 @@ public class MultiplayerGameSession {
         this.visualBetItem = visualBetItem;
     }
 
-    /**
-     * Gets the placed casino table associated with this game session.
-     *
-     * @return the placed casino table, or null if no table is associated
-     */
-
-    @Nullable
-    public PlacedCasinoTable getCasinoTable() {
-        return casinoTable;
-    }
-
-    public void setCasinoTable(@Nullable PlacedCasinoTable casinoTable) {
-        this.casinoTable = casinoTable;
-    }
 }

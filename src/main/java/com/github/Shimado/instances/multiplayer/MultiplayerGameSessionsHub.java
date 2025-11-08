@@ -103,21 +103,7 @@ public class MultiplayerGameSessionsHub<M extends MultiplayerGameSession> {
     @Nonnull
     public Map<Player, M> getPlayerSessionsWithActiveBetsAndSlots() {
         return playerSessions.entrySet().stream()
-                .filter(it -> it.getValue().getBet() != null && it.getValue().getBet().isAnyBet() && it.getValue().getSlot() != -1)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    }
-
-    /**
-     * Gets all player sessions that have active bets, regardless of slot assignment.
-     * A session is considered to have an active bet if it has a non-null bet
-     *
-     * @return a map of players to sessions that have active bets
-     */
-
-    @Nonnull
-    public Map<Player, M> getPlayerSessionsWithActiveBets() {
-        return playerSessions.entrySet().stream()
-                .filter(it -> it.getValue().getBet() != null && it.getValue().getBet().isAnyBet())
+                .filter(it -> it.getValue().getBet() != null && it.getValue().getBet().isAnyBet() && it.getValue().getBet().getSlot() != -1)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
@@ -138,17 +124,7 @@ public class MultiplayerGameSessionsHub<M extends MultiplayerGameSession> {
      */
 
     public int getPlayerAmountWithActiveBetsAndSlots() {
-        return (int) playerSessions.values().stream().filter(it -> it.getBet() != null && it.getBet().isAnyBet() && it.getSlot() != -1).count();
-    }
-
-    /**
-     * Gets the number of players who have active bets.
-     *
-     * @return the count of players with active bets
-     */
-
-    public int getPlayerAmountWithActiveBets() {
-        return (int) playerSessions.values().stream().filter(it -> it.getBet() != null && it.getBet().isAnyBet()).count();
+        return (int) playerSessions.values().stream().filter(it -> it.getBet() != null && it.getBet().isAnyBet() && it.getBet().getSlot() != -1).count();
     }
 
     /**
@@ -164,8 +140,8 @@ public class MultiplayerGameSessionsHub<M extends MultiplayerGameSession> {
     public List<Integer> getFreeSpotSlots(@Nonnull CasinoGameMode gameMode) {
         List<Integer> emptySlots = new ArrayList<>(gameMode.getSpotSlots());
         Set<Integer> occupiedSlots = playerSessions.values().stream()
-                .map(s -> s.getSlot())
-                .filter(slot -> slot != -1)
+                .filter(it -> it.getBet() != null && it.getBet().getSlot() != -1)
+                .map(it -> it.getBet().getSlot())
                 .collect(Collectors.toSet());
 
         emptySlots.removeAll(occupiedSlots);

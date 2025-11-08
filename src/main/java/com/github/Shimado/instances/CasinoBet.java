@@ -17,11 +17,26 @@ import javax.annotation.Nullable;
 
 public class CasinoBet {
 
+    private int slot = -1;
     private double moneyBet = 0.0;
     private ItemStack chipsBet;
     private ItemStack itemsBet;
     private boolean isFreeSpin = false;
 
+
+    /**
+     * Gets the bet slot of the player in the game session GUI.
+     *
+     * @return the slot position, or -1 if no slot is assigned
+     */
+
+    public int getSlot() {
+        return slot;
+    }
+
+    public void setSlot(int slot) {
+        this.slot = slot;
+    }
 
     /**
      * Gets the money bet.

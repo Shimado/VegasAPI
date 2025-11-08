@@ -62,12 +62,11 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param sessionHub         the hub that contains all sessions of players who play in one session
      * @param gameSession        the session of the player who places the bet
      * @param casinoGameMode     the casino game mode where the bet is placed
-     * @param placedCasinoTable  the gaming table at which the player plays
      * @param itemToSet          the item that will be placed in the bet slot
      * @param slot               the bet slot where the item will be installed
      * **/
 
-    void placeBetToMultiplayerGameInventory(@Nonnull Player player, @Nonnull MultiplayerGameSessionsHub sessionHub, @Nonnull MultiplayerGameSession gameSession, @Nonnull T casinoGameMode, @Nullable PlacedCasinoTable placedCasinoTable, @Nonnull ItemStack itemToSet, int slot);
+    void placeBetToMultiplayerGameInventory(@Nonnull Player player, @Nonnull MultiplayerGameSessionsHub sessionHub, @Nonnull MultiplayerGameSession gameSession, @Nonnull T casinoGameMode, @Nonnull ItemStack itemToSet, int slot);
 
     /**
      * Refunds a bet or free spin back to the player.
