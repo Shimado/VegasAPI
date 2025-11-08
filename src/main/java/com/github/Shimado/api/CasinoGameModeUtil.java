@@ -34,11 +34,12 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      *
      * @param player           the player placing the bet
      * @param bet              the bet object containing bet details
+     * @param slot             the slot in GUI for bet
      * @param casinoGameMode   the casino game mode where the bet is placed
      * @param betRunnable      action to run if the bet is made with chips/money/items. Handles further actions after a bet has been placed
      */
 
-    void placeBet(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull T casinoGameMode, @Nullable ItemRunnable betRunnable);
+    void placeBet(@Nonnull Player player, @Nonnull CasinoBet bet, int slot, @Nonnull T casinoGameMode, @Nullable ItemRunnable betRunnable);
 
     /**
      * Responsible for the visual display of the bet for a singleplayer mode.
@@ -151,6 +152,5 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * **/
 
     void restartMultiplayerGameWithDelay(int delay, @Nonnull MultiplayerGameSessionsHub sessionHub, @Nonnull Runnable runnable);
-
 
 }

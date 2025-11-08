@@ -34,8 +34,9 @@ public class CasinoBet {
         return slot;
     }
 
-    public void setSlot(int slot) {
+    public CasinoBet setSlot(int slot) {
         this.slot = slot;
+        return this;
     }
 
     /**
