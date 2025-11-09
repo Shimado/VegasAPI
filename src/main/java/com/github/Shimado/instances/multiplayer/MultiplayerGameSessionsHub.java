@@ -14,14 +14,12 @@ import java.util.stream.Collectors;
  * This class serves as a central manager for all player sessions within a single
  * multiplayer game instance, providing session management, player tracking, and
  * game state coordination.
- *
- * @param <M> the multiplayer game session managed by this hub, must extend {@link MultiplayerGameSession}
  */
 
-public class MultiplayerGameSessionsHub<M extends MultiplayerGameSession> {
+public class MultiplayerGameSessionsHub {
 
     private UUID sessionUUID;
-    private Map<Player, M> playerSessions = new HashMap<>();
+    private Map<Player, MultiplayerGameSession> playerSessions = new HashMap<>();
     private CycleTask cycle;
     private int timer = 0;
     private boolean opened = true;
@@ -55,11 +53,11 @@ public class MultiplayerGameSessionsHub<M extends MultiplayerGameSession> {
      */
 
     @Nonnull
-    public Map<Player, M> getPlayerSessions() {
+    public Map<Player, MultiplayerGameSession> getPlayerSessions() {
         return playerSessions;
     }
 
-    public void setPlayerSessions(@Nonnull Map<Player, M> playerSessions) {
+    public void setPlayerSessions(@Nonnull Map<Player, MultiplayerGameSession> playerSessions) {
         if (playerSessions == null) {
             this.playerSessions = new HashMap<>();
             return;
@@ -75,11 +73,11 @@ public class MultiplayerGameSessionsHub<M extends MultiplayerGameSession> {
      */
 
     @Nullable
-    public M getPlayerSession(@Nonnull Player player) {
+    public MultiplayerGameSession getPlayerSession(@Nonnull Player player) {
         return playerSessions.get(player);
     }
 
-    public void addPlayerSession(@Nonnull Player player, @Nonnull M gameSession) {
+    public void addPlayerSession(@Nonnull Player player, @Nonnull MultiplayerGameSession gameSession) {
         playerSessions.put(player, gameSession);
     }
 
@@ -101,7 +99,7 @@ public class MultiplayerGameSessionsHub<M extends MultiplayerGameSession> {
      */
 
     @Nonnull
-    public Map<Player, M> getPlayerSessionsWithActiveBetsAndSlots() {
+    public Map<Player, MultiplayerGameSession> getPlayerSessionsWithActiveBetsAndSlots() {
         return playerSessions.entrySet().stream()
                 .filter(it -> it.getValue().getBet() != null && it.getValue().getBet().isAnyBet() && it.getValue().getBet().getSlot() != -1)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));

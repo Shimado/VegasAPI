@@ -15,17 +15,14 @@ import java.util.UUID;
  * A handler that manages multiple multiplayer game session hubs and their associated player sessions.
  * This class serves as a high-level manager for coordinating multiple game instances, handling player
  * join operations, session allocation, and bulk operations across all active game sessions.
- *
- * @param <S> the type of multiplayer game sessions hub managed by this handler, must extend {@link MultiplayerGameSessionsHub}
- * @param <M> the type of multiplayer game session managed by the hubs, must extend {@link MultiplayerGameSession}
  */
 
-public class MultiplayerGameSessionHandler<S extends MultiplayerGameSessionsHub, M extends MultiplayerGameSession> {
+public class MultiplayerGameSessionHandler {
 
     private CasinoGameModeUtil casinoGameModeUtil = VegasAPI.getCasinoGameModeUtil();
 
     private int maxPlayers = 0;
-    private Map<UUID, S> sessions = new HashMap<>();
+    private Map<UUID, MultiplayerGameSessionsHub> sessions = new HashMap<>();
 
     /**
      * Constructs a new multiplayer game session handler with no maximum player limit.
@@ -67,7 +64,7 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSessionsHub,
      */
 
     @Nonnull
-    public Map<UUID, S> getSessions() {
+    public Map<UUID, MultiplayerGameSessionsHub> getSessions() {
         return sessions;
     }
 
@@ -89,10 +86,10 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSessionsHub,
      */
 
     @Nonnull
-    public S joinPlayerToGame(@Nonnull Player player, @Nonnull M gameSession) {
-        S result = null;
+    public MultiplayerGameSessionsHub joinPlayerToGame(@Nonnull Player player, @Nonnull MultiplayerGameSession gameSession) {
+        MultiplayerGameSessionsHub result = null;
 
-        for (S session : sessions.values()) {
+        for (MultiplayerGameSessionsHub session : sessions.values()) {
             if (session.isOpened() && session.getPlayerSessions().size() < maxPlayers) {
                 result = session;
                 break;
@@ -101,7 +98,7 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSessionsHub,
 
         if (result == null) {
             UUID sessionUUID = UUID.randomUUID();
-            result = sessions.computeIfAbsent(sessionUUID, k -> (S) new MultiplayerGameSessionsHub<>(sessionUUID));
+            result = sessions.computeIfAbsent(sessionUUID, k -> new MultiplayerGameSessionsHub(sessionUUID));
         }
 
         result.addPlayerSession(player, gameSession);
@@ -116,8 +113,8 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSessionsHub,
      */
 
     @Nullable
-    public S getMultiplayerGameSessionHub(@Nonnull Player player) {
-        for (S session : sessions.values()) {
+    public MultiplayerGameSessionsHub getMultiplayerGameSessionHub(@Nonnull Player player) {
+        for (MultiplayerGameSessionsHub session : sessions.values()) {
             if (session.getPlayerSessions().containsKey(player)) {
                 return session;
             }
@@ -133,10 +130,10 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSessionsHub,
      */
 
     @Nullable
-    public M getGameSession(@Nonnull Player player) {
-        for (S session : sessions.values()) {
+    public MultiplayerGameSession getGameSession(@Nonnull Player player) {
+        for (MultiplayerGameSessionsHub session : sessions.values()) {
             if (session.getPlayerSessions().containsKey(player)) {
-                return (M) session.getPlayerSessions().get(player);
+                return session.getPlayerSessions().get(player);
             }
         }
         return null;
@@ -169,7 +166,7 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSessionsHub,
      */
 
     public void reload(@Nonnull CasinoGameMode casinoGameMode) {
-        for (S session : sessions.values()) {
+        for (MultiplayerGameSessionsHub session : sessions.values()) {
             session.cancelCycleID();
             casinoGameModeUtil.reloadSingleplayerGameGUI(session.getPlayerSessions(), casinoGameMode);
             session.setPlayerSessions(new HashMap<>());
