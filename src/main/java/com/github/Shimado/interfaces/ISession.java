@@ -158,15 +158,17 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
     /**
      * Advances to the next page and returns the new index.
      *
-     * @return the next page number
+     * @param maxPage - maximum page size
+     *
+     * @return the next page number or -1 if it > maxPage
      */
 
-    int nextPage();
+    int nextPage(int maxPage);
 
     /**
      * Goes back to the previous page and returns the new index.
      *
-     * @return the previous page number
+     * @return the previous page number or -1 if it < 0
      */
 
     int previousPage();
