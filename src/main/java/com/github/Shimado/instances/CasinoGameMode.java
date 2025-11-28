@@ -1,6 +1,6 @@
 package com.github.Shimado.instances;
 
-import com.github.Shimado.interfaces.IBoomboxSong;
+import com.github.Shimado.interfaces.BoomboxSong;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -49,7 +49,7 @@ public class CasinoGameMode {
     private String httpJackpotURL;                                           // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpJackpotMethod = "POST";                               // Request method
     private Map<String, Object> httpJackpotHeaders = new HashMap<>();        // Request headers
-    private IBoomboxSong jackpotMusic;                                       // Music in .nbs format from Boombox plugin
+    private BoomboxSong jackpotMusic;                                        // Music in .nbs format from Boombox plugin
 
     private boolean ifWinMultiplierLessThanOneConsiderAsBonus = true;        // If the winning odds are less than 1.0, the bonus scenario will be processed instead of the win scenario. If there is no bonus scenario, the win scenario will be processed.
     private boolean sendVictoryTitle = false;                                // Sends victory title
@@ -73,7 +73,7 @@ public class CasinoGameMode {
     private String httpVictoryURL;                                           // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpVictoryMethod = "POST";                               // Request method
     private Map<String, Object> httpVictoryHeaders = new HashMap<>();        // Request headers
-    private IBoomboxSong victoryMusic;                                       // Music in .nbs format from Boombox plugin
+    private BoomboxSong victoryMusic;                                       // Music in .nbs format from Boombox plugin
 
     private boolean sendBonusTitle = false;                                  // Sends bonus title
     private String bonusTitle;                                               // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
@@ -95,7 +95,7 @@ public class CasinoGameMode {
     private String httpBonusURL;                                             // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpBonusMethod = "POST";                                 // Request method
     private Map<String, Object> httpBonusHeaders = new HashMap<>();          // Request headers
-    private IBoomboxSong bonusMusic;                                         // Music in .nbs format from Boombox plugin
+    private BoomboxSong bonusMusic;                                         // Music in .nbs format from Boombox plugin
 
     private boolean sendDefeatTitle = false;                                 // Sends defeat title
     private String defeatTitle;                                              // Title itself [Placeholders: %player%, %mode%, %bet_price%]
@@ -117,7 +117,7 @@ public class CasinoGameMode {
     private String httpDefeatURL;                                            // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
     private String httpDefeatMethod = "POST";                                // Request method
     private Map<String, Object> httpDefeatHeaders = new HashMap<>();         // Request headers
-    private IBoomboxSong defeatMusic;                                        // Music in .nbs format from Boombox plugin
+    private BoomboxSong defeatMusic;                                        // Music in .nbs format from Boombox plugin
 
     private boolean sendDrawTitle = false;                                   // Sends draw title
     private String drawTitle;                                                // Title itself [Placeholders: %player%, %mode%, %bet_price%]
@@ -139,7 +139,7 @@ public class CasinoGameMode {
     private String httpDrawURL;                                              // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
     private String httpDrawMethod = "POST";                                  // Request method
     private Map<String, Object> httpDrawHeaders = new HashMap<>();           // Request headers
-    private IBoomboxSong drawMusic;                                          // Music in .nbs format from Boombox plugin
+    private BoomboxSong drawMusic;                                          // Music in .nbs format from Boombox plugin
 
     private double minBetPrice = 0.01;                                       // Minimum bet amount in currency
     private int minBetPriceInItems = 1;                                      // Minimum number of items a player can bet
@@ -171,7 +171,7 @@ public class CasinoGameMode {
     private String leverItemRollingTitle;                                    // Rolling lever title
     private List<String> leverItemRollingLore = new ArrayList<>();           // Rolling lever lore
 
-    private IBoomboxSong backgroundMusic;                                    // Background music in .nbs format from Boombox plugin
+    private BoomboxSong backgroundMusic;                                    // Background music in .nbs format from Boombox plugin
     private List<Integer> musicButtonSlots = new ArrayList<>();              // Slot occupied by the button
     private ItemStack musicButtonItemInactive;                               // Background music button (inactive)
     private ItemStack musicButtonItemActive;                                 // Background music button (active)
@@ -507,11 +507,11 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public IBoomboxSong getJackpotMusic() {
+    public BoomboxSong getJackpotMusic() {
         return jackpotMusic;
     }
 
-    public CasinoGameMode setJackpotMusic(@Nullable IBoomboxSong jackpotMusic) {
+    public CasinoGameMode setJackpotMusic(@Nullable BoomboxSong jackpotMusic) {
         this.jackpotMusic = jackpotMusic;
         return this;
     }
@@ -751,11 +751,11 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public IBoomboxSong getVictoryMusic() {
+    public BoomboxSong getVictoryMusic() {
         return victoryMusic;
     }
 
-    public CasinoGameMode setVictoryMusic(@Nullable IBoomboxSong victoryMusic) {
+    public CasinoGameMode setVictoryMusic(@Nullable BoomboxSong victoryMusic) {
         this.victoryMusic = victoryMusic;
         return this;
     }
@@ -975,11 +975,11 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public IBoomboxSong getBonusMusic() {
+    public BoomboxSong getBonusMusic() {
         return bonusMusic;
     }
 
-    public CasinoGameMode setBonusMusic(@Nullable IBoomboxSong bonusMusic) {
+    public CasinoGameMode setBonusMusic(@Nullable BoomboxSong bonusMusic) {
         this.bonusMusic = bonusMusic;
         return this;
     }
@@ -1200,11 +1200,11 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public IBoomboxSong getDefeatMusic() {
+    public BoomboxSong getDefeatMusic() {
         return defeatMusic;
     }
 
-    public CasinoGameMode setDefeatMusic(@Nullable IBoomboxSong defeatMusic) {
+    public CasinoGameMode setDefeatMusic(@Nullable BoomboxSong defeatMusic) {
         this.defeatMusic = defeatMusic;
         return this;
     }
@@ -1425,11 +1425,11 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public IBoomboxSong getDrawMusic() {
+    public BoomboxSong getDrawMusic() {
         return drawMusic;
     }
 
-    public CasinoGameMode setDrawMusic(@Nullable IBoomboxSong drawMusic) {
+    public CasinoGameMode setDrawMusic(@Nullable BoomboxSong drawMusic) {
         this.drawMusic = drawMusic;
         return this;
     }
@@ -1723,11 +1723,11 @@ public class CasinoGameMode {
 
 
     @Nullable
-    public IBoomboxSong getBackgroundMusic() {
+    public BoomboxSong getBackgroundMusic() {
         return backgroundMusic;
     }
 
-    public CasinoGameMode setBackgroundMusic(@Nullable IBoomboxSong backgroundMusic) {
+    public CasinoGameMode setBackgroundMusic(@Nullable BoomboxSong backgroundMusic) {
         this.backgroundMusic = backgroundMusic;
         return this;
     }
