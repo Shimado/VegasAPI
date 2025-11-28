@@ -35,15 +35,6 @@ public interface BackgroundSongSettings {
     String getMusicID();
 
     /**
-     * Sets the music identifier.
-     * ID of the music in the Vegas plugin config, which is specified in the "Music GUI songs:"
-     *
-     * @param musicID music ID
-     */
-
-    void setMusicID(@Nonnull String musicID);
-
-    /**
      * Converts the format to musicID/musicActive: song/1 or song/0
      *
      * @return formatted text

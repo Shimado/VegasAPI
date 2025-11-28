@@ -3,7 +3,6 @@ package com.github.Shimado.interfaces;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * Represents an item that can be displayed and traded in the shop.
@@ -22,14 +21,6 @@ public interface ShopItem {
     int getSlot();
 
     /**
-     * Sets the inventory slot index for this shop item.
-     *
-     * @param slot the slot index to set
-     */
-
-    void setSlot(int slot);
-
-    /**
      * Returns the actual {@link ItemStack} representing the item to be given
      * to a player upon purchase.
      *
@@ -38,15 +29,6 @@ public interface ShopItem {
 
     @Nonnull
     ItemStack getItem();
-
-    /**
-     * Sets the actual {@link ItemStack} that will be given to a player
-     * upon purchase.
-     *
-     * @param item the item to set
-     */
-
-    void setItem(@Nonnull ItemStack item);
 
     /**
      * Returns the {@link ItemStack} representation of this item
@@ -59,15 +41,6 @@ public interface ShopItem {
     ItemStack getItemToShow();
 
     /**
-     * Sets the {@link ItemStack} representation of this item
-     * to be displayed in the shop GUI.
-     *
-     * @param itemToShow the item to display
-     */
-
-    void setItemToShow(@Nonnull ItemStack itemToShow);
-
-    /**
      * Returns the price at which this item can be purchased.
      *
      * @return the purchase price
@@ -76,28 +49,12 @@ public interface ShopItem {
     double getPurchasePrice();
 
     /**
-     * Sets the purchase price of this item.
-     *
-     * @param purchasePrice the price to set
-     */
-
-    void setPurchasePrice(double purchasePrice);
-
-    /**
      * Returns the price at which this item can be sold back.
      *
      * @return the selling price
      */
 
     double getSellingPrice();
-
-    /**
-     * Sets the selling price of this item.
-     *
-     * @param sellingPrice the price to set
-     */
-
-    void setSellingPrice(double sellingPrice);
 
 }
 

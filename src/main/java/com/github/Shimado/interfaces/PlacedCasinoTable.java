@@ -24,15 +24,6 @@ public interface PlacedCasinoTable {
     UUID getUUID();
 
     /**
-     * Sets the unique identifier for this placed table.
-     *
-     * @param uuid the UUID to assign
-     * @return this instance for chaining
-     */
-
-    PlacedCasinoTable setUUID(@Nonnull UUID uuid);
-
-    /**
      * Gets the ID of the {@link CasinoTableItem} that defines this table.
      *
      * @return the table item ID
@@ -42,15 +33,6 @@ public interface PlacedCasinoTable {
     String getCasinoTableItemID();
 
     /**
-     * Sets the ID of the {@link CasinoTableItem} that defines this table.
-     *
-     * @param casinoTableItemID the item ID to set
-     * @return this instance for chaining
-     */
-
-    PlacedCasinoTable setCasinoTableItemID(@Nonnull String casinoTableItemID);
-
-    /**
      * Gets the {@link CasinoTableItem} definition linked to this placed table.
      *
      * @return the table item definition
@@ -58,15 +40,6 @@ public interface PlacedCasinoTable {
 
     @Nonnull
     CasinoTableItem getCasinoTableItem();
-
-    /**
-     * Sets the {@link CasinoTableItem} definition linked to this placed table.
-     *
-     * @param casinoTableItem the table item definition
-     * @return this instance for chaining
-     */
-
-    PlacedCasinoTable setCasinoTableItem(@Nonnull CasinoTableItem casinoTableItem);
 
     /**
      * Gets the game mode name associated with this table.
@@ -98,15 +71,6 @@ public interface PlacedCasinoTable {
     Location getLoc();
 
     /**
-     * Sets the location of this table in the world.
-     *
-     * @param loc the location to set
-     * @return this instance for chaining
-     */
-
-    PlacedCasinoTable setLoc(@Nonnull Location loc);
-
-    /**
      * Gets the yaw (rotation) of this table.
      * Needs for the developers pack.
      *
@@ -114,16 +78,6 @@ public interface PlacedCasinoTable {
      */
 
     float getYaw();
-
-    /**
-     * Sets the yaw (rotation) of this table.
-     * Needs for the developers pack.
-     *
-     * @param yaw the yaw angle
-     * @return this instance for chaining
-     */
-
-    PlacedCasinoTable setYaw(float yaw);
 
     /**
      * Gets the UUID of the player who owns this table.
@@ -134,13 +88,5 @@ public interface PlacedCasinoTable {
     @Nullable
     UUID getOwner();
 
-    /**
-     * Sets the UUID of the player who owns this table.
-     *
-     * @param owner the owner's UUID
-     * @return this instance for chaining
-     */
-
-    PlacedCasinoTable setOwner(@Nullable UUID owner);
 }
 

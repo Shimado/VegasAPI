@@ -26,15 +26,6 @@ public interface CasinoTableItem {
     String getID();
 
     /**
-     * Sets the unique identifier for this table item.
-     *
-     * @param id the ID to assign (From Vegas config)
-     * @return this instance for chaining
-     */
-
-    CasinoTableItem setID(@Nonnull String id);
-
-    /**
      * Gets the {@link ItemStack} representing the table item.
      *
      * @return the table item
@@ -42,15 +33,6 @@ public interface CasinoTableItem {
 
     @Nonnull
     ItemStack getTableItem();
-
-    /**
-     * Sets the {@link ItemStack} used as the table item.
-     *
-     * @param tableItem the item to set
-     * @return this instance for chaining
-     */
-
-    CasinoTableItem setTableItem(@Nonnull ItemStack tableItem);
 
     /**
      * Gets the custom model data value used for the item.

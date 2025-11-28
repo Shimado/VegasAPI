@@ -2,7 +2,6 @@ package com.github.Shimado;
 
 import com.github.Shimado.api.*;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class VegasAPI {
