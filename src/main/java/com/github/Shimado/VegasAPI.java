@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 public class VegasAPI {
 
-    private static SchedulerAdapter schedulerAdapter;
     private static CasinoGameModeRegister casinoGameModeRegister;
     private static DataStorage dataStorage;
     private static EconomyUtil economyUtil;
@@ -14,17 +13,6 @@ public class VegasAPI {
     private static VictoryUtil victoryUtil;
     private static CasinoGameModeUtil casinoGameModeUtil;
     private static InvSession invSession;
-
-
-    @Nullable
-    public static SchedulerAdapter getSchedulerAdapter(){
-        return schedulerAdapter;
-    }
-
-    public static SchedulerAdapter setSchedulerAdapter(@Nullable SchedulerAdapter s){
-        schedulerAdapter = s;
-        return s;
-    }
 
 
     @Nullable

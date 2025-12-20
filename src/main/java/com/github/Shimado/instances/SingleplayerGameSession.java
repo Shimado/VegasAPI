@@ -1,8 +1,5 @@
 package com.github.Shimado.instances;
 
-import com.github.Shimado.interfaces.CycleTask;
-
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -14,7 +11,7 @@ import javax.annotation.Nullable;
 public class SingleplayerGameSession {
 
     private CasinoBet bet;
-    private CycleTask cycle;
+    private Object cycle;
     private int timer = 0;
     private boolean opened = true;
     private boolean ended = false;
@@ -45,7 +42,7 @@ public class SingleplayerGameSession {
         return cycle != null;
     }
 
-    public void setCycleID(@Nullable CycleTask cycle) {
+    public void setCycleID(@Nullable Object cycle) {
         this.cycle = cycle;
     }
 
@@ -55,7 +52,7 @@ public class SingleplayerGameSession {
 
     public void cancelCycleID() {
         if (cycle != null) {
-            cycle.cancelTask();
+            //cycle.cancelTask();
             cycle = null;
         }
     }

@@ -1,7 +1,6 @@
 package com.github.Shimado.instances.multiplayer;
 
 import com.github.Shimado.instances.CasinoGameMode;
-import com.github.Shimado.interfaces.CycleTask;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;
@@ -20,7 +19,7 @@ public class MultiplayerGameSessionsHub {
 
     private UUID sessionUUID;
     private Map<Player, MultiplayerGameSession> playerSessions = new HashMap<>();
-    private CycleTask cycle;
+    private Object cycle;
     private int timer = 0;
     private boolean opened = true;
     private boolean ended = false;
@@ -156,7 +155,7 @@ public class MultiplayerGameSessionsHub {
         return cycle != null;
     }
 
-    public void setCycleID(@Nullable CycleTask cycle) {
+    public void setCycleID(@Nullable Object cycle) {
         this.cycle = cycle;
     }
 
@@ -166,7 +165,7 @@ public class MultiplayerGameSessionsHub {
 
     public void cancelCycleID() {
         if (cycle != null) {
-            cycle.cancelTask();
+            //cycle.cancelTask();
             cycle = null;
         }
     }
