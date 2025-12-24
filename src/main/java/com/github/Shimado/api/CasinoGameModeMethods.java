@@ -4,8 +4,7 @@ import com.github.Shimado.interfaces.ISession;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Defines common methods that any casino game mode must implement.
@@ -24,7 +23,8 @@ public interface CasinoGameModeMethods {
      *               It will already contain a title and some common items
      */
 
-    void openGame(@Nonnull Player player, @Nonnull Inventory inv);
+    void openGame(@NotNull Player player, @NotNull Inventory inv);
+
 
     /**
      * Handles logic when the game GUI is closed.
@@ -35,7 +35,8 @@ public interface CasinoGameModeMethods {
      * @param session  the inventory session with some data
      */
 
-    void closeGUI(@Nonnull Player player, @Nonnull ISession session);
+    void closeGUI(@NotNull Player player, @NotNull ISession session);
+
 
     /**
      * Handles logic when the player interacts with the game GUI (clicking items, etc.).
@@ -48,7 +49,8 @@ public interface CasinoGameModeMethods {
      * @param slot    the clicked slot in the GUI
      */
 
-    void clickGUI(@Nonnull InventoryClickEvent e, @Nonnull Player player, @Nonnull ISession session, int slot);
+    void clickGUI(@NotNull InventoryClickEvent e, @NotNull Player player, @NotNull ISession session, int slot);
+
 
     /**
      * Reloads the game mode, refreshing configuration or resetting state if needed.

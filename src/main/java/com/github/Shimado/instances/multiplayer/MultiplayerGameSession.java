@@ -1,12 +1,9 @@
 package com.github.Shimado.instances.multiplayer;
 
 import com.github.Shimado.instances.CasinoBet;
-import com.github.Shimado.interfaces.PlacedCasinoTable;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents a multiplayer game session in a multiplayer hub.
@@ -36,6 +33,7 @@ public class MultiplayerGameSession {
         this.inv = inv;
     }
 
+
     /**
      * Gets the current casino bet of the player placed in this session.
      *
@@ -50,6 +48,7 @@ public class MultiplayerGameSession {
     public void setBet(@Nullable CasinoBet bet) {
         this.bet = bet;
     }
+
 
     /**
      * Gets the visual representation of the bet item.

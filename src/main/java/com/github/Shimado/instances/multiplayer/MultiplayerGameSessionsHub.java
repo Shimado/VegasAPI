@@ -2,9 +2,10 @@ package com.github.Shimado.instances.multiplayer;
 
 import com.github.Shimado.instances.CasinoGameMode;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.shimado.basicutils.cycles.CycleTask;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,7 @@ public class MultiplayerGameSessionsHub {
 
     private UUID sessionUUID;
     private Map<Player, MultiplayerGameSession> playerSessions = new HashMap<>();
-    private Object cycle;
+    private CycleTask cycle;
     private int timer = 0;
     private boolean opened = true;
     private boolean ended = false;
@@ -30,7 +31,7 @@ public class MultiplayerGameSessionsHub {
      * @param sessionUUID the unique identifier for this game session hub
      */
 
-    public MultiplayerGameSessionsHub(@Nonnull UUID sessionUUID) {
+    public MultiplayerGameSessionsHub(@NotNull UUID sessionUUID) {
         this.sessionUUID = sessionUUID;
     }
 
@@ -40,7 +41,7 @@ public class MultiplayerGameSessionsHub {
      * @return the session UUID
      */
 
-    @Nonnull
+    @NotNull
     public UUID getSessionUUID() {
         return sessionUUID;
     }
@@ -51,12 +52,12 @@ public class MultiplayerGameSessionsHub {
      * @return a map of all players to their respective game sessions
      */
 
-    @Nonnull
+    @NotNull
     public Map<Player, MultiplayerGameSession> getPlayerSessions() {
         return playerSessions;
     }
 
-    public void setPlayerSessions(@Nonnull Map<Player, MultiplayerGameSession> playerSessions) {
+    public void setPlayerSessions(@NotNull Map<Player, MultiplayerGameSession> playerSessions) {
         if (playerSessions == null) {
             this.playerSessions = new HashMap<>();
             return;
@@ -72,11 +73,11 @@ public class MultiplayerGameSessionsHub {
      */
 
     @Nullable
-    public MultiplayerGameSession getPlayerSession(@Nonnull Player player) {
+    public MultiplayerGameSession getPlayerSession(@NotNull Player player) {
         return playerSessions.get(player);
     }
 
-    public void addPlayerSession(@Nonnull Player player, @Nonnull MultiplayerGameSession gameSession) {
+    public void addPlayerSession(@NotNull Player player, @NotNull MultiplayerGameSession gameSession) {
         playerSessions.put(player, gameSession);
     }
 
@@ -86,7 +87,7 @@ public class MultiplayerGameSessionsHub {
      * @param player the UUID of the player to remove
      */
 
-    public void removePlayerSession(@Nonnull UUID player) {
+    public void removePlayerSession(@NotNull UUID player) {
         playerSessions.remove(player);
     }
 
@@ -97,7 +98,7 @@ public class MultiplayerGameSessionsHub {
      * @return a map of players to sessions that meet the criteria
      */
 
-    @Nonnull
+    @NotNull
     public Map<Player, MultiplayerGameSession> getPlayerSessionsWithActiveBetsAndSlots() {
         return playerSessions.entrySet().stream()
                 .filter(it -> it.getValue().getBet() != null && it.getValue().getBet().isAnyBet() && it.getValue().getBet().getSlot() != -1)
@@ -133,8 +134,8 @@ public class MultiplayerGameSessionsHub {
      * @return a list of free slot numbers
      */
 
-    @Nonnull
-    public List<Integer> getFreeSpotSlots(@Nonnull CasinoGameMode gameMode) {
+    @NotNull
+    public List<Integer> getFreeSpotSlots(@NotNull CasinoGameMode gameMode) {
         List<Integer> emptySlots = new ArrayList<>(gameMode.getSpotSlots());
         Set<Integer> occupiedSlots = playerSessions.values().stream()
                 .filter(it -> it.getBet() != null && it.getBet().getSlot() != -1)
@@ -155,7 +156,7 @@ public class MultiplayerGameSessionsHub {
         return cycle != null;
     }
 
-    public void setCycleID(@Nullable Object cycle) {
+    public void setCycleID(@Nullable CycleTask cycle) {
         this.cycle = cycle;
     }
 
@@ -165,7 +166,7 @@ public class MultiplayerGameSessionsHub {
 
     public void cancelCycleID() {
         if (cycle != null) {
-            //cycle.cancelTask();
+            cycle.cancelTask();
             cycle = null;
         }
     }

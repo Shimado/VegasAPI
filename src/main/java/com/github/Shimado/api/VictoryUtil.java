@@ -5,9 +5,9 @@ import com.github.Shimado.instances.CasinoGameMode;
 import com.github.Shimado.interfaces.PlacedCasinoTable;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,7 +32,7 @@ public interface VictoryUtil {
      * @param tableOwnerUUID  the UUID of the table owner
      */
 
-    void victory(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull CasinoGameMode gameMode, double multiplier, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
+    void victory(@NotNull Player player, @NotNull CasinoBet bet, @NotNull CasinoGameMode gameMode, double multiplier, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
 
     /**
      * Processes the player's win by multiplying his bet by the multiplier.
@@ -45,7 +45,7 @@ public interface VictoryUtil {
      * @param casinoTable     the placed casino table instance. Stores the location of the table where the game was played and the UUID of the table owner
      */
 
-    void victory(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull CasinoGameMode gameMode, double multiplier, @Nullable PlacedCasinoTable casinoTable);
+    void victory(@NotNull Player player, @NotNull CasinoBet bet, @NotNull CasinoGameMode gameMode, double multiplier, @Nullable PlacedCasinoTable casinoTable);
 
     /**
      * Handles a player win when a player wins other players' bets.
@@ -58,7 +58,7 @@ public interface VictoryUtil {
      * @param tableLocation   the location of the table where the game was played
      */
 
-    void victory(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull List<CasinoBet> prizeBets, @Nonnull CasinoGameMode gameMode, @Nullable Location tableLocation);
+    void victory(@NotNull Player player, @NotNull CasinoBet bet, @NotNull List<CasinoBet> prizeBets, @NotNull CasinoGameMode gameMode, @Nullable Location tableLocation);
 
     /**
      * Handles a player win when a player wins other players' bets.
@@ -71,7 +71,8 @@ public interface VictoryUtil {
      * @param casinoTable     the placed casino table instance. Stores the location of the table where the game was played and the UUID of the table owner
      */
 
-    void victory(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull List<CasinoBet> prizeBets, @Nonnull CasinoGameMode gameMode, @Nullable PlacedCasinoTable casinoTable);
+    void victory(@NotNull Player player, @NotNull CasinoBet bet, @NotNull List<CasinoBet> prizeBets, @NotNull CasinoGameMode gameMode, @Nullable PlacedCasinoTable casinoTable);
+
 
     /**
      * Processes the receipt of bonus winnings.
@@ -85,7 +86,7 @@ public interface VictoryUtil {
      * @param tableOwnerUUID  the UUID of the table owner
      */
 
-    void bonus(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull CasinoGameMode gameMode, double multiplier, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
+    void bonus(@NotNull Player player, @NotNull CasinoBet bet, @NotNull CasinoGameMode gameMode, double multiplier, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
 
     /**
      * Processes the receipt of bonus winnings.
@@ -98,7 +99,8 @@ public interface VictoryUtil {
      * @param casinoTable     the placed casino table instance. Stores the location of the table where the game was played and the UUID of the table owner
      */
 
-    void bonus(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull CasinoGameMode gameMode, double multiplier, @Nullable PlacedCasinoTable casinoTable);
+    void bonus(@NotNull Player player, @NotNull CasinoBet bet, @NotNull CasinoGameMode gameMode, double multiplier, @Nullable PlacedCasinoTable casinoTable);
+
 
     /**
      * Handles a player's loss.
@@ -111,7 +113,7 @@ public interface VictoryUtil {
      * @param tableOwnerUUID  the UUID of the table owner
      */
 
-    void defeat(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull CasinoGameMode gameMode, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
+    void defeat(@NotNull Player player, @NotNull CasinoBet bet, @NotNull CasinoGameMode gameMode, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
 
     /**
      * Handles a player's loss.
@@ -123,7 +125,7 @@ public interface VictoryUtil {
      * @param casinoTable     the placed casino table instance. Stores the location of the table where the game was played and the UUID of the table owner
      */
 
-    void defeat(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull CasinoGameMode gameMode, @Nullable PlacedCasinoTable casinoTable);
+    void defeat(@NotNull Player player, @NotNull CasinoBet bet, @NotNull CasinoGameMode gameMode, @Nullable PlacedCasinoTable casinoTable);
 
     /**
      * Handles a player's loss.
@@ -137,7 +139,7 @@ public interface VictoryUtil {
      * @param tableOwnerUUID  the UUID of the table owner
      */
 
-    void defeat(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull CasinoGameMode gameMode, double multiplier, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
+    void defeat(@NotNull Player player, @NotNull CasinoBet bet, @NotNull CasinoGameMode gameMode, double multiplier, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
 
     /**
      * Handles a player's loss.
@@ -150,7 +152,8 @@ public interface VictoryUtil {
      * @param casinoTable     the placed casino table instance. Stores the location of the table where the game was played and the UUID of the table owner
      */
 
-    void defeat(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull CasinoGameMode gameMode, double multiplier, @Nullable PlacedCasinoTable casinoTable);
+    void defeat(@NotNull Player player, @NotNull CasinoBet bet, @NotNull CasinoGameMode gameMode, double multiplier, @Nullable PlacedCasinoTable casinoTable);
+
 
     /**
      * Handles a player's draw.
@@ -161,6 +164,6 @@ public interface VictoryUtil {
      * @param gameMode        the game mode where the loss occurred
      */
 
-    void draw(@Nonnull Player player, @Nonnull CasinoBet bet, @Nonnull CasinoGameMode gameMode);
+    void draw(@NotNull Player player, @NotNull CasinoBet bet, @NotNull CasinoGameMode gameMode);
 
 }

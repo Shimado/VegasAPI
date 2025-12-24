@@ -5,9 +5,8 @@ import com.github.Shimado.enums.InventoryType;
 import com.github.Shimado.instances.CasinoGameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents a session for a casino game GUI (inventory-based).
@@ -25,7 +24,7 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
      * @return the inventory
      */
 
-    @Nonnull
+    @NotNull
     Inventory getInv();
 
     /**
@@ -34,7 +33,7 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
      * @param inv the inventory to set
      */
 
-    void setInv(@Nonnull Inventory inv);
+    void setInv(@NotNull Inventory inv);
 
     /**
      * Gets the opened Music inventory associated with this session.
@@ -59,7 +58,7 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
      * @return the GUI type
      */
 
-    @Nonnull
+    @NotNull
     InventoryType getInventoryType();
 
     /**
@@ -68,7 +67,7 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
      * @param inventoryType the GUI type
      */
 
-    void setInventoryType(@Nonnull InventoryType inventoryType);
+    void setInventoryType(@NotNull InventoryType inventoryType);
 
     /**
      * Checks whether the session is currently changing pages.
@@ -93,7 +92,7 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
      * @return the table game identifier
      */
 
-    @Nonnull
+    @NotNull
     String getTableGame();
 
     /**
@@ -103,7 +102,7 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
      * @param tableGame the game identifier
      */
 
-    void setTableGame(@Nonnull String tableGame);
+    void setTableGame(@NotNull String tableGame);
 
     /**
      * Gets the currently opened game instance in this session.
@@ -180,7 +179,7 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
      * @param player the player whose inventory should be closed
      */
 
-    void closeInventory(@Nonnull Player player);
+    void closeInventory(@NotNull Player player);
 
 }
 

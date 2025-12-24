@@ -2,9 +2,9 @@ package com.github.Shimado.interfaces;
 
 import com.github.Shimado.enums.CardSuit;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Map;
 
 /**
@@ -29,7 +29,7 @@ public interface CardDeck {
      * @return a non-null map where keys are suits and values are decks.
      */
 
-    @Nonnull
+    @NotNull
     Map<CardSuit, Deck> getDeckMap();
 
     /**
@@ -40,7 +40,7 @@ public interface CardDeck {
      */
 
     @Nullable
-    Deck getDeck(@Nonnull CardSuit cardSuit);
+    Deck getDeck(@NotNull CardSuit cardSuit);
 
     /**
      * Returns the card item for the given suit and card number.
@@ -51,7 +51,7 @@ public interface CardDeck {
      */
 
     @Nullable
-    ItemStack getCardItem(@Nonnull CardSuit cardSuit, int cardNumber);
+    ItemStack getCardItem(@NotNull CardSuit cardSuit, int cardNumber);
 
     /**
      * Removes a card from the deck by suit and card number.
@@ -60,7 +60,7 @@ public interface CardDeck {
      * @param cardNumber the card number (2–14).
      */
 
-    void removeCardItem(@Nonnull CardSuit cardSuit, int cardNumber);
+    void removeCardItem(@NotNull CardSuit cardSuit, int cardNumber);
 
     /**
      * Returns a random card, namely an array of suit and card number.
@@ -68,7 +68,7 @@ public interface CardDeck {
      * @return the array, where [0] - CardSuit, [1] - cardNumber
      */
 
-    @Nonnull
+    @NotNull
     Object[] getRandomCardItem();
 
     /**
@@ -78,7 +78,7 @@ public interface CardDeck {
      * @return the array, where [0] - CardSuit, [1] - cardNumber
      */
 
-    @Nonnull
+    @NotNull
     Object[] getRandomCardItemAndRemoveFromDeck();
 
 }

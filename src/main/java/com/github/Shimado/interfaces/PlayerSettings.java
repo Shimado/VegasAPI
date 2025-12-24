@@ -1,7 +1,8 @@
 package com.github.Shimado.interfaces;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Map;
 import java.util.UUID;
 
@@ -19,7 +20,7 @@ public interface PlayerSettings {
      * @return UUID of the player
      */
 
-    @Nonnull
+    @NotNull
     UUID getPlayerUUID();
 
     /**
@@ -76,7 +77,7 @@ public interface PlayerSettings {
      * @return this PlayerSettings instance for chaining
      */
 
-    PlayerSettings setMainGUISong(boolean musicActive, @Nonnull String musicID);
+    PlayerSettings setMainGUISong(boolean musicActive, @NotNull String musicID);
 
     /**
      * Gets background song settings for all game GUIs.
@@ -84,7 +85,7 @@ public interface PlayerSettings {
      * @return map of game names to background song settings
      */
 
-    @Nonnull
+    @NotNull
     Map<String, BackgroundSongSettings> getGamesGUISongs();
 
     /**
@@ -95,7 +96,7 @@ public interface PlayerSettings {
      */
 
     @Nullable
-    BackgroundSongSettings getGameGUISong(@Nonnull String gameName);
+    BackgroundSongSettings getGameGUISong(@NotNull String gameName);
 
     /**
      * Sets the background song for a specific game GUI.
@@ -106,6 +107,6 @@ public interface PlayerSettings {
      * @return this PlayerSettings instance for chaining
      */
 
-    PlayerSettings setGameGUISong(@Nonnull String gameName, boolean musicActive, @Nonnull String musicID);
+    PlayerSettings setGameGUISong(@NotNull String gameName, boolean musicActive, @NotNull String musicID);
 
 }

@@ -1,7 +1,7 @@
 package com.github.Shimado.instances.stats;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents statistics for a specific casino game mode.
@@ -20,7 +20,7 @@ public class CasinoGameModeStats extends VegasStats{
      * @param gameName name of the game mode
      */
 
-    public CasinoGameModeStats(@Nonnull String gameName) {
+    public CasinoGameModeStats(@NotNull String gameName) {
         super();
         this.gameName = gameName;
     }
@@ -39,7 +39,7 @@ public class CasinoGameModeStats extends VegasStats{
      * @param lostMoney   total money lost
      */
 
-    public CasinoGameModeStats(@Nonnull String gameName, int gamesPlayed, int victories, int bonuses, int defeats, int draws, int jackpots, double wonMoney, double lostMoney) {
+    public CasinoGameModeStats(@NotNull String gameName, int gamesPlayed, int victories, int bonuses, int defeats, int draws, int jackpots, double wonMoney, double lostMoney) {
         super(gamesPlayed, victories, bonuses, defeats, draws, jackpots, wonMoney, lostMoney);
         this.gameName = gameName;
     }

@@ -1,8 +1,7 @@
 package com.github.Shimado.interfaces;
 
 import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents an item that can be displayed and traded in the shop.
@@ -27,7 +26,7 @@ public interface ShopItem {
      * @return the actual item
      */
 
-    @Nonnull
+    @NotNull
     ItemStack getItem();
 
     /**
@@ -37,7 +36,7 @@ public interface ShopItem {
      * @return the item representation to show in the shop
      */
 
-    @Nonnull
+    @NotNull
     ItemStack getItemToShow();
 
     /**

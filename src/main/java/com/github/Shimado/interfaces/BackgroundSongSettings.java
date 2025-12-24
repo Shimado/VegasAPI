@@ -1,6 +1,6 @@
 package com.github.Shimado.interfaces;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents background song status (active state and music ID).
@@ -31,7 +31,7 @@ public interface BackgroundSongSettings {
      * @return music ID
      */
 
-    @Nonnull
+    @NotNull
     String getMusicID();
 
     /**

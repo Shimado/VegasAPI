@@ -1,28 +1,29 @@
 package com.github.Shimado.interfaces;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 public interface GameLog {
 
-    @Nonnull
+    @NotNull
     LocalDateTime getDateTime();
 
 
-    @Nonnull
+    @NotNull
     UUID getPlayerUUID();
 
 
-    @Nonnull
+    @NotNull
     String getPlayerName();
 
 
-    @Nonnull
+    @NotNull
     String getGameName();
 
 
-    @Nonnull
+    @NotNull
     String getBet();
 
 
@@ -38,14 +39,14 @@ public interface GameLog {
     boolean isDraw();
 
 
-    @Nonnull
+    @NotNull
     String getPrize();
 
 
     boolean isJackpot();
 
 
-    @Nonnull
+    @NotNull
     String getJackpotPrize();
 
 }

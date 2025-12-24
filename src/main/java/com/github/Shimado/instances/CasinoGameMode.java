@@ -2,9 +2,9 @@ package com.github.Shimado.instances;
 
 import com.github.Shimado.interfaces.BoomboxSong;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -183,12 +183,12 @@ public class CasinoGameMode {
     private Map<Integer, ItemStack> emptySlots = new HashMap<>();            // Background slot items
 
 
-    public CasinoGameMode(@Nonnull String modeName){
+    public CasinoGameMode(@NotNull String modeName){
         this.modeName = modeName;
     }
 
 
-    @Nonnull
+    @NotNull
     public String getModeName(){
         return modeName;
     }
@@ -199,7 +199,7 @@ public class CasinoGameMode {
         return guiTitle;
     }
 
-    public CasinoGameMode setGuiTitle(@Nonnull String guiTitle){
+    public CasinoGameMode setGuiTitle(@NotNull String guiTitle){
         if(guiTitle == null) return this;
         this.guiTitle = guiTitle;
         return this;
@@ -221,31 +221,31 @@ public class CasinoGameMode {
         return permission;
     }
 
-    public CasinoGameMode setPermission(@Nonnull String permission){
+    public CasinoGameMode setPermission(@NotNull String permission){
         if(permission == null) return this;
         this.permission = permission;
         return this;
     }
 
 
-    @Nonnull
+    @NotNull
     public List<Integer> getSlotsInGUI() {
         return slotsInGUI;
     }
 
-    public CasinoGameMode setSlotsInGUI(@Nonnull List<Integer> slotsInGUI) {
+    public CasinoGameMode setSlotsInGUI(@NotNull List<Integer> slotsInGUI) {
         if(slotsInGUI == null) return this;
         this.slotsInGUI = slotsInGUI;
         return this;
     }
 
 
-    @Nonnull
+    @NotNull
     public List<Integer> getSlotsInOneGameGUI() {
         return slotsInOneGameGUI;
     }
 
-    public CasinoGameMode setSlotsInOneGameGUI(@Nonnull List<Integer> slotsInOneGameGUI) {
+    public CasinoGameMode setSlotsInOneGameGUI(@NotNull List<Integer> slotsInOneGameGUI) {
         if(slotsInOneGameGUI == null) return this;
         this.slotsInOneGameGUI = slotsInOneGameGUI;
         return this;
@@ -460,12 +460,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<String> getJackpotCommandsToDispatch() {
         return jackpotCommandsToDispatch;
     }
 
-    public CasinoGameMode setJackpotCommandsToDispatch(@Nonnull List<String> jackpotCommandsToDispatch) {
+    public CasinoGameMode setJackpotCommandsToDispatch(@NotNull List<String> jackpotCommandsToDispatch) {
         if(jackpotCommandsToDispatch == null) return this;
         this.jackpotCommandsToDispatch = jackpotCommandsToDispatch;
         return this;
@@ -494,12 +494,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public Map<String, Object> getHttpJackpotHeaders() {
         return httpJackpotHeaders;
     }
 
-    public CasinoGameMode setHttpJackpotHeaders(@Nonnull Map<String, Object> httpJackpotHeaders) {
+    public CasinoGameMode setHttpJackpotHeaders(@NotNull Map<String, Object> httpJackpotHeaders) {
         if(httpJackpotHeaders == null) return this;
         this.httpJackpotHeaders = httpJackpotHeaders;
         return this;
@@ -704,12 +704,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<String> getVictoryCommandsToDispatch() {
         return victoryCommandsToDispatch;
     }
 
-    public CasinoGameMode setVictoryCommandsToDispatch(@Nonnull List<String> victoryCommandsToDispatch) {
+    public CasinoGameMode setVictoryCommandsToDispatch(@NotNull List<String> victoryCommandsToDispatch) {
         if(victoryCommandsToDispatch == null) return this;
         this.victoryCommandsToDispatch = victoryCommandsToDispatch;
         return this;
@@ -738,12 +738,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public Map<String, Object> getHttpVictoryHeaders() {
         return httpVictoryHeaders;
     }
 
-    public CasinoGameMode setHttpVictoryHeaders(@Nonnull Map<String, Object> httpVictoryHeaders) {
+    public CasinoGameMode setHttpVictoryHeaders(@NotNull Map<String, Object> httpVictoryHeaders) {
         if(httpVictoryHeaders == null) return this;
         this.httpVictoryHeaders = httpVictoryHeaders;
         return this;
@@ -928,12 +928,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<String> getBonusCommandsToDispatch() {
         return bonusCommandsToDispatch;
     }
 
-    public CasinoGameMode setBonusCommandsToDispatch(@Nonnull List<String> bonusCommandsToDispatch) {
+    public CasinoGameMode setBonusCommandsToDispatch(@NotNull List<String> bonusCommandsToDispatch) {
         if(bonusCommandsToDispatch == null) return this;
         this.bonusCommandsToDispatch = bonusCommandsToDispatch;
         return this;
@@ -962,12 +962,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public Map<String, Object> getHttpBonusHeaders() {
         return httpBonusHeaders;
     }
 
-    public CasinoGameMode setHttpBonusHeaders(@Nonnull Map<String, Object> httpBonusHeaders) {
+    public CasinoGameMode setHttpBonusHeaders(@NotNull Map<String, Object> httpBonusHeaders) {
         if(httpBonusHeaders == null) return this;
         this.httpBonusHeaders = httpBonusHeaders;
         return this;
@@ -1153,12 +1153,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<String> getDefeatCommandsToDispatch() {
         return defeatCommandsToDispatch;
     }
 
-    public CasinoGameMode setDefeatCommandsToDispatch(@Nonnull List<String> defeatCommandsToDispatch) {
+    public CasinoGameMode setDefeatCommandsToDispatch(@NotNull List<String> defeatCommandsToDispatch) {
         if(defeatCommandsToDispatch == null) return this;
         this.defeatCommandsToDispatch = defeatCommandsToDispatch;
         return this;
@@ -1187,12 +1187,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public Map<String, Object> getHttpDefeatHeaders() {
         return httpDefeatHeaders;
     }
 
-    public CasinoGameMode setHttpDefeatHeaders(@Nonnull Map<String, Object> httpDefeatHeaders) {
+    public CasinoGameMode setHttpDefeatHeaders(@NotNull Map<String, Object> httpDefeatHeaders) {
         if(httpDefeatHeaders == null) return this;
         this.httpDefeatHeaders = httpDefeatHeaders;
         return this;
@@ -1378,12 +1378,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<String> getDrawCommandsToDispatch() {
         return drawCommandsToDispatch;
     }
 
-    public CasinoGameMode setDrawCommandsToDispatch(@Nonnull List<String> drawCommandsToDispatch) {
+    public CasinoGameMode setDrawCommandsToDispatch(@NotNull List<String> drawCommandsToDispatch) {
         if(drawCommandsToDispatch == null) return this;
         this.drawCommandsToDispatch = drawCommandsToDispatch;
         return this;
@@ -1412,12 +1412,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public Map<String, Object> getHttpDrawHeaders() {
         return httpDrawHeaders;
     }
 
-    public CasinoGameMode setHttpDrawHeaders(@Nonnull Map<String, Object> httpDrawHeaders) {
+    public CasinoGameMode setHttpDrawHeaders(@NotNull Map<String, Object> httpDrawHeaders) {
         if(httpDrawHeaders == null) return this;
         this.httpDrawHeaders = httpDrawHeaders;
         return this;
@@ -1485,12 +1485,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<Integer> getMoneyBetSlots() {
         return moneyBetSlots;
     }
 
-    public CasinoGameMode setMoneyBetSlots(@Nonnull List<Integer> moneyBetSlots) {
+    public CasinoGameMode setMoneyBetSlots(@NotNull List<Integer> moneyBetSlots) {
         if(moneyBetSlots == null) return this;
         this.moneyBetSlots = moneyBetSlots;
         return this;
@@ -1519,12 +1519,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<String> getMoneyBetItemLore() {
         return moneyBetItemLore;
     }
 
-    public CasinoGameMode setMoneyBetItemLore(@Nonnull List<String> moneyBetItemLore) {
+    public CasinoGameMode setMoneyBetItemLore(@NotNull List<String> moneyBetItemLore) {
         if(moneyBetItemLore == null) return this;
         this.moneyBetItemLore = moneyBetItemLore;
         return this;
@@ -1561,12 +1561,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<Integer> getSpotSlots() {
         return spotSlots;
     }
 
-    public CasinoGameMode setSpotSlots(@Nonnull List<Integer> spotSlots) {
+    public CasinoGameMode setSpotSlots(@NotNull List<Integer> spotSlots) {
         if(spotSlots == null) return this;
         this.spotSlots = spotSlots;
         return this;
@@ -1596,24 +1596,24 @@ public class CasinoGameMode {
 
 
 
-    @Nonnull
+    @NotNull
     public List<String> getSpotItemLore() {
         return spotItemLore;
     }
 
-    public CasinoGameMode setSpotItemLore(@Nonnull List<String> spotItemLore) {
+    public CasinoGameMode setSpotItemLore(@NotNull List<String> spotItemLore) {
         if(spotItemLore == null) return this;
         this.spotItemLore = spotItemLore;
         return this;
     }
 
 
-    @Nonnull
+    @NotNull
     public List<Integer> getLeverSlots() {
         return leverSlots;
     }
 
-    public CasinoGameMode setLeverSlots(@Nonnull List<Integer> leverSlots) {
+    public CasinoGameMode setLeverSlots(@NotNull List<Integer> leverSlots) {
         if(leverSlots == null) return this;
         this.leverSlots = leverSlots;
         return this;
@@ -1642,12 +1642,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<String> getLeverItemInactiveLore() {
         return leverItemInactiveLore;
     }
 
-    public CasinoGameMode setLeverItemInactiveLore(@Nonnull List<String> leverItemInactiveLore) {
+    public CasinoGameMode setLeverItemInactiveLore(@NotNull List<String> leverItemInactiveLore) {
         if(leverItemInactiveLore == null) return this;
         this.leverItemInactiveLore = leverItemInactiveLore;
         return this;
@@ -1676,12 +1676,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<String> getLeverItemActiveLore() {
         return leverItemActiveLore;
     }
 
-    public CasinoGameMode setLeverItemActiveLore(@Nonnull List<String> leverItemActiveLore) {
+    public CasinoGameMode setLeverItemActiveLore(@NotNull List<String> leverItemActiveLore) {
         if(leverItemActiveLore == null) return this;
         this.leverItemActiveLore = leverItemActiveLore;
         return this;
@@ -1710,12 +1710,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<String> getLeverItemRollingLore() {
         return leverItemRollingLore;
     }
 
-    public CasinoGameMode setLeverItemRollingLore(@Nonnull List<String> leverItemRollingLore) {
+    public CasinoGameMode setLeverItemRollingLore(@NotNull List<String> leverItemRollingLore) {
         if(leverItemRollingLore == null) return this;
         this.leverItemRollingLore = leverItemRollingLore;
         return this;
@@ -1733,12 +1733,12 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<Integer> getMusicButtonSlots() {
         return musicButtonSlots;
     }
 
-    public CasinoGameMode setMusicButtonSlots(@Nonnull List<Integer> musicButtonSlots) {
+    public CasinoGameMode setMusicButtonSlots(@NotNull List<Integer> musicButtonSlots) {
         if(musicButtonSlots == null) return this;
         this.musicButtonSlots = musicButtonSlots;
         return this;
@@ -1778,24 +1778,24 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<String> getMusicButtonItemActiveLore() {
         return musicButtonItemActiveLore;
     }
 
-    public CasinoGameMode setMusicButtonItemActiveLore(@Nonnull List<String> musicButtonItemActiveLore) {
+    public CasinoGameMode setMusicButtonItemActiveLore(@NotNull List<String> musicButtonItemActiveLore) {
         if(musicButtonItemActiveLore == null) return this;
         this.musicButtonItemActiveLore = musicButtonItemActiveLore;
         return this;
     }
 
 
-    @Nonnull
+    @NotNull
     public List<Integer> getStatsButtonSlots() {
         return statsButtonSlots;
     }
 
-    public CasinoGameMode setStatsButtonSlots(@Nonnull List<Integer> statsButtonSlots) {
+    public CasinoGameMode setStatsButtonSlots(@NotNull List<Integer> statsButtonSlots) {
         if(statsButtonSlots == null) return this;
         this.statsButtonSlots = statsButtonSlots;
         return this;
@@ -1813,24 +1813,24 @@ public class CasinoGameMode {
     }
 
 
-    @Nonnull
+    @NotNull
     public List<String> getStatsButtonLore() {
         return statsButtonLore;
     }
 
-    public CasinoGameMode setStatsButtonLore(@Nonnull List<String> statsButtonLore) {
+    public CasinoGameMode setStatsButtonLore(@NotNull List<String> statsButtonLore) {
         if(statsButtonLore == null) return this;
         this.statsButtonLore = statsButtonLore;
         return this;
     }
 
 
-    @Nonnull
+    @NotNull
     public Map<Integer, ItemStack> getEmptySlots() {
         return emptySlots;
     }
 
-    public CasinoGameMode setEmptySlots(@Nonnull Map<Integer, ItemStack> emptySlots) {
+    public CasinoGameMode setEmptySlots(@NotNull Map<Integer, ItemStack> emptySlots) {
         if(emptySlots == null) return this;
         this.emptySlots = emptySlots;
         return this;

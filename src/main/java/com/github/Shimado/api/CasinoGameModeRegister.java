@@ -2,9 +2,9 @@ package com.github.Shimado.api;
 
 import com.github.Shimado.instances.CasinoGameMode;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Map;
 
 /**
@@ -27,6 +27,7 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
     @Nullable
     T getGameByName(@Nullable String gameName);
 
+
     /**
      * Gets a game mode by the slot assigned to it in the main GUI.
      *
@@ -36,6 +37,7 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
 
     @Nullable
     T getGameBySlotInMainGUI(int slot);
+
 
     /**
      * Gets a game mode by the slot assigned to it in its own game GUI.
@@ -47,14 +49,16 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
     @Nullable
     T getGameBySlotInOneGameGUI(int slot);
 
+
     /**
      * Gets all registered game modes.
      *
      * @return a map of game names to their corresponding game mode instances
      */
 
-    @Nonnull
+    @NotNull
     Map<String, T> getGames();
+
 
     /**
      * Registers a new casino game mode in the plugin.
@@ -64,6 +68,7 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
 
     void register(@Nullable T casinoGameMode);
 
+
     /**
      * Unregisters a casino game mode by its name.
      *
@@ -71,6 +76,7 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
      */
 
     void unregister(@Nullable String gameName);
+
 
     /**
      * Optional.
@@ -84,5 +90,5 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
      */
 
     @Nullable
-    T getBasicGameModeFromConfig(@Nonnull String configKey, @Nonnull YamlConfiguration config, @Nonnull YamlConfiguration messages, @Nonnull Class<T> clazz, @Nonnull Object pluginInstance);
+    T getBasicGameModeFromConfig(@NotNull String configKey, @NotNull YamlConfiguration config, @NotNull YamlConfiguration messages, @NotNull Class<T> clazz, @NotNull Object pluginInstance);
 }

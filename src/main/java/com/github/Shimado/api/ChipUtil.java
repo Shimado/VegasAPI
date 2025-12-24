@@ -3,9 +3,8 @@ package com.github.Shimado.api;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Utility interface for working with in-game "chips".
@@ -25,6 +24,7 @@ public interface ChipUtil {
     @Nullable
     ItemStack getChip(double price);
 
+
     /**
      * Creates a chip with the specified price and amount.
      *
@@ -36,6 +36,7 @@ public interface ChipUtil {
     @Nullable
     ItemStack getChip(double price, int amount);
 
+
     /**
      * Checks if the given item is a chip.
      *
@@ -44,6 +45,7 @@ public interface ChipUtil {
      */
 
     boolean isChip(@Nullable ItemStack item);
+
 
     /**
      * Gets the price of a single chip from the given item.
@@ -54,6 +56,7 @@ public interface ChipUtil {
 
     double getOneChipPrice(@Nullable ItemStack item);
 
+
     /**
      * Gets the total price of all chips in the given item stack.
      *
@@ -62,6 +65,7 @@ public interface ChipUtil {
      */
 
     double getChipsPrice(@Nullable ItemStack item);
+
 
     /**
      * Checks whether two chip items have similar prices within a given difference.
@@ -74,6 +78,7 @@ public interface ChipUtil {
 
     boolean isSimilarChipsPrice(@Nullable ItemStack chip1, @Nullable ItemStack chip2, double maxDifference);
 
+
     /**
      * Checks if the given inventory contains any chips with the same price and amount as the specified item.
      *
@@ -82,7 +87,8 @@ public interface ChipUtil {
      * @return {@code true} if matching chips exist in the inventory, otherwise {@code false}
      */
 
-    boolean isHaveSameChipsInInv(@Nullable ItemStack item, @Nonnull Inventory inv);
+    boolean isHaveSameChipsInInv(@Nullable ItemStack item, @NotNull Inventory inv);
+
 
     /**
      * Removes chips with the same price and amount as the specified item from the given inventory.
@@ -92,7 +98,8 @@ public interface ChipUtil {
      * @return {@code true} if all chips was removed, otherwise {@code false}
      */
 
-    boolean removeSameChipsFromInv(@Nullable ItemStack item, @Nonnull Inventory inv);
+    boolean removeSameChipsFromInv(@Nullable ItemStack item, @NotNull Inventory inv);
+
 
     /**
      * Sells all chips from the player's inventory.
@@ -100,7 +107,7 @@ public interface ChipUtil {
      * @param player the player whose inventory will be processed
      */
 
-    void sellAllChipsInInv(@Nonnull Player player);
+    void sellAllChipsInInv(@NotNull Player player);
 
 }
 

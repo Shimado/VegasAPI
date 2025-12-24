@@ -1,7 +1,8 @@
 package com.github.Shimado.instances.stats;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -24,7 +25,7 @@ public class PlayerStats extends VegasStats{
      * @param playerUUID unique identifier of the player
      */
 
-    public PlayerStats(@Nonnull UUID playerUUID){
+    public PlayerStats(@NotNull UUID playerUUID){
         super();
         this.playerUUID = playerUUID;
     }
@@ -43,7 +44,7 @@ public class PlayerStats extends VegasStats{
      * @param lostMoney   total amount of money lost
      */
 
-    public PlayerStats(@Nonnull UUID playerUUID, int gamesPlayed, int victories, int bonuses, int defeats, int draws, int jackpots, double wonMoney, double lostMoney){
+    public PlayerStats(@NotNull UUID playerUUID, int gamesPlayed, int victories, int bonuses, int defeats, int draws, int jackpots, double wonMoney, double lostMoney){
         super(gamesPlayed, victories, bonuses, defeats, draws, jackpots, wonMoney, lostMoney);
         this.playerUUID = playerUUID;
     }
@@ -55,7 +56,7 @@ public class PlayerStats extends VegasStats{
      * @return the unique identifier of the player
      */
 
-    @Nonnull
+    @NotNull
     public UUID getPlayerUUID() {
         return playerUUID;
     }
@@ -69,7 +70,7 @@ public class PlayerStats extends VegasStats{
      */
 
     @Nullable
-    public CasinoGameModeStats getCasinoGameStats(@Nonnull String gameName) {
+    public CasinoGameModeStats getCasinoGameStats(@NotNull String gameName) {
         return gameStats.get(gameName);
     }
 
@@ -79,7 +80,7 @@ public class PlayerStats extends VegasStats{
      * @return map of game statistics
      */
 
-    @Nonnull
+    @NotNull
     public Map<String, CasinoGameModeStats> getCasinoGameStats() {
         return gameStats;
     }
@@ -87,13 +88,13 @@ public class PlayerStats extends VegasStats{
     /**
      * Sets or updates statistics for a specific game mode.
      *
-     * @param gameName      game mode name
-     * @param gameModeStats game mode statistics
+     * @param gameName    game mode name
+     * @param gameStats   game mode statistics
      */
 
-    public void setCasinoGameStats(@Nonnull String gameName, @Nonnull CasinoGameModeStats gameModeStats) {
-        if(gameName == null || gameName.isEmpty() || gameModeStats == null) return;
-        this.gameStats.put(gameName, gameModeStats);
+    public void setCasinoGameStats(@NotNull String gameName, @NotNull CasinoGameModeStats gameStats) {
+        if(gameName == null || gameName.isEmpty() || gameStats == null) return;
+        this.gameStats.put(gameName, gameStats);
     }
 
     /**
@@ -102,7 +103,7 @@ public class PlayerStats extends VegasStats{
      * @param gameStats map of game statistics
      */
 
-    public void setCasinoGameStats(@Nonnull Map<String, CasinoGameModeStats> gameStats) {
+    public void setCasinoGameStats(@NotNull Map<String, CasinoGameModeStats> gameStats) {
         if(gameStats == null) return;
         this.gameStats = gameStats;
     }

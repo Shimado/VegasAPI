@@ -1,9 +1,9 @@
 package com.github.Shimado.interfaces;
 
 import org.bukkit.Location;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.UUID;
 
 /**
@@ -20,7 +20,7 @@ public interface PlacedCasinoTable {
      * @return the table UUID
      */
 
-    @Nonnull
+    @NotNull
     UUID getUUID();
 
     /**
@@ -29,7 +29,7 @@ public interface PlacedCasinoTable {
      * @return the table item ID
      */
 
-    @Nonnull
+    @NotNull
     String getCasinoTableItemID();
 
     /**
@@ -38,7 +38,7 @@ public interface PlacedCasinoTable {
      * @return the table item definition
      */
 
-    @Nonnull
+    @NotNull
     CasinoTableItem getCasinoTableItem();
 
     /**
@@ -48,7 +48,7 @@ public interface PlacedCasinoTable {
      * @return the game mode name
      */
 
-    @Nonnull
+    @NotNull
     String getGame();
 
     /**
@@ -67,7 +67,7 @@ public interface PlacedCasinoTable {
      * @return this table location
      */
 
-    @Nonnull
+    @NotNull
     Location getLoc();
 
     /**

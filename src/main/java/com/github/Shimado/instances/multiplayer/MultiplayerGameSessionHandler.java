@@ -4,9 +4,9 @@ import com.github.Shimado.VegasAPI;
 import com.github.Shimado.api.CasinoGameModeUtil;
 import com.github.Shimado.instances.CasinoGameMode;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -63,7 +63,7 @@ public class MultiplayerGameSessionHandler {
      * @return a map of session UUIDs to their respective session hubs
      */
 
-    @Nonnull
+    @NotNull
     public Map<UUID, MultiplayerGameSessionsHub> getSessions() {
         return sessions;
     }
@@ -85,8 +85,8 @@ public class MultiplayerGameSessionHandler {
      * @return the session hub that the player was joined to
      */
 
-    @Nonnull
-    public MultiplayerGameSessionsHub joinPlayerToGame(@Nonnull Player player, @Nonnull MultiplayerGameSession gameSession) {
+    @NotNull
+    public MultiplayerGameSessionsHub joinPlayerToGame(@NotNull Player player, @NotNull MultiplayerGameSession gameSession) {
         MultiplayerGameSessionsHub result = null;
 
         for (MultiplayerGameSessionsHub session : sessions.values()) {
@@ -113,7 +113,7 @@ public class MultiplayerGameSessionHandler {
      */
 
     @Nullable
-    public MultiplayerGameSessionsHub getMultiplayerGameSessionHub(@Nonnull Player player) {
+    public MultiplayerGameSessionsHub getMultiplayerGameSessionHub(@NotNull Player player) {
         for (MultiplayerGameSessionsHub session : sessions.values()) {
             if (session.getPlayerSessions().containsKey(player)) {
                 return session;
@@ -130,7 +130,7 @@ public class MultiplayerGameSessionHandler {
      */
 
     @Nullable
-    public MultiplayerGameSession getGameSession(@Nonnull Player player) {
+    public MultiplayerGameSession getGameSession(@NotNull Player player) {
         for (MultiplayerGameSessionsHub session : sessions.values()) {
             if (session.getPlayerSessions().containsKey(player)) {
                 return session.getPlayerSessions().get(player);
@@ -145,7 +145,7 @@ public class MultiplayerGameSessionHandler {
      * @param sessionUUID the UUID of the session hub to remove
      */
 
-    public void removeSession(@Nonnull UUID sessionUUID) {
+    public void removeSession(@NotNull UUID sessionUUID) {
         sessions.remove(sessionUUID);
     }
 
@@ -165,7 +165,7 @@ public class MultiplayerGameSessionHandler {
      * @param casinoGameMode the casino game mode instance to use for reloading GUIs
      */
 
-    public void reload(@Nonnull CasinoGameMode casinoGameMode) {
+    public void reload(@NotNull CasinoGameMode casinoGameMode) {
         for (MultiplayerGameSessionsHub session : sessions.values()) {
             session.cancelCycleID();
             casinoGameModeUtil.reloadSingleplayerGameGUI(session.getPlayerSessions(), casinoGameMode);

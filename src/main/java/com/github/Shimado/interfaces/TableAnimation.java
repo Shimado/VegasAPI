@@ -2,8 +2,8 @@ package com.github.Shimado.interfaces;
 
 import com.github.Shimado.enums.TableAnimationType;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 /**
@@ -20,7 +20,7 @@ public interface TableAnimation {
      * @return the animation type
      */
 
-    @Nonnull
+    @NotNull
     TableAnimationType getTableAnimationType();
 
     /**
@@ -29,7 +29,7 @@ public interface TableAnimation {
      * @return a non-null list of item stacks (may be empty)
      */
 
-    @Nonnull
+    @NotNull
     List<ItemStack> getItemsToDrop();
 
     /**

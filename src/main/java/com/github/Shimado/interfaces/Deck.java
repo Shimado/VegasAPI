@@ -1,9 +1,9 @@
 package com.github.Shimado.interfaces;
 
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Map;
 
 /**
@@ -28,7 +28,7 @@ public interface Deck {
      * @return a non-null map where keys are card numbers (2–14) and values are card items.
      */
 
-    @Nonnull
+    @NotNull
     Map<Integer, ItemStack> getCards();
 
     /**

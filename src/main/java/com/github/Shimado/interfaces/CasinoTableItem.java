@@ -2,9 +2,9 @@ package com.github.Shimado.interfaces;
 
 import com.github.Shimado.enums.TableAnimationType;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -22,7 +22,7 @@ public interface CasinoTableItem {
      * @return the ID of the table
      */
 
-    @Nonnull
+    @NotNull
     String getID();
 
     /**
@@ -31,7 +31,7 @@ public interface CasinoTableItem {
      * @return the table item
      */
 
-    @Nonnull
+    @NotNull
     ItemStack getTableItem();
 
     /**
@@ -58,7 +58,7 @@ public interface CasinoTableItem {
      * @return the game mode name or "ALL"
      */
 
-    @Nonnull
+    @NotNull
     String getGame();
 
     /**

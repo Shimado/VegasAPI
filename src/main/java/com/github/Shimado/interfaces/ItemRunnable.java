@@ -1,8 +1,7 @@
 package com.github.Shimado.interfaces;
 
 import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 @FunctionalInterface
 public interface ItemRunnable {

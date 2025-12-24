@@ -7,9 +7,9 @@ import com.github.Shimado.interfaces.Jackpot;
 import com.github.Shimado.interfaces.PlayerSettings;
 import com.github.Shimado.interfaces.ShopItem;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.Queue;
 import java.util.UUID;
@@ -34,14 +34,16 @@ public interface DataStorage {
     @Nullable
     ItemStack getBetItem();
 
+
     /**
      * Gets the current jackpot instance.
      *
      * @return the {@link Jackpot}
      */
 
-    @Nonnull
+    @NotNull
     Jackpot getJackpot();
+
 
     /**
      * Gets the settings of a specific player.
@@ -53,6 +55,7 @@ public interface DataStorage {
     @Nullable
     PlayerSettings getPlayerSettings(@Nullable UUID playerUUID);
 
+
     /**
      * Gets the player's internal in-plugin balance.
      * Use {@link EconomyUtil} to get the balance.
@@ -63,6 +66,7 @@ public interface DataStorage {
 
     double getBalance(@Nullable UUID playerUUID);
 
+
     /**
      * Gets all shop items available in the casino.
      * Key in this map is a slot in the shop GUI.
@@ -70,8 +74,9 @@ public interface DataStorage {
      * @return a map of slot indices to {@link ShopItem}
      */
 
-    @Nonnull
+    @NotNull
     Map<Integer, ShopItem> getShopItems();
+
 
     /**
      * Gets a specific shop item by slot in the shop GUI.
@@ -83,14 +88,16 @@ public interface DataStorage {
     @Nullable
     ShopItem getShopItem(int slot);
 
+
     /**
      * Gets all registered player statistics.
      *
      * @return a map of player UUIDs to {@link PlayerStats}
      */
 
-    @Nonnull
+    @NotNull
     Map<UUID, PlayerStats> getPlayerStats();
+
 
     /**
      * Gets statistics of a specific player.
@@ -102,6 +109,7 @@ public interface DataStorage {
     @Nullable
     PlayerStats getPlayerStats(@Nullable UUID playerUUID);
 
+
     /**
      * Gets overall statistics for all casino game modes.
      * Where is the map key, this is the name of the game mode.
@@ -109,8 +117,9 @@ public interface DataStorage {
      * @return a map of game names to {@link CasinoGameModeStats}
      */
 
-    @Nonnull
+    @NotNull
     Map<String, CasinoGameModeStats> getGameStats();
+
 
     /**
      * Gets statistics for a specific casino game mode.
@@ -122,6 +131,7 @@ public interface DataStorage {
     @Nullable
     CasinoGameModeStats getCasinoGameStats(@Nullable String gameName);
 
+
     /**
      * Gets a queue of all player logs that contain data on the game played and its results:
      * Prizes, victory/defeat, player UUID/name, game mode and etc
@@ -129,8 +139,9 @@ public interface DataStorage {
      * @return a queue of all player logs.
      */
 
-    @Nonnull
+    @NotNull
     Queue<GameLog> getGameLogs();
+
 
     /**
      * Gets a queue of the player logs that contain data on the game played and its results:
@@ -140,7 +151,7 @@ public interface DataStorage {
      * @return a queue of all logs for a given player, or empty queue
      */
 
-    @Nonnull
+    @NotNull
     Queue<GameLog> getPlayerGameLogs(@Nullable UUID playerUUID);
 
 }

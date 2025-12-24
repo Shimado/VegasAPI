@@ -1,11 +1,11 @@
 package com.github.Shimado.api;
 
-import com.github.Shimado.interfaces.PlacedCasinoTable;
 import com.github.Shimado.interfaces.ISession;
+import com.github.Shimado.interfaces.PlacedCasinoTable;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Map;
 
 /**
@@ -22,8 +22,9 @@ public interface InvSession {
      * @return a map of players to their active sessions
      */
 
-    @Nonnull
+    @NotNull
     Map<Player, ISession> getSessions();
+
 
     /**
      * Gets the current session for the specified player.
@@ -33,7 +34,8 @@ public interface InvSession {
      */
 
     @Nullable
-    ISession getSession(@Nonnull Player player);
+    ISession getSession(@NotNull Player player);
+
 
     /**
      * Removes the current session for the specified player.
@@ -41,7 +43,8 @@ public interface InvSession {
      * @param player the player whose session should be removed
      */
 
-    void removeSession(@Nonnull Player player);
+    void removeSession(@NotNull Player player);
+
 
     /**
      * Gets the existing session for the specified player,
@@ -51,8 +54,9 @@ public interface InvSession {
      * @return the existing or newly created session
      */
 
-    @Nonnull
-    ISession getOrCreateNewSession(@Nonnull Player player);
+    @NotNull
+    ISession getOrCreateNewSession(@NotNull Player player);
+
 
     /**
      * Gets the player's session if available,
@@ -63,7 +67,8 @@ public interface InvSession {
      */
 
     @Nullable
-    ISession getSessionOrCloseInventory(@Nonnull Player player);
+    ISession getSessionOrCloseInventory(@NotNull Player player);
+
 
     /**
      * Removes a specific casino table from any session it is associated with.
@@ -73,6 +78,7 @@ public interface InvSession {
 
     void removeTableFromSession(@Nullable PlacedCasinoTable placedCasinoTable);
 
+
     /**
      * Returns the player to their previous inventory page,
      * if available in the session history.
@@ -80,7 +86,8 @@ public interface InvSession {
      * @param player the player to return
      */
 
-    void returnToPreviousPage(@Nonnull Player player);
+    void returnToPreviousPage(@NotNull Player player);
+
 
     /**
      * Reloads all active sessions and their states.

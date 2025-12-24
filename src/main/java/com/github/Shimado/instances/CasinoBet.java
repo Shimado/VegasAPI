@@ -2,8 +2,7 @@ package com.github.Shimado.instances;
 
 import com.github.Shimado.enums.ChipType;
 import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents a casino bet.
@@ -39,6 +38,7 @@ public class CasinoBet {
         return this;
     }
 
+
     /**
      * Gets the money bet.
      *
@@ -65,6 +65,7 @@ public class CasinoBet {
         return this;
     }
 
+
     /**
      * Gets the chips bet.
      *
@@ -80,6 +81,7 @@ public class CasinoBet {
         this.chipsBet = chipsBet;
         return this;
     }
+
 
     /**
      * Gets the items bet.
@@ -97,6 +99,7 @@ public class CasinoBet {
         return this;
     }
 
+
     /**
      * Is the bet placed free?
      * You need to set the bet (money, chips, or items) itself.
@@ -112,6 +115,7 @@ public class CasinoBet {
         this.isFreeSpin = isFreeSpin;
         return this;
     }
+
 
     /**
      * Checks if there is any bet (money, chips, or items).

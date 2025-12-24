@@ -10,9 +10,9 @@ import com.github.Shimado.interfaces.PlacedCasinoTable;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -36,7 +36,8 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param betRunnable      action to run if the bet is made with chips/money/items. Handles further actions after a bet has been placed
      */
 
-    void placeBet(@Nonnull Player player, @Nonnull CasinoBet bet, int slot, @Nonnull T casinoGameMode, @Nullable ItemRunnable betRunnable);
+    void placeBet(@NotNull Player player, @NotNull CasinoBet bet, int slot, @NotNull T casinoGameMode, @Nullable ItemRunnable betRunnable);
+
 
     /**
      * Responsible for the visual display of the bet for a singleplayer mode.
@@ -49,7 +50,8 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param slot            the bet slot where the item will be installed
      * **/
 
-    void placeBetToSingleplayerGameInventory(@Nonnull Player player, @Nonnull Inventory inv, @Nonnull T casinoGameMode, @Nonnull ItemStack itemToSet, int slot);
+    void placeBetToSingleplayerGameInventory(@NotNull Player player, @NotNull Inventory inv, @NotNull T casinoGameMode, @NotNull ItemStack itemToSet, int slot);
+
 
     /**
      * Responsible for the visual display of the bet for a multiplayer mode.
@@ -64,7 +66,8 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param slot               the bet slot where the item will be installed
      * **/
 
-    void placeBetToMultiplayerGameInventory(@Nonnull Player player, @Nonnull MultiplayerGameSessionsHub sessionHub, @Nonnull MultiplayerGameSession gameSession, @Nonnull T casinoGameMode, @Nonnull ItemStack itemToSet, int slot);
+    void placeBetToMultiplayerGameInventory(@NotNull Player player, @NotNull MultiplayerGameSessionsHub sessionHub, @NotNull MultiplayerGameSession gameSession, @NotNull T casinoGameMode, @NotNull ItemStack itemToSet, int slot);
+
 
     /**
      * Refunds a bet or free spin back to the player.
@@ -75,7 +78,8 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param casinoGameMode  the casino game itself
      */
 
-    void refundBet(@Nonnull Player player, @Nullable CasinoBet bet, @Nonnull T casinoGameMode);
+    void refundBet(@NotNull Player player, @Nullable CasinoBet bet, @NotNull T casinoGameMode);
+
 
     /**
      * Checks whether a business-owned table has enough funds.
@@ -85,7 +89,8 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @return {@code true} if the business table has sufficient money, {@code false} otherwise
      */
 
-    boolean checkIfBusinessTableHasMoney(@Nonnull Player player, @Nullable UUID tableOwnerUUID);
+    boolean checkIfBusinessTableHasMoney(@NotNull Player player, @Nullable UUID tableOwnerUUID);
+
 
     /**
      * Checks whether a business-owned table has enough funds.
@@ -95,7 +100,8 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @return {@code true} if the business table has sufficient money, {@code false} otherwise
      */
 
-    boolean checkIfBusinessTableHasMoney(@Nonnull Player player, @Nullable PlacedCasinoTable placedCasinoTable);
+    boolean checkIfBusinessTableHasMoney(@NotNull Player player, @Nullable PlacedCasinoTable placedCasinoTable);
+
 
     /**
      * Handles the player closing the GUI, returns their bet if the game has not yet started.
@@ -107,7 +113,8 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param runnable       necessary to complement the method. But it's generally used to remove a player from the session map.
      * **/
 
-    void closeSingleplayerGameGUI(@Nonnull Player player, @Nullable SingleplayerGameSession gameSession, @Nonnull T casinoGameMode, @Nullable Runnable runnable);
+    void closeSingleplayerGameGUI(@NotNull Player player, @Nullable SingleplayerGameSession gameSession, @NotNull T casinoGameMode, @Nullable Runnable runnable);
+
 
     /**
      * Sets the bid buttons, replacing all placeholders.
@@ -118,7 +125,8 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param casinoGameMode  the game mode itself
      * **/
 
-    void setSpotItems(@Nonnull Player player, @Nonnull Inventory inv, @Nonnull List<Integer> spotSlots, @Nonnull CasinoGameMode casinoGameMode);
+    void setSpotItems(@NotNull Player player, @NotNull Inventory inv, @NotNull List<Integer> spotSlots, @NotNull CasinoGameMode casinoGameMode);
+
 
     /**
      * Handles mode update on /vegas reload, returns their bet if the game has not yet started.
@@ -127,7 +135,8 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param casinoGameMode  the game mode itself
      * **/
 
-    void reloadSingleplayerGameGUI(@Nonnull Map<UUID, SingleplayerGameSession> sessions, @Nonnull T casinoGameMode);
+    void reloadSingleplayerGameGUI(@NotNull Map<UUID, SingleplayerGameSession> sessions, @NotNull T casinoGameMode);
+
 
     /**
      * Sets the delay for recharging the mode.
@@ -138,7 +147,8 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param runnable    where the method itself is implemented that restarts the mode
      * **/
 
-    void restartSingleplayerGameWithDelay(int delay, @Nonnull Player player, @Nonnull SingleplayerGameSession gameSession, @Nonnull Runnable runnable);
+    void restartSingleplayerGameWithDelay(int delay, @NotNull Player player, @NotNull SingleplayerGameSession gameSession, @NotNull Runnable runnable);
+
 
     /**
      * Sets the delay for recharging the mode.
@@ -148,6 +158,6 @@ public interface CasinoGameModeUtil<T extends CasinoGameMode & CasinoGameModeMet
      * @param runnable    where the method itself is implemented that restarts the mode
      * **/
 
-    void restartMultiplayerGameWithDelay(int delay, @Nonnull MultiplayerGameSessionsHub sessionHub, @Nonnull Runnable runnable);
+    void restartMultiplayerGameWithDelay(int delay, @NotNull MultiplayerGameSessionsHub sessionHub, @NotNull Runnable runnable);
 
 }

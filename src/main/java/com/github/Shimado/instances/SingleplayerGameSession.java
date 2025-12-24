@@ -1,6 +1,7 @@
 package com.github.Shimado.instances;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
+import org.shimado.basicutils.cycles.CycleTask;
 
 /**
  * Represents a single-player game session in a casino environment.
@@ -11,7 +12,7 @@ import javax.annotation.Nullable;
 public class SingleplayerGameSession {
 
     private CasinoBet bet;
-    private Object cycle;
+    private CycleTask cycle;
     private int timer = 0;
     private boolean opened = true;
     private boolean ended = false;
@@ -32,6 +33,7 @@ public class SingleplayerGameSession {
         this.bet = bet;
     }
 
+
     /**
      * Checks whether a cycle task is currently active for this session.
      *
@@ -42,7 +44,7 @@ public class SingleplayerGameSession {
         return cycle != null;
     }
 
-    public void setCycleID(@Nullable Object cycle) {
+    public void setCycleID(@Nullable CycleTask cycle) {
         this.cycle = cycle;
     }
 
@@ -52,25 +54,11 @@ public class SingleplayerGameSession {
 
     public void cancelCycleID() {
         if (cycle != null) {
-            //cycle.cancelTask();
+            cycle.cancelTask();
             cycle = null;
         }
     }
 
-    /**
-     * Checks if the session is currently open for gameplay.
-     * And every player can join to this session.
-     *
-     * @return true if the session is open, false if closed
-     */
-
-    public boolean isOpened() {
-        return opened;
-    }
-
-    public void setOpened(boolean opened) {
-        this.opened = opened;
-    }
 
     /**
      * Gets the current timer value for this session.
@@ -93,6 +81,23 @@ public class SingleplayerGameSession {
     public void removeTime() {
         timer--;
     }
+
+
+    /**
+     * Checks if the session is currently open for gameplay.
+     * And every player can join to this session.
+     *
+     * @return true if the session is open, false if closed
+     */
+
+    public boolean isOpened() {
+        return opened;
+    }
+
+    public void setOpened(boolean opened) {
+        this.opened = opened;
+    }
+
 
     /**
      * Checks if the game has ended.
