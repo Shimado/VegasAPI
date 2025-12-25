@@ -3,6 +3,7 @@ package com.github.Shimado.instances.multiplayer;
 import com.github.Shimado.VegasAPI;
 import com.github.Shimado.api.CasinoGameModeUtil;
 import com.github.Shimado.instances.CasinoGameMode;
+import com.github.Shimado.interfaces.CycleRunnable;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -166,9 +167,9 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSession, H e
      * @param casinoGameMode the casino game mode instance to use for reloading GUIs
      */
 
-    public void reload(@NotNull CasinoGameMode casinoGameMode, Function cancelFunction) {
+    public void reload(@NotNull CasinoGameMode casinoGameMode, @NotNull CycleRunnable cancelCycleRunnable) {
         for (H session : sessions.values()) {
-            session.cancelCycleID(cancelFunction);
+            cancelCycleRunnable.run(session.getCycleID());
             casinoGameModeUtil.reloadSingleplayerGameGUI(session.getPlayerSessions(), casinoGameMode);
             session.setPlayerSessions(new HashMap<>());
             session.setOpened(false);

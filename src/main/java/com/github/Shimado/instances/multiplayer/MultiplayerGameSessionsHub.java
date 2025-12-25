@@ -1,12 +1,12 @@
 package com.github.Shimado.instances.multiplayer;
 
 import com.github.Shimado.instances.CasinoGameMode;
+import com.github.Shimado.interfaces.CycleRunnable;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -162,6 +162,11 @@ public class MultiplayerGameSessionsHub<S extends MultiplayerGameSession> {
         return cycle != null;
     }
 
+    @Nullable
+    public Object getCycleID(){
+        return cycle;
+    }
+
     public void setCycleID(@Nullable Object cycle) {
         this.cycle = cycle;
     }
@@ -170,9 +175,9 @@ public class MultiplayerGameSessionsHub<S extends MultiplayerGameSession> {
      * Cancels and clears the current cycle task if one is active.
      */
 
-    public void cancelCycleID(Function cancelFunction) {
+    public void cancelCycleID(@NotNull CycleRunnable cancelCycleRunnable) {
         if (cycle != null) {
-            cancelFunction.apply(cycle);
+            cancelCycleRunnable.run(cycle);
             cycle = null;
         }
     }

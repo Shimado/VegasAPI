@@ -1,8 +1,8 @@
 package com.github.Shimado.instances;
 
+import com.github.Shimado.interfaces.CycleRunnable;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Function;
 
 /**
  * Represents a single-player game session in a casino environment.
@@ -45,6 +45,11 @@ public class SingleplayerGameSession {
         return cycle != null;
     }
 
+    @Nullable
+    public Object getCycleID(){
+        return cycle;
+    }
+
     public void setCycleID(@Nullable Object cycle) {
         this.cycle = cycle;
     }
@@ -53,9 +58,9 @@ public class SingleplayerGameSession {
      * Cancels and clears the current cycle task if one is active.
      */
 
-    public void cancelCycleID(Function cancelFunction) {
+    public void cancelCycleID(@NotNull CycleRunnable cancelCycleRunnable) {
         if (cycle != null) {
-            cancelFunction.apply(cycle);
+            cancelCycleRunnable.run(cycle);
             cycle = null;
         }
     }
