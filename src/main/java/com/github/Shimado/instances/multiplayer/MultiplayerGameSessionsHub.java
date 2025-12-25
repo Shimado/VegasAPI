@@ -85,10 +85,10 @@ public class MultiplayerGameSessionsHub<S extends MultiplayerGameSession> {
     /**
      * Removes a player session from the hub using the player's UUID.
      *
-     * @param player the UUID of the player to remove
+     * @param player the player to remove
      */
 
-    public void removePlayerSession(@NotNull UUID player) {
+    public void removePlayerSession(@NotNull Player player) {
         playerSessions.remove(player);
     }
 

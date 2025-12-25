@@ -52,6 +52,7 @@ public abstract class MultiplayerGameSessionHandler<S extends MultiplayerGameSes
      *
      * @return the maximum players per session, or 0 if no limit is set
      */
+
     public int getMaxPlayers() {
         return maxPlayers;
     }
