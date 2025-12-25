@@ -10,6 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.Function;
 
 /**
  * A handler that manages multiple multiplayer game session hubs and their associated player sessions.
@@ -17,12 +18,12 @@ import java.util.UUID;
  * join operations, session allocation, and bulk operations across all active game sessions.
  */
 
-public class MultiplayerGameSessionHandler {
+public class MultiplayerGameSessionHandler<S extends MultiplayerGameSession, H extends MultiplayerGameSessionsHub> {
 
     private CasinoGameModeUtil casinoGameModeUtil = VegasAPI.getCasinoGameModeUtil();
 
     private int maxPlayers = 0;
-    private Map<UUID, MultiplayerGameSessionsHub> sessions = new HashMap<>();
+    private Map<UUID, H> sessions = new HashMap<>();
 
     /**
      * Constructs a new multiplayer game session handler with no maximum player limit.
@@ -64,7 +65,7 @@ public class MultiplayerGameSessionHandler {
      */
 
     @NotNull
-    public Map<UUID, MultiplayerGameSessionsHub> getSessions() {
+    public Map<UUID, H> getSessions() {
         return sessions;
     }
 
@@ -86,10 +87,10 @@ public class MultiplayerGameSessionHandler {
      */
 
     @NotNull
-    public MultiplayerGameSessionsHub joinPlayerToGame(@NotNull Player player, @NotNull MultiplayerGameSession gameSession) {
-        MultiplayerGameSessionsHub result = null;
+    public H joinPlayerToGame(@NotNull Player player, @NotNull S gameSession) {
+        H result = null;
 
-        for (MultiplayerGameSessionsHub session : sessions.values()) {
+        for (H session : sessions.values()) {
             if (session.isOpened() && session.getPlayerSessions().size() < maxPlayers) {
                 result = session;
                 break;
@@ -98,7 +99,7 @@ public class MultiplayerGameSessionHandler {
 
         if (result == null) {
             UUID sessionUUID = UUID.randomUUID();
-            result = sessions.computeIfAbsent(sessionUUID, k -> new MultiplayerGameSessionsHub(sessionUUID));
+            result = sessions.computeIfAbsent(sessionUUID, k -> (H) new MultiplayerGameSessionsHub(sessionUUID));
         }
 
         result.addPlayerSession(player, gameSession);
@@ -113,8 +114,8 @@ public class MultiplayerGameSessionHandler {
      */
 
     @Nullable
-    public MultiplayerGameSessionsHub getMultiplayerGameSessionHub(@NotNull Player player) {
-        for (MultiplayerGameSessionsHub session : sessions.values()) {
+    public H getMultiplayerGameSessionHub(@NotNull Player player) {
+        for (H session : sessions.values()) {
             if (session.getPlayerSessions().containsKey(player)) {
                 return session;
             }
@@ -130,10 +131,10 @@ public class MultiplayerGameSessionHandler {
      */
 
     @Nullable
-    public MultiplayerGameSession getGameSession(@NotNull Player player) {
-        for (MultiplayerGameSessionsHub session : sessions.values()) {
+    public S getGameSession(@NotNull Player player) {
+        for (H session : sessions.values()) {
             if (session.getPlayerSessions().containsKey(player)) {
-                return session.getPlayerSessions().get(player);
+                return (S) session.getPlayerSessions().get(player);
             }
         }
         return null;
@@ -165,9 +166,9 @@ public class MultiplayerGameSessionHandler {
      * @param casinoGameMode the casino game mode instance to use for reloading GUIs
      */
 
-    public void reload(@NotNull CasinoGameMode casinoGameMode) {
-        for (MultiplayerGameSessionsHub session : sessions.values()) {
-            session.cancelCycleID();
+    public void reload(@NotNull CasinoGameMode casinoGameMode, Function cancelFunction) {
+        for (H session : sessions.values()) {
+            session.cancelCycleID(cancelFunction);
             casinoGameModeUtil.reloadSingleplayerGameGUI(session.getPlayerSessions(), casinoGameMode);
             session.setPlayerSessions(new HashMap<>());
             session.setOpened(false);

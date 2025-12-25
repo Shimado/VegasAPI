@@ -4,9 +4,9 @@ import com.github.Shimado.instances.CasinoGameMode;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.shimado.basicutils.cycles.CycleTask;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
  * game state coordination.
  */
 
-public class MultiplayerGameSessionsHub {
+public class MultiplayerGameSessionsHub<S extends MultiplayerGameSession> {
 
     private UUID sessionUUID;
-    private Map<Player, MultiplayerGameSession> playerSessions = new HashMap<>();
-    private CycleTask cycle;
+    private Map<Player, S> playerSessions = new HashMap<>();
+    private Object cycle;
     private int timer = 0;
     private boolean opened = true;
     private boolean ended = false;
@@ -34,6 +34,7 @@ public class MultiplayerGameSessionsHub {
     public MultiplayerGameSessionsHub(@NotNull UUID sessionUUID) {
         this.sessionUUID = sessionUUID;
     }
+
 
     /**
      * Gets the unique identifier for this session hub.
@@ -53,11 +54,11 @@ public class MultiplayerGameSessionsHub {
      */
 
     @NotNull
-    public Map<Player, MultiplayerGameSession> getPlayerSessions() {
+    public Map<Player, S> getPlayerSessions() {
         return playerSessions;
     }
 
-    public void setPlayerSessions(@NotNull Map<Player, MultiplayerGameSession> playerSessions) {
+    public void setPlayerSessions(@NotNull Map<Player, S> playerSessions) {
         if (playerSessions == null) {
             this.playerSessions = new HashMap<>();
             return;
@@ -73,11 +74,11 @@ public class MultiplayerGameSessionsHub {
      */
 
     @Nullable
-    public MultiplayerGameSession getPlayerSession(@NotNull Player player) {
+    public S getPlayerSession(@NotNull Player player) {
         return playerSessions.get(player);
     }
 
-    public void addPlayerSession(@NotNull Player player, @NotNull MultiplayerGameSession gameSession) {
+    public void addPlayerSession(@NotNull Player player, @NotNull S gameSession) {
         playerSessions.put(player, gameSession);
     }
 
@@ -91,6 +92,7 @@ public class MultiplayerGameSessionsHub {
         playerSessions.remove(player);
     }
 
+
     /**
      * Gets all player sessions that have active bets and assigned slots.
      * A session is considered to have an active bet if it has a non-null bet
@@ -99,11 +101,12 @@ public class MultiplayerGameSessionsHub {
      */
 
     @NotNull
-    public Map<Player, MultiplayerGameSession> getPlayerSessionsWithActiveBetsAndSlots() {
+    public Map<Player, S> getPlayerSessionsWithActiveBetsAndSlots() {
         return playerSessions.entrySet().stream()
                 .filter(it -> it.getValue().getBet() != null && it.getValue().getBet().isAnyBet() && it.getValue().getBet().getSlot() != -1)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
+
 
     /**
      * Gets the total number of players in this session hub.
@@ -115,6 +118,7 @@ public class MultiplayerGameSessionsHub {
         return playerSessions.size();
     }
 
+
     /**
      * Gets the number of players who have active bets and assigned slots.
      *
@@ -124,6 +128,7 @@ public class MultiplayerGameSessionsHub {
     public int getPlayerAmountWithActiveBetsAndSlots() {
         return (int) playerSessions.values().stream().filter(it -> it.getBet() != null && it.getBet().isAnyBet() && it.getBet().getSlot() != -1).count();
     }
+
 
     /**
      * Gets a list of available (free) spot slots for the specified game mode.
@@ -146,6 +151,7 @@ public class MultiplayerGameSessionsHub {
         return emptySlots;
     }
 
+
     /**
      * Checks whether a cycle task is currently active for this session.
      *
@@ -156,7 +162,7 @@ public class MultiplayerGameSessionsHub {
         return cycle != null;
     }
 
-    public void setCycleID(@Nullable CycleTask cycle) {
+    public void setCycleID(@Nullable Object cycle) {
         this.cycle = cycle;
     }
 
@@ -164,12 +170,13 @@ public class MultiplayerGameSessionsHub {
      * Cancels and clears the current cycle task if one is active.
      */
 
-    public void cancelCycleID() {
+    public void cancelCycleID(Function cancelFunction) {
         if (cycle != null) {
-            cycle.cancelTask();
+            cancelFunction.apply(cycle);
             cycle = null;
         }
     }
+
 
     /**
      * Gets the current timer value for this session.
@@ -193,6 +200,7 @@ public class MultiplayerGameSessionsHub {
         timer--;
     }
 
+
     /**
      * Checks if the session hub is currently open for another players.
      * And any another player can join.
@@ -207,6 +215,7 @@ public class MultiplayerGameSessionsHub {
     public void setOpened(boolean opened) {
         this.opened = opened;
     }
+
 
     /**
      * Checks if the game has ended.
