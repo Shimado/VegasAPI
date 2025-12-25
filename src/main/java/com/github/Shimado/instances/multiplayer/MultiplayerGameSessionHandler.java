@@ -11,7 +11,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.function.Function;
 
 /**
  * A handler that manages multiple multiplayer game session hubs and their associated player sessions.
@@ -19,7 +18,7 @@ import java.util.function.Function;
  * join operations, session allocation, and bulk operations across all active game sessions.
  */
 
-public class MultiplayerGameSessionHandler<S extends MultiplayerGameSession, H extends MultiplayerGameSessionsHub> {
+public abstract class MultiplayerGameSessionHandler<S extends MultiplayerGameSession, H extends MultiplayerGameSessionsHub<S>> {
 
     private CasinoGameModeUtil casinoGameModeUtil = VegasAPI.getCasinoGameModeUtil();
 
@@ -43,6 +42,9 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSession, H e
     public MultiplayerGameSessionHandler(int maxPlayers) {
         this.maxPlayers = maxPlayers;
     }
+
+
+    protected abstract H createHub(@NotNull UUID sessionUUID);
 
     /**
      * Gets the maximum number of players allowed per session hub.
@@ -100,7 +102,7 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSession, H e
 
         if (result == null) {
             UUID sessionUUID = UUID.randomUUID();
-            result = sessions.computeIfAbsent(sessionUUID, k -> (H) new MultiplayerGameSessionsHub(sessionUUID));
+            result = sessions.computeIfAbsent(sessionUUID, k -> createHub(sessionUUID));
         }
 
         result.addPlayerSession(player, gameSession);
@@ -134,8 +136,9 @@ public class MultiplayerGameSessionHandler<S extends MultiplayerGameSession, H e
     @Nullable
     public S getGameSession(@NotNull Player player) {
         for (H session : sessions.values()) {
-            if (session.getPlayerSessions().containsKey(player)) {
-                return (S) session.getPlayerSessions().get(player);
+            S gameSession = session.getPlayerSessions().get(player);
+            if (gameSession != null) {
+                return gameSession;
             }
         }
         return null;
