@@ -47,7 +47,7 @@ public interface CardDeck {
      *
      * @param cardSuit   the suit of the card.
      * @param cardNumber the card number (2–14).
-     * @return the card item, or {@code null} if cardNumber < 2 or carNumber > 14
+     * @return the card item, or {@code null} if cardNumber less than 2 or carNumber more than 14
      */
 
     @Nullable

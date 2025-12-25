@@ -34,7 +34,6 @@ public interface EconomyUtil {
      *
      * @param playerUUID the unique identifier of the player
      * @param money      the amount of money to set
-     * @return the balance as a double
      */
 
     void setBalance(@Nullable UUID playerUUID, double money);

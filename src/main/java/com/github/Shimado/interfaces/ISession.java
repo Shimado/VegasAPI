@@ -167,7 +167,7 @@ public interface ISession<T extends CasinoGameMode & CasinoGameModeMethods> {
     /**
      * Goes back to the previous page and returns the new index.
      *
-     * @return the previous page number or -1 if it < 0
+     * @return the previous page number or -1 if it less than 0
      */
 
     int previousPage();
