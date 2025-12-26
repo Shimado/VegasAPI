@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -153,5 +154,32 @@ public interface DataStorage {
 
     @NotNull
     Queue<GameLog> getPlayerGameLogs(@Nullable UUID playerUUID);
+
+
+    /**
+     * Gets a complete list of objects sorted by the required criteria.
+     * @return the set of sorted objects
+     * **/
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsGamesPlayed();
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsVictories();
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsBonuses();
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsJackpots();
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsDefeats();
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsWonMoney();
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsLostMoney();
 
 }
