@@ -171,9 +171,11 @@ public class CasinoGameMode {
     private String leverItemRollingTitle;                                    // Rolling lever title
     private List<String> leverItemRollingLore = new ArrayList<>();           // Rolling lever lore
 
-    private BoomboxSong backgroundMusic;                                    // Background music in .nbs format from Boombox plugin
+    private BoomboxSong backgroundMusic;                                     // Background music in .nbs format from Boombox plugin
     private List<Integer> musicButtonSlots = new ArrayList<>();              // Slot occupied by the button
     private ItemStack musicButtonItemInactive;                               // Background music button (inactive)
+    private String musicButtonItemInactiveTitle;                             // Active background button title
+    private List<String> musicButtonItemInactiveLore = new ArrayList<>();    // Active background button lore
     private ItemStack musicButtonItemActive;                                 // Background music button (active)
     private String musicButtonItemActiveTitle;                               // Active background button title
     private List<String> musicButtonItemActiveLore = new ArrayList<>();      // Active background button lore
@@ -1757,6 +1759,29 @@ public class CasinoGameMode {
 
 
     @Nullable
+    public String getMusicButtonItemInactiveTitle() {
+        return musicButtonItemInactiveTitle;
+    }
+
+    public CasinoGameMode setMusicButtonItemInactiveTitle(@Nullable String musicButtonItemInactiveTitle) {
+        this.musicButtonItemInactiveTitle = musicButtonItemInactiveTitle;
+        return this;
+    }
+
+
+    @NotNull
+    public List<String> getMusicButtonItemInactiveLore() {
+        return musicButtonItemInactiveLore;
+    }
+
+    public CasinoGameMode setMusicButtonItemInactiveLore(@NotNull List<String> musicButtonItemInactiveLore) {
+        if(musicButtonItemInactiveLore == null) return this;
+        this.musicButtonItemInactiveLore = musicButtonItemInactiveLore;
+        return this;
+    }
+
+
+    @Nullable
     public ItemStack getMusicButtonItemActive() {
         return musicButtonItemActive;
     }
@@ -1996,8 +2021,11 @@ public class CasinoGameMode {
                 "Background-music:" + (backgroundMusic == null ? null : backgroundMusic.getID()) + ";" +
                 "Background-music-button-slots:" + musicButtonSlots.toString() + ";" +
                 "Background-music-button-item-inactive:" + musicButtonItemInactive + ";" +
+                "Background-music-button-item-inactive-title:" + musicButtonItemInactiveTitle + ";" +
+                "Background-music-button-item-inactive-lore:" + musicButtonItemInactiveLore + ";" +
                 "Background-music-button-item-active:" + musicButtonItemActive + ";" +
                 "Background-music-button-item-active-title:" + musicButtonItemActiveTitle + ";" +
+                "Background-music-button-item-active-lore:" + musicButtonItemActiveLore + ";" +
                 "Background-stats-button-slots:" + statsButtonSlots.toString() + ";" +
                 "Background-stats-button-item:" + statsButtonItem + ";" +
                 "Background-stats-button-lore:" + statsButtonLore + ";" +
