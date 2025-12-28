@@ -1,11 +1,9 @@
 package com.github.Shimado.interfaces;
 
-import com.github.Shimado.enums.TableAnimationType;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 /**
  * Represents a configurable casino table item definition.
@@ -26,6 +24,15 @@ public interface CasinoTableItem {
     String getID();
 
     /**
+     * Gets the {@link Material} representing the table block material.
+     *
+     * @return the table block material
+     */
+
+    @NotNull
+    Material getBlockMaterial();
+
+    /**
      * Gets the {@link ItemStack} representing the table item.
      *
      * @return the table item
@@ -41,15 +48,6 @@ public interface CasinoTableItem {
      */
 
     int getCustomModelData();
-
-    /**
-     * Sets the custom model data value for the item.
-     *
-     * @param customModelData the model data
-     * @return this instance for chaining
-     */
-
-    CasinoTableItem setCustomModelData(int customModelData);
 
     /**
      * Gets the game mode name associated with this table item.
@@ -79,15 +77,6 @@ public interface CasinoTableItem {
     double getYOffset();
 
     /**
-     * Sets the Y-axis offset of the table decoration armor stands.
-     *
-     * @param yOffset the vertical offset
-     * @return this instance for chaining
-     */
-
-    CasinoTableItem setYOffset(double yOffset);
-
-    /**
      * Gets the carpet item used in the table's decoration.
      *
      * @return the carpet item, or {@code null} if not set
@@ -95,15 +84,6 @@ public interface CasinoTableItem {
 
     @Nullable
     ItemStack getCarpet();
-
-    /**
-     * Sets the carpet item used in the table's decoration.
-     *
-     * @param carpet the carpet item
-     * @return this instance for chaining
-     */
-
-    CasinoTableItem setCarpet(@Nullable ItemStack carpet);
 
     /**
      * Gets the concrete item used in the table's decoration.
@@ -115,15 +95,6 @@ public interface CasinoTableItem {
     ItemStack getConcrete();
 
     /**
-     * Sets the concrete item used in the table's decoration.
-     *
-     * @param concrete the concrete item
-     * @return this instance for chaining
-     */
-
-    CasinoTableItem setConcrete(@Nullable ItemStack concrete);
-
-    /**
      * Gets the glass item used in the table's decoration.
      *
      * @return the glass item, or {@code null} if not set
@@ -133,15 +104,6 @@ public interface CasinoTableItem {
     ItemStack getGlass();
 
     /**
-     * Sets the glass item used in the table's decoration.
-     *
-     * @param glass the glass item
-     * @return this instance for chaining
-     */
-
-    CasinoTableItem setGlass(@Nullable ItemStack glass);
-
-    /**
      * Gets the animation configuration for the casino table.
      *
      * @return the table animation, or {@code null} if not set
@@ -149,30 +111,6 @@ public interface CasinoTableItem {
 
     @Nullable
     TableAnimation getTableAnimation();
-
-    /**
-     * Sets the animation configuration for the table.
-     *
-     * @param tableAnimationType the animation type
-     * @param itemsToDrop        the list of items to drop during animation
-     * @param spawnChance        the chance for an item to spawn
-     * @param itemsAmount        the amount of items to drop
-     * @return this instance for chaining
-     */
-
-    CasinoTableItem setTableAnimation(@Nullable TableAnimationType tableAnimationType, @Nullable List<ItemStack> itemsToDrop, double spawnChance, int itemsAmount);
-
-    /**
-     * Sets the animation configuration for the table using string-based values.
-     *
-     * @param tableAnimationTypeString the animation type as a string
-     * @param itemsToDropString        the list of items to drop as string identifiers
-     * @param spawnChance              the chance for an item to spawn
-     * @param itemsAmount              the amount of items to drop
-     * @return this instance for chaining
-     */
-
-    CasinoTableItem setTableAnimation(@Nullable String tableAnimationTypeString, @Nullable List<String> itemsToDropString, double spawnChance, int itemsAmount);
 
 }
 
