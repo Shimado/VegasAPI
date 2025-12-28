@@ -184,6 +184,8 @@ public class CasinoGameMode {
     private List<String> statsButtonLore = new ArrayList<>();                // This game mode statistics item lore with all placeholders
     private Map<Integer, ItemStack> emptySlots = new HashMap<>();            // Background slot items
 
+    private int gameOnline = 0;                                              // This is how many players are currently playing this mode
+
 
     public CasinoGameMode(@NotNull String modeName){
         this.modeName = modeName;
@@ -1862,6 +1864,23 @@ public class CasinoGameMode {
     }
 
 
+    public int getGameOnline(){
+        return gameOnline;
+    }
+
+    public void setGameOnline(int gameOnline){
+        this.gameOnline = gameOnline;
+    }
+
+    public void addGameOnline(){
+        gameOnline++;
+    }
+
+    public void removeGameOnline(){
+        gameOnline = Math.max(0, gameOnline - 1);
+    }
+
+
     @Override
     public String toString() {
         return
@@ -2029,7 +2048,10 @@ public class CasinoGameMode {
                 "Background-stats-button-slots:" + statsButtonSlots.toString() + ";" +
                 "Background-stats-button-item:" + statsButtonItem + ";" +
                 "Background-stats-button-lore:" + statsButtonLore + ";" +
-                "Background-empty-slots:" + emptySlots;
+                "Background-empty-slots:" + emptySlots + ";" +
+
+                "Online:" + gameOnline;
+
     }
 }
 
