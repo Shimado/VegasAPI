@@ -60,15 +60,6 @@ public interface CasinoTableItem {
     String getGame();
 
     /**
-     * Sets the game mode name associated with this table item.
-     *
-     * @param game the game mode name. Or "ALL"
-     * @return this instance for chaining
-     */
-
-    CasinoTableItem setGame(@Nullable String game);
-
-    /**
      * Gets the Y-axis offset of the table decoration armor stands.
      *
      * @return the vertical offset
