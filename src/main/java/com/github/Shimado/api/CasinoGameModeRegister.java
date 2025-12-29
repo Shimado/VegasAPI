@@ -40,17 +40,6 @@ public interface CasinoGameModeRegister<T extends CasinoGameMode & CasinoGameMod
 
 
     /**
-     * Gets a game mode by the slot assigned to it in its own game GUI.
-     *
-     * @param slot the slot index in the one-game GUI
-     * @return the game mode instance, or {@code null} if not found
-     */
-
-    @Nullable
-    T getGameBySlotInOneGameGUI(int slot);
-
-
-    /**
      * Gets all registered game modes.
      *
      * @return a map of game names to their corresponding game mode instances
