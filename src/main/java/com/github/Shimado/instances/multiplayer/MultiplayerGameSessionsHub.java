@@ -21,7 +21,7 @@ public class MultiplayerGameSessionsHub<S extends MultiplayerGameSession> {
     private UUID sessionUUID;
     private Map<Player, S> playerSessions = new HashMap<>();
     private Object cycle;
-    private int timer = 0;
+    private int time = 0;
     private boolean opened = true;
     private boolean ended = false;
 
@@ -189,20 +189,20 @@ public class MultiplayerGameSessionsHub<S extends MultiplayerGameSession> {
      * @return the current timer value
      */
 
-    public int getTimer() {
-        return timer;
+    public int getTime() {
+        return time;
     }
 
-    public void setTimer(int timer) {
-        this.timer = timer;
+    public void setTime(int time) {
+        this.time = time;
     }
 
     public void addTime() {
-        timer++;
+        time++;
     }
 
     public void removeTime() {
-        timer--;
+        time--;
     }
 
 

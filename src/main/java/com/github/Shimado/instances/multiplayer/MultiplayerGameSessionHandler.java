@@ -179,5 +179,6 @@ public abstract class MultiplayerGameSessionHandler<S extends MultiplayerGameSes
             session.setOpened(false);
         }
         sessions.clear();
+        casinoGameMode.setGameOnline(0);
     }
 }
