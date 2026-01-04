@@ -170,6 +170,9 @@ public class CasinoGameMode {
     private ItemStack leverItemRolling;                                      // Rolling lever (when player has placed a bet and started the game)
     private String leverItemRollingTitle;                                    // Rolling lever title
     private List<String> leverItemRollingLore = new ArrayList<>();           // Rolling lever lore
+    private ItemStack leverItemEnd;                                          // Finished lever (when the game is over)
+    private String leverItemEndTitle;                                        // Finished lever title
+    private List<String> leverItemEndLore = new ArrayList<>();               // Finished lever lore
 
     private BoomboxSong backgroundMusic;                                     // Background music in .nbs format from Boombox plugin
     private List<Integer> musicButtonSlots = new ArrayList<>();              // Slot occupied by the button
@@ -1727,6 +1730,40 @@ public class CasinoGameMode {
 
 
     @Nullable
+    public ItemStack getLeverItemEnd() {
+        return leverItemEnd;
+    }
+
+    public CasinoGameMode setLeverItemEnd(@Nullable ItemStack leverItemEnd) {
+        this.leverItemEnd = leverItemEnd;
+        return this;
+    }
+
+
+    @Nullable
+    public String getLeverItemEndTitle() {
+        return leverItemEndTitle;
+    }
+
+    public CasinoGameMode setLeverItemEndTitle(@Nullable String leverItemEndTitle) {
+        this.leverItemEndTitle = leverItemEndTitle;
+        return this;
+    }
+
+
+    @NotNull
+    public List<String> getLeverItemEndLore() {
+        return leverItemEndLore;
+    }
+
+    public CasinoGameMode setLeverItemEndLore(@NotNull List<String> leverItemEndLore) {
+        if(leverItemEndLore == null) return this;
+        this.leverItemEndLore = leverItemEndLore;
+        return this;
+    }
+
+
+    @Nullable
     public BoomboxSong getBackgroundMusic() {
         return backgroundMusic;
     }
@@ -2036,6 +2073,9 @@ public class CasinoGameMode {
                 "Lever-item-rolling:" + leverItemRolling + ";" +
                 "Lever-item-rolling-title:" + leverItemRollingTitle + ";" +
                 "Lever-item-rolling-lore:" + leverItemRollingLore.toString() + ";" +
+                "Lever-item-end:" + leverItemEnd + ";" +
+                "Lever-item-end-title:" + leverItemEndTitle + ";" +
+                "Lever-item-end-lore:" + leverItemEndLore.toString() + ";" +
 
                 "Background-music:" + (backgroundMusic == null ? null : backgroundMusic.getID()) + ";" +
                 "Background-music-button-slots:" + musicButtonSlots.toString() + ";" +
