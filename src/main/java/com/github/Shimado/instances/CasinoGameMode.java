@@ -1,6 +1,8 @@
 package com.github.Shimado.instances;
 
 import com.github.Shimado.interfaces.BoomboxSong;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -27,23 +29,30 @@ public class CasinoGameMode {
     private ItemStack iconItem;                                              // The icon in the main GUI
 
     private double jackpotChance = 0.0;                                      // Chance to hit the jackpot if you win
-    private double jackpotBoost = 1.0;                                       // Jackpot Payout Boost
+    private double jackpotBoost = 1.0;                                       // Defeat Payout Boost
     private double chargedPercentage = 0.0;                                  // Percentage of the bet that goes to the jackpot
+    private BarColor jackpotBossBarColor = BarColor.GREEN;                   // Bar color
+    private BarStyle jackpotBossBarStyle = BarStyle.SOLID;                   // Bar style
+    private int jackpotBossBarDuration = 0;                                  // Duration in ticks
+    private boolean sendJackpotBossBar = false;                              // Sends bossbar title to player
+    private String jackpotBossBarTitle;                                      // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private boolean sendJackpotBossBarToAll = false;                         // Sends bossbar title to all players
+    private String jackpotBossBarTitleToAll;                                 // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendJackpotTitle = false;                                // Sends jackpot title
-    private String jackpotTitle;                                             // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
-    private String jackpotSubtitle;                                          // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String jackpotTitle;                                             // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String jackpotSubtitle;                                          // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendJackpotTitleToAll = false;                           // Sends jackpot title to all players
-    private String jackpotTitleToAll;                                        // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
-    private String jackpotSubtitleToAll;                                     // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String jackpotTitleToAll;                                        // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String jackpotSubtitleToAll;                                     // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private int jackpotTitleFadeIn = 0;                                      // Title fade in time in ticks
     private int jackpotTitleStay = 0;                                        // Title stay time in ticks
     private int jackpotTitleFadeOut = 0;                                     // Title fade out time in ticks
     private boolean sendJackpotMessage = true;                               // Sends jackpot message to the player
-    private String jackpotMessage;                                           // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String jackpotMessage;                                           // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendJackpotMessageToAll = false;                         // Sends jackpot message to all players
-    private String jackpotMessageToAll;                                      // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String jackpotMessageToAll;                                      // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendJackpotMessageToDiscord = false;                     // Sends jackpot message to Discord
-    private String jackpotMessageToDiscord;                                  // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String jackpotMessageToDiscord;                                  // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean useOnlyJackpotCommands = false;                          // Whether only commands will be executed
     private List<String> jackpotCommandsToDispatch = new ArrayList<>();      // Commands executed when player hits jackpot [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpJackpotURL;                                           // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
@@ -52,52 +61,73 @@ public class CasinoGameMode {
     private BoomboxSong jackpotMusic;                                        // Music in .nbs format from Boombox plugin
 
     private boolean ifWinMultiplierLessThanOneConsiderAsBonus = true;        // If the winning odds are less than 1.0, the bonus scenario will be processed instead of the win scenario. If there is no bonus scenario, the win scenario will be processed.
+    private BarColor victoryBossBarColor = BarColor.GREEN;                   // Bar color
+    private BarStyle victoryBossBarStyle = BarStyle.SOLID;                   // Bar style
+    private int victoryBossBarDuration = 0;                                  // Duration in ticks
+    private boolean sendVictoryBossBar = false;                              // Sends bossbar title to player
+    private String victoryBossBarTitle;                                      // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private boolean sendVictoryBossBarToAll = false;                         // Sends bossbar title to all players
+    private String victoryBossBarTitleToAll;                                 // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendVictoryTitle = false;                                // Sends victory title
-    private String victoryTitle;                                             // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
-    private String victorySubtitle;                                          // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String victoryTitle;                                             // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String victorySubtitle;                                          // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendVictoryTitleToAll = false;                           // Sends victory title to all players
-    private String victoryTitleToAll;                                        // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
-    private String victorySubtitleToAll;                                     // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String victoryTitleToAll;                                        // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String victorySubtitleToAll;                                     // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private int victoryTitleFadeIn = 0;                                      // Title fade in time in ticks
     private int victoryTitleStay = 0;                                        // Title stay time in ticks
     private int victoryTitleFadeOut = 0;                                     // Title fade out time in ticks
     private boolean spawnVictoryFireWorks = false;                           // Whether to spawn fireworks on victory
     private boolean sendVictoryMessage = false;                              // Sends victory message to the winning player
-    private String victoryMessage;                                           // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String victoryMessage;                                           // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendVictoryMessageToAll = false;                         // Sends victory message to all players
-    private String victoryMessageToAll;                                      // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String victoryMessageToAll;                                      // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendVictoryMessageToDiscord = false;                     // Sends victory message to Discord
-    private String victoryMessageToDiscord;                                  // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String victoryMessageToDiscord;                                  // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean useOnlyVictoryCommands = false;                          // Whether only commands will be executed
     private List<String> victoryCommandsToDispatch = new ArrayList<>();      // Commands executed when player wins [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpVictoryURL;                                           // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpVictoryMethod = "POST";                               // Request method
     private Map<String, Object> httpVictoryHeaders = new HashMap<>();        // Request headers
-    private BoomboxSong victoryMusic;                                       // Music in .nbs format from Boombox plugin
+    private BoomboxSong victoryMusic;                                        // Music in .nbs format from Boombox plugin
 
     private boolean sendBonusTitle = false;                                  // Sends bonus title
-    private String bonusTitle;                                               // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
-    private String bonusSubtitle;                                            // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private BarColor bonusBossBarColor = BarColor.GREEN;                     // Bar color
+    private BarStyle bonusBossBarStyle = BarStyle.SOLID;                     // Bar style
+    private int bonusBossBarDuration = 0;                                    // Duration in ticks
+    private boolean sendBonusBossBar = false;                                // Sends bossbar title to player
+    private String bonusBossBarTitle;                                        // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private boolean sendBonusBossBarToAll = false;                           // Sends bossbar title to all players
+    private String bonusBossBarTitleToAll;                                   // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String bonusTitle;                                               // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String bonusSubtitle;                                            // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendBonusTitleToAll = false;                             // Sends bonus title to all players
-    private String bonusTitleToAll;                                          // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
-    private String bonusSubtitleToAll;                                       // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String bonusTitleToAll;                                          // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String bonusSubtitleToAll;                                       // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private int bonusTitleFadeIn = 0;                                        // Title fade in time in ticks
     private int bonusTitleStay = 0;                                          // Title stay time in ticks
     private int bonusTitleFadeOut = 0;                                       // Title fade out time in ticks
     private boolean sendBonusMessage = false;                                // Sends bonus message to the losing player
-    private String bonusMessage;                                             // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String bonusMessage;                                             // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendBonusMessageToAll = false;                           // Sends bonus message to all players
-    private String bonusMessageToAll;                                        // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String bonusMessageToAll;                                        // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendBonusMessageToDiscord = false;                       // Sends bonus message to Discord
-    private String bonusMessageToDiscord;                                    // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%]
+    private String bonusMessageToDiscord;                                    // Message itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean useOnlyBonusCommands = false;                            // Whether only commands will be executed
     private List<String> bonusCommandsToDispatch = new ArrayList<>();        // Commands executed when player wins [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpBonusURL;                                             // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String httpBonusMethod = "POST";                                 // Request method
     private Map<String, Object> httpBonusHeaders = new HashMap<>();          // Request headers
-    private BoomboxSong bonusMusic;                                         // Music in .nbs format from Boombox plugin
+    private BoomboxSong bonusMusic;                                          // Music in .nbs format from Boombox plugin
 
     private boolean sendDefeatTitle = false;                                 // Sends defeat title
+    private BarColor defeatBossBarColor = BarColor.GREEN;                    // Bar color
+    private BarStyle defeatBossBarStyle = BarStyle.SOLID;                    // Bar style
+    private int defeatBossBarDuration = 0;                                   // Duration in ticks
+    private boolean sendDefeatBossBar = false;                               // Sends bossbar title to player
+    private String defeatBossBarTitle;                                       // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private boolean sendDefeatBossBarToAll = false;                          // Sends bossbar title to all players
+    private String defeatBossBarTitleToAll;                                  // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String defeatTitle;                                              // Title itself [Placeholders: %player%, %mode%, %bet_price%]
     private String defeatSubtitle;                                           // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%]
     private boolean sendDefeatTitleToAll = false;                            // Sends defeat title to all players
@@ -117,9 +147,16 @@ public class CasinoGameMode {
     private String httpDefeatURL;                                            // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
     private String httpDefeatMethod = "POST";                                // Request method
     private Map<String, Object> httpDefeatHeaders = new HashMap<>();         // Request headers
-    private BoomboxSong defeatMusic;                                        // Music in .nbs format from Boombox plugin
+    private BoomboxSong defeatMusic;                                         // Music in .nbs format from Boombox plugin
 
     private boolean sendDrawTitle = false;                                   // Sends draw title
+    private BarColor drawBossBarColor = BarColor.GREEN;                      // Bar color
+    private BarStyle drawBossBarStyle = BarStyle.SOLID;                      // Bar style
+    private int drawBossBarDuration = 0;                                     // Duration in ticks
+    private boolean sendDrawBossBar = false;                                 // Sends bossbar title to player
+    private String drawBossBarTitle;                                         // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private boolean sendDrawBossBarToAll = false;                            // Sends bossbar title to all players
+    private String drawBossBarTitleToAll;                                    // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private String drawTitle;                                                // Title itself [Placeholders: %player%, %mode%, %bet_price%]
     private String drawSubtitle;                                             // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%]
     private boolean sendDrawTitleToAll = false;                              // Sends draw title to all players
@@ -139,7 +176,7 @@ public class CasinoGameMode {
     private String httpDrawURL;                                              // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
     private String httpDrawMethod = "POST";                                  // Request method
     private Map<String, Object> httpDrawHeaders = new HashMap<>();           // Request headers
-    private BoomboxSong drawMusic;                                          // Music in .nbs format from Boombox plugin
+    private BoomboxSong drawMusic;                                           // Music in .nbs format from Boombox plugin
 
     private double minBetPrice = 0.01;                                       // Minimum bet amount in currency
     private int minBetPriceInItems = 1;                                      // Minimum number of items a player can bet
@@ -296,6 +333,80 @@ public class CasinoGameMode {
 
     public CasinoGameMode setChargedPercentage(double chargedPercentage) {
         this.chargedPercentage = chargedPercentage;
+        return this;
+    }
+
+
+    @Nullable
+    public BarColor getJackpotBossBarColor() {
+        return jackpotBossBarColor;
+    }
+
+    public CasinoGameMode setJackpotBossBarColor(@Nullable BarColor jackpotBossBarColor) {
+        this.jackpotBossBarColor = jackpotBossBarColor;
+        return this;
+    }
+
+
+    @Nullable
+    public BarStyle getJackpotBossBarStyle() {
+        return jackpotBossBarStyle;
+    }
+
+    public CasinoGameMode setJackpotBossBarStyle(@Nullable BarStyle jackpotBossBarStyle) {
+        this.jackpotBossBarStyle = jackpotBossBarStyle;
+        return this;
+    }
+
+
+    public int getJackpotBossBarDuration() {
+        return jackpotBossBarDuration;
+    }
+
+    public CasinoGameMode setJackpotBossBarDuration(int jackpotBossBarDuration) {
+        this.jackpotBossBarDuration = jackpotBossBarDuration;
+        return this;
+    }
+
+
+    public boolean isSendJackpotBossBar() {
+        return sendJackpotBossBar;
+    }
+
+    public CasinoGameMode setSendJackpotBossBar(boolean sendJackpotBossBar) {
+        this.sendJackpotBossBar = sendJackpotBossBar;
+        return this;
+    }
+
+
+    @Nullable
+    public String getJackpotBossBarTitle() {
+        return jackpotBossBarTitle;
+    }
+
+    public CasinoGameMode setJackpotBossBarTitle(@Nullable String jackpotBossBarTitle) {
+        this.jackpotBossBarTitle = jackpotBossBarTitle;
+        return this;
+    }
+
+
+    public boolean isSendJackpotBossBarToAll() {
+        return sendJackpotBossBarToAll;
+    }
+
+    public CasinoGameMode setSendJackpotBossBarToAll(boolean sendJackpotBossBarToAll) {
+        this.sendJackpotBossBarToAll = sendJackpotBossBarToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getJackpotBossBarTitleToAll() {
+        return jackpotBossBarTitleToAll;
+    }
+
+    public CasinoGameMode setJackpotBossBarTitleToAll(@Nullable String jackpotBossBarTitleToAll) {
+        this.jackpotBossBarTitleToAll = jackpotBossBarTitleToAll;
         return this;
     }
 
@@ -530,6 +641,80 @@ public class CasinoGameMode {
 
     public CasinoGameMode setIfWinMultiplierLessThanOneConsiderAsBonus(boolean ifWinMultiplierLessThanOneConsiderAsBonus) {
         this.ifWinMultiplierLessThanOneConsiderAsBonus = ifWinMultiplierLessThanOneConsiderAsBonus;
+        return this;
+    }
+
+
+    @Nullable
+    public BarColor getVictoryBossBarColor() {
+        return victoryBossBarColor;
+    }
+
+    public CasinoGameMode setVictoryBossBarColor(@Nullable BarColor victoryBossBarColor) {
+        this.victoryBossBarColor = victoryBossBarColor;
+        return this;
+    }
+
+
+    @Nullable
+    public BarStyle getVictoryBossBarStyle() {
+        return victoryBossBarStyle;
+    }
+
+    public CasinoGameMode setVictoryBossBarStyle(@Nullable BarStyle victoryBossBarStyle) {
+        this.victoryBossBarStyle = victoryBossBarStyle;
+        return this;
+    }
+
+
+    public int getVictoryBossBarDuration() {
+        return victoryBossBarDuration;
+    }
+
+    public CasinoGameMode setVictoryBossBarDuration(int victoryBossBarDuration) {
+        this.victoryBossBarDuration = victoryBossBarDuration;
+        return this;
+    }
+
+
+    public boolean isSendVictoryBossBar() {
+        return sendVictoryBossBar;
+    }
+
+    public CasinoGameMode setSendVictoryBossBar(boolean sendVictoryBossBar) {
+        this.sendVictoryBossBar = sendVictoryBossBar;
+        return this;
+    }
+
+
+    @Nullable
+    public String getVictoryBossBarTitle() {
+        return victoryBossBarTitle;
+    }
+
+    public CasinoGameMode setVictoryBossBarTitle(@Nullable String victoryBossBarTitle) {
+        this.victoryBossBarTitle = victoryBossBarTitle;
+        return this;
+    }
+
+
+    public boolean isSendVictoryBossBarToAll() {
+        return sendVictoryBossBarToAll;
+    }
+
+    public CasinoGameMode setSendVictoryBossBarToAll(boolean sendVictoryBossBarToAll) {
+        this.sendVictoryBossBarToAll = sendVictoryBossBarToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getVictoryBossBarTitleToAll() {
+        return victoryBossBarTitleToAll;
+    }
+
+    public CasinoGameMode setVictoryBossBarTitleToAll(@Nullable String victoryBossBarTitleToAll) {
+        this.victoryBossBarTitleToAll = victoryBossBarTitleToAll;
         return this;
     }
 
@@ -779,6 +964,80 @@ public class CasinoGameMode {
 
 
     @Nullable
+    public BarColor getBonusBossBarColor() {
+        return bonusBossBarColor;
+    }
+
+    public CasinoGameMode setBonusBossBarColor(@Nullable BarColor bonusBossBarColor) {
+        this.bonusBossBarColor = bonusBossBarColor;
+        return this;
+    }
+
+
+    @Nullable
+    public BarStyle getBonusBossBarStyle() {
+        return bonusBossBarStyle;
+    }
+
+    public CasinoGameMode setBonusBossBarStyle(@Nullable BarStyle bonusBossBarStyle) {
+        this.bonusBossBarStyle = bonusBossBarStyle;
+        return this;
+    }
+
+
+    public int getBonusBossBarDuration() {
+        return bonusBossBarDuration;
+    }
+
+    public CasinoGameMode setBonusBossBarDuration(int bonusBossBarDuration) {
+        this.bonusBossBarDuration = bonusBossBarDuration;
+        return this;
+    }
+
+
+    public boolean isSendBonusBossBar() {
+        return sendBonusBossBar;
+    }
+
+    public CasinoGameMode setSendBonusBossBar(boolean sendBonusBossBar) {
+        this.sendBonusBossBar = sendBonusBossBar;
+        return this;
+    }
+
+
+    @Nullable
+    public String getBonusBossBarTitle() {
+        return bonusBossBarTitle;
+    }
+
+    public CasinoGameMode setBonusBossBarTitle(@Nullable String bonusBossBarTitle) {
+        this.bonusBossBarTitle = bonusBossBarTitle;
+        return this;
+    }
+
+
+    public boolean isSendBonusBossBarToAll() {
+        return sendBonusBossBarToAll;
+    }
+
+    public CasinoGameMode setSendBonusBossBarToAll(boolean sendBonusBossBarToAll) {
+        this.sendBonusBossBarToAll = sendBonusBossBarToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getBonusBossBarTitleToAll() {
+        return bonusBossBarTitleToAll;
+    }
+
+    public CasinoGameMode setBonusBossBarTitleToAll(@Nullable String bonusBossBarTitleToAll) {
+        this.bonusBossBarTitleToAll = bonusBossBarTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
     public String getBonusTitle() {
         return bonusTitle;
     }
@@ -1003,6 +1262,80 @@ public class CasinoGameMode {
 
 
     @Nullable
+    public BarColor getDefeatBossBarColor() {
+        return defeatBossBarColor;
+    }
+
+    public CasinoGameMode setDefeatBossBarColor(@Nullable BarColor defeatBossBarColor) {
+        this.defeatBossBarColor = defeatBossBarColor;
+        return this;
+    }
+
+
+    @Nullable
+    public BarStyle getDefeatBossBarStyle() {
+        return defeatBossBarStyle;
+    }
+
+    public CasinoGameMode setDefeatBossBarStyle(@Nullable BarStyle defeatBossBarStyle) {
+        this.defeatBossBarStyle = defeatBossBarStyle;
+        return this;
+    }
+
+
+    public int getDefeatBossBarDuration() {
+        return defeatBossBarDuration;
+    }
+
+    public CasinoGameMode setDefeatBossBarDuration(int defeatBossBarDuration) {
+        this.defeatBossBarDuration = defeatBossBarDuration;
+        return this;
+    }
+
+
+    public boolean isSendDefeatBossBar() {
+        return sendDefeatBossBar;
+    }
+
+    public CasinoGameMode setSendDefeatBossBar(boolean sendDefeatBossBar) {
+        this.sendDefeatBossBar = sendDefeatBossBar;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDefeatBossBarTitle() {
+        return defeatBossBarTitle;
+    }
+
+    public CasinoGameMode setDefeatBossBarTitle(@Nullable String defeatBossBarTitle) {
+        this.defeatBossBarTitle = defeatBossBarTitle;
+        return this;
+    }
+
+
+    public boolean isSendDefeatBossBarToAll() {
+        return sendDefeatBossBarToAll;
+    }
+
+    public CasinoGameMode setSendDefeatBossBarToAll(boolean sendDefeatBossBarToAll) {
+        this.sendDefeatBossBarToAll = sendDefeatBossBarToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDefeatBossBarTitleToAll() {
+        return defeatBossBarTitleToAll;
+    }
+
+    public CasinoGameMode setDefeatBossBarTitleToAll(@Nullable String defeatBossBarTitleToAll) {
+        this.defeatBossBarTitleToAll = defeatBossBarTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
     public String getDefeatTitle() {
         return defeatTitle;
     }
@@ -1213,6 +1546,80 @@ public class CasinoGameMode {
 
     public CasinoGameMode setDefeatMusic(@Nullable BoomboxSong defeatMusic) {
         this.defeatMusic = defeatMusic;
+        return this;
+    }
+
+
+    @Nullable
+    public BarColor getDrawBossBarColor() {
+        return drawBossBarColor;
+    }
+
+    public CasinoGameMode setDrawBossBarColor(@Nullable BarColor drawBossBarColor) {
+        this.drawBossBarColor = drawBossBarColor;
+        return this;
+    }
+
+
+    @Nullable
+    public BarStyle getDrawBossBarStyle() {
+        return drawBossBarStyle;
+    }
+
+    public CasinoGameMode setDrawBossBarStyle(@Nullable BarStyle drawBossBarStyle) {
+        this.drawBossBarStyle = drawBossBarStyle;
+        return this;
+    }
+
+
+    public int getDrawBossBarDuration() {
+        return drawBossBarDuration;
+    }
+
+    public CasinoGameMode setDrawBossBarDuration(int drawBossBarDuration) {
+        this.drawBossBarDuration = drawBossBarDuration;
+        return this;
+    }
+
+
+    public boolean isSendDrawBossBar() {
+        return sendDrawBossBar;
+    }
+
+    public CasinoGameMode setSendDrawBossBar(boolean sendDrawBossBar) {
+        this.sendDrawBossBar = sendDrawBossBar;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawBossBarTitle() {
+        return drawBossBarTitle;
+    }
+
+    public CasinoGameMode setDrawBossBarTitle(@Nullable String drawBossBarTitle) {
+        this.drawBossBarTitle = drawBossBarTitle;
+        return this;
+    }
+
+
+    public boolean isSendDrawBossBarToAll() {
+        return sendDrawBossBarToAll;
+    }
+
+    public CasinoGameMode setSendDrawBossBarToAll(boolean sendDrawBossBarToAll) {
+        this.sendDrawBossBarToAll = sendDrawBossBarToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawBossBarTitleToAll() {
+        return drawBossBarTitleToAll;
+    }
+
+    public CasinoGameMode setDrawBossBarTitleToAll(@Nullable String drawBossBarTitleToAll) {
+        this.drawBossBarTitleToAll = drawBossBarTitleToAll;
         return this;
     }
 
@@ -1917,182 +2324,6 @@ public class CasinoGameMode {
         gameOnline = Math.max(0, gameOnline - 1);
     }
 
-
-    @Override
-    public String toString() {
-        return
-                "Mode-name: " + modeName + ";" +
-                "GUI-size: " + guiSize + ";" +
-                "GUI-title: " + guiTitle + ";" +
-                "Permission: " + permission + ";" +
-                "GUI-icon-slots: " + slotsInGUI.toString() + ";" +
-                "GUI-one-game-icon-slots: " + slotsInOneGameGUI.toString() + ";" +
-                "Icon-item: " + iconItem + ";" +
-
-                "Jackpot-chance: " + jackpotChance + ";" +
-                "Jackpot-boost:" + jackpotBoost + ";" +
-                "Jackpot-charged-percentage:" + chargedPercentage + ";" +
-                "Jackpot-send-title:" + sendJackpotTitle + ";" +
-                "Jackpot-title:" + jackpotTitle + ";" +
-                "Jackpot-subtitle:" + jackpotSubtitle + ";" +
-                "Jackpot-send-title-to-all:" + sendJackpotTitleToAll + ";" +
-                "Jackpot-title-to-all:" + jackpotTitleToAll + ";" +
-                "Jackpot-subtitle-to-all:" + jackpotSubtitleToAll + ";" +
-                "Jackpot-title-fade-in:" + jackpotTitleFadeIn + ";" +
-                "Jackpot-title-stay:" + jackpotTitleStay + ";" +
-                "Jackpot-title-fade-out:" + jackpotTitleFadeOut + ";" +
-                "Jackpot-send-message:" + sendJackpotMessage + ";" +
-                "Jackpot-message:" + jackpotMessage + ";" +
-                "Jackpot-send-message-to-all:" + sendJackpotMessageToAll + ";" +
-                "Jackpot-message-to-all:" + jackpotMessageToAll + ";" +
-                "Jackpot-send-message-to-discord:" + sendJackpotMessageToDiscord + ";" +
-                "Jackpot-message-to-discord:" + jackpotMessageToDiscord + ";" +
-                "Jackpot-only-commands:" + useOnlyJackpotCommands + ";" +
-                "Jackpot-commands-list:" + jackpotCommandsToDispatch.toString() + ";" +
-                "Jackpot-http-url:" + httpJackpotURL + ";" +
-                "Jackpot-http-method:" + httpJackpotMethod + ";" +
-                "Jackpot-http-headers:" + httpJackpotHeaders.toString() + ";" +
-                "Jackpot-music:" + (jackpotMusic == null ? null : jackpotMusic.getID()) + ";" +
-
-                "Victory-if-multiplier-less-than-one-consider-as-bonus:" + ifWinMultiplierLessThanOneConsiderAsBonus + ";" +
-                "Victory-send-title:" + sendVictoryTitle + ";" +
-                "Victory-title:" + victoryTitle + ";" +
-                "Victory-subtitle:" + victorySubtitle + ";" +
-                "Victory-send-title-to-all:" + sendVictoryTitleToAll + ";" +
-                "Victory-title-to-all:" + victoryTitleToAll + ";" +
-                "Victory-subtitle-to-all:" + victorySubtitleToAll + ";" +
-                "Victory-title-fade-in:" + victoryTitleFadeIn + ";" +
-                "Victory-title-stay:" + victoryTitleStay + ";" +
-                "Victory-title-fade-out:" + victoryTitleFadeOut + ";" +
-                "Victory-fireworks:" + spawnVictoryFireWorks + ";" +
-                "Victory-send-message:" + sendVictoryMessage + ";" +
-                "Victory-message:" + victoryMessage + ";" +
-                "Victory-send-message-to-all:" + sendVictoryMessageToAll + ";" +
-                "Victory-message-to-all:" + victoryMessageToAll + ";" +
-                "Victory-send-message-to-discord:" + sendVictoryMessageToDiscord + ";" +
-                "Victory-message-to-discord:" + victoryMessageToDiscord + ";" +
-                "Victory-only-commands:" + useOnlyVictoryCommands + ";" +
-                "Victory-commands-list:" + victoryCommandsToDispatch.toString() + ";" +
-                "Victory-http-url:" + httpVictoryURL + ";" +
-                "Victory-http-method:" + httpVictoryMethod + ";" +
-                "Victory-http-headers:" + httpVictoryHeaders.toString() + ";" +
-                "Victory-music:" + (victoryMusic == null ? null : victoryMusic.getID()) + ";" +
-
-                "Bonus-send-title:" + sendBonusTitle + ";" +
-                "Bonus-title:" + bonusTitle + ";" +
-                "Bonus-subtitle:" + bonusSubtitle + ";" +
-                "Bonus-send-title-to-all:" + sendBonusTitleToAll + ";" +
-                "Bonus-title-to-all:" + bonusTitleToAll + ";" +
-                "Bonus-subtitle-to-all:" + bonusSubtitleToAll + ";" +
-                "Bonus-title-fade-in:" + bonusTitleFadeIn + ";" +
-                "Bonus-title-stay:" + bonusTitleStay + ";" +
-                "Bonus-title-fade-out:" + bonusTitleFadeOut + ";" +
-                "Bonus-send-message:" + sendBonusMessage + ";" +
-                "Bonus-message:" + bonusMessage + ";" +
-                "Bonus-send-message-to-all:" + sendBonusMessageToAll + ";" +
-                "Bonus-message-to-all:" + bonusMessageToAll + ";" +
-                "Bonus-send-message-to-discord:" + sendBonusMessageToDiscord + ";" +
-                "Bonus-message-to-discord:" + bonusMessageToDiscord + ";" +
-                "Bonus-only-commands:" + useOnlyBonusCommands + ";" +
-                "Bonus-commands-list:" + bonusCommandsToDispatch.toString() + ";" +
-                "Bonus-http-url:" + httpBonusURL + ";" +
-                "Bonus-http-method:" + httpBonusMethod + ";" +
-                "Bonus-http-headers:" + httpBonusHeaders.toString() + ";" +
-                "Bonus-music:" + (bonusMusic == null ? null : bonusMusic.getID()) + ";" +
-
-                "Defeat-send-title:" + sendDefeatTitle + ";" +
-                "Defeat-title:" + defeatTitle + ";" +
-                "Defeat-subtitle:" + defeatSubtitle + ";" +
-                "Defeat-send-title-to-all:" + sendDefeatTitleToAll + ";" +
-                "Defeat-title-to-all:" + defeatTitleToAll + ";" +
-                "Defeat-subtitle-to-all:" + defeatSubtitleToAll + ";" +
-                "Defeat-title-fade-in:" + defeatTitleFadeIn + ";" +
-                "Defeat-title-stay:" + defeatTitleStay + ";" +
-                "Defeat-title-fade-out:" + defeatTitleFadeOut + ";" +
-                "Defeat-send-message:" + sendDefeatMessage + ";" +
-                "Defeat-message:" + defeatMessage + ";" +
-                "Defeat-send-message-to-all:" + sendDefeatMessageToAll + ";" +
-                "Defeat-message-to-all:" + defeatMessageToAll + ";" +
-                "Defeat-send-message-to-discord:" + sendDefeatMessageToDiscord + ";" +
-                "Defeat-message-to-discord:" + defeatMessageToDiscord + ";" +
-                "Defeat-only-commands:" + useOnlyDefeatCommands + ";" +
-                "Defeat-commands-list:" + defeatCommandsToDispatch.toString() + ";" +
-                "Defeat-http-url:" + httpDefeatURL + ";" +
-                "Defeat-http-method:" + httpDefeatMethod + ";" +
-                "Defeat-http-headers:" + httpDefeatHeaders.toString() + ";" +
-                "Defeat-music:" + (defeatMusic == null ? null : defeatMusic.getID()) + ";" +
-
-                "Draw-send-title:" + sendDrawTitle + ";" +
-                "Draw-title:" + drawTitle + ";" +
-                "Draw-subtitle:" + drawSubtitle + ";" +
-                "Draw-send-title-to-all:" + sendDrawTitleToAll + ";" +
-                "Draw-title-to-all:" + drawTitleToAll + ";" +
-                "Draw-subtitle-to-all:" + drawSubtitleToAll + ";" +
-                "Draw-title-fade-in:" + drawTitleFadeIn + ";" +
-                "Draw-title-stay:" + drawTitleStay + ";" +
-                "Draw-title-fade-out:" + drawTitleFadeOut + ";" +
-                "Draw-send-message:" + sendDrawMessage + ";" +
-                "Draw-message:" + drawMessage + ";" +
-                "Draw-send-message-to-all:" + sendDrawMessageToAll + ";" +
-                "Draw-message-to-all:" + drawMessageToAll + ";" +
-                "Draw-send-message-to-discord:" + sendDrawMessageToDiscord + ";" +
-                "Draw-message-to-discord:" + drawMessageToDiscord + ";" +
-                "Draw-only-commands:" + useOnlyDrawCommands + ";" +
-                "Draw-commands-list:" + drawCommandsToDispatch.toString() + ";" +
-                "Draw-http-url:" + httpDrawURL + ";" +
-                "Draw-http-method:" + httpDrawMethod + ";" +
-                "Draw-http-headers:" + httpDrawHeaders.toString() + ";" +
-                "Draw-music:" + (drawMusic == null ? null : drawMusic.getID()) + ";" +
-
-                "Bet-min-price:" + minBetPrice + ";" +
-                "Bet-min-items-amount:" + minBetPriceInItems + ";" +
-                "Bet-max-price:" + maxBetPrice + ";" +
-                "Bet-max-items-amount:" + maxBetPriceInItems + ";" +
-                "Bet-max-price-difference:" + maxDiffBetweenBets + ";" +
-
-                "Money-bet-slots:" + moneyBetSlots.toString() + ";" +
-                "Money-bet-item:" + moneyBetItem + ";" +
-                "Money-bet-item-title:" + moneyBetItemTitle + ";" +
-                "Money-bet-item-lore:" + moneyBetItemLore.toString() + ";" +
-                "Money-bet-default:" + moneyBetDefault + ";" +
-                "Money-bet-change-per-click:" + moneyBetChangePerClick + ";" +
-                "Money-bet-big-change-per-click:" + moneyBetChangePerClickBig + ";" +
-
-                "Spot-slots:" + spotSlots.toString() + ";" +
-                "Spot-item:" + spotItem + ";" +
-                "Spot-item-title:" + spotItemTitle + ";" +
-                "Spot-item-lore:" + spotItemLore.toString() + ";" +
-
-                "Lever-slots:" + leverSlots.toString() + ";" +
-                "Lever-item-inactive:" + leverItemInactive + ";" +
-                "Lever-item-inactive-title:" + leverItemInactiveTitle + ";" +
-                "Lever-item-inactive-lore:" + leverItemInactiveLore.toString() + ";" +
-                "Lever-item-active:" + leverItemActive + ";" +
-                "Lever-item-active-title:" + leverItemActiveTitle + ";" +
-                "Lever-item-active-lore:" + leverItemActiveLore.toString() + ";" +
-                "Lever-item-rolling:" + leverItemRolling + ";" +
-                "Lever-item-rolling-title:" + leverItemRollingTitle + ";" +
-                "Lever-item-rolling-lore:" + leverItemRollingLore.toString() + ";" +
-                "Lever-item-end:" + leverItemEnd + ";" +
-                "Lever-item-end-title:" + leverItemEndTitle + ";" +
-                "Lever-item-end-lore:" + leverItemEndLore.toString() + ";" +
-
-                "Background-music:" + (backgroundMusic == null ? null : backgroundMusic.getID()) + ";" +
-                "Background-music-button-slots:" + musicButtonSlots.toString() + ";" +
-                "Background-music-button-item-inactive:" + musicButtonItemInactive + ";" +
-                "Background-music-button-item-inactive-title:" + musicButtonItemInactiveTitle + ";" +
-                "Background-music-button-item-inactive-lore:" + musicButtonItemInactiveLore + ";" +
-                "Background-music-button-item-active:" + musicButtonItemActive + ";" +
-                "Background-music-button-item-active-title:" + musicButtonItemActiveTitle + ";" +
-                "Background-music-button-item-active-lore:" + musicButtonItemActiveLore + ";" +
-                "Background-stats-button-slots:" + statsButtonSlots.toString() + ";" +
-                "Background-stats-button-item:" + statsButtonItem + ";" +
-                "Background-stats-button-lore:" + statsButtonLore + ";" +
-                "Background-empty-slots:" + emptySlots + ";" +
-
-                "Online:" + gameOnline;
-
-    }
 }
 
 
