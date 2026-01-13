@@ -131,6 +131,18 @@ public class MultiplayerGameSessionsHub<S extends MultiplayerGameSession> {
 
 
     /**
+     * Gets the list of another players in the session.
+     *
+     * @return the list of the players in the session except the player
+     * **/
+
+    @NotNull
+    public Set<Player> getAnotherPlayers(@NotNull Player player){
+        return playerSessions.keySet().stream().filter(it -> !it.getUniqueId().equals(player.getUniqueId())).collect(Collectors.toSet());
+    }
+
+
+    /**
      * Gets a list of available (free) spot slots for the specified game mode.
      * This method calculates which slots from the game mode's available slots
      * are not currently occupied by any player.

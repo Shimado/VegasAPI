@@ -16,6 +16,7 @@ public class MultiplayerGameSession {
     private Inventory inv;
     private CasinoBet bet;
     private ItemStack visualBetItem;
+    private ItemStack visualHeadItem;
 
 
     /**
@@ -64,6 +65,23 @@ public class MultiplayerGameSession {
 
     public void setVisualBetItem(@Nullable ItemStack visualBetItem) {
         this.visualBetItem = visualBetItem;
+    }
+
+
+    /**
+     * Gets the visual representation of the head item (Optional).
+     * This is typically an ItemStack that visually represents the player's head in the GUI.
+     *
+     * @return the visual head item, or null if not set
+     */
+
+    @Nullable
+    public ItemStack getVisualHeadItem() {
+        return visualHeadItem;
+    }
+
+    public void setVisualHeadItem(@Nullable ItemStack visualHeadItem) {
+        this.visualHeadItem = visualHeadItem;
     }
 
 }
