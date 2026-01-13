@@ -137,8 +137,8 @@ public class MultiplayerGameSessionsHub<S extends MultiplayerGameSession> {
      * **/
 
     @NotNull
-    public Set<Player> getAnotherPlayers(@NotNull Player player){
-        return playerSessions.keySet().stream().filter(it -> !it.getUniqueId().equals(player.getUniqueId())).collect(Collectors.toSet());
+    public List<Player> getAnotherPlayers(@NotNull Player player){
+        return playerSessions.keySet().stream().filter(it -> !it.getUniqueId().equals(player.getUniqueId())).collect(Collectors.toList());
     }
 
 
