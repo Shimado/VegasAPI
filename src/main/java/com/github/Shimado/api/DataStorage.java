@@ -171,6 +171,9 @@ public interface DataStorage {
     Set<PlayerStats> getSortedStatsBonuses();
 
     @NotNull
+    Set<PlayerStats> getSortedStatsDraws();
+
+    @NotNull
     Set<PlayerStats> getSortedStatsJackpots();
 
     @NotNull
