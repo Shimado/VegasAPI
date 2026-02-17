@@ -95,7 +95,7 @@ public abstract class MultiplayerGameSessionHandler<S extends MultiplayerGameSes
         H result = null;
 
         for (H session : sessions.values()) {
-            if (session.isOpened() && session.getPlayerSessions().size() < maxPlayers) {
+            if (session.isOpened() && session.getPlayerAmountWithActiveBetsAndSlots() < maxPlayers) {
                 result = session;
                 break;
             }

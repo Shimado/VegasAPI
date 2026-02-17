@@ -65,7 +65,7 @@ public interface CardDeck {
     /**
      * Returns a random card, namely an array of suit and card number.
      *
-     * @return the array, where [0] - CardSuit, [1] - cardNumber
+     * @return the array, where [0] - CardSuit, [1] - cardNumber, [2] - ItemStack
      */
 
     @NotNull
@@ -75,7 +75,7 @@ public interface CardDeck {
      * Returns a random card, namely an array of suit and card number.
      * And removes it from the deck's card list.
      *
-     * @return the array, where [0] - CardSuit, [1] - cardNumber
+     * @return the array, where [0] - CardSuit, [1] - cardNumber, [2] - ItemStack
      */
 
     @NotNull
