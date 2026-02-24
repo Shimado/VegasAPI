@@ -6,7 +6,7 @@
 
     <groupId>com.github.Shimado</groupId>
     <artifactId>VegasAPI</artifactId>
-    <version>1.1.37</version>
+    <version>1.1.38</version>
 
     <name>VegasAPI</name>
     <description>API for minecraft plugin Vegas</description>
@@ -21,22 +21,8 @@
         <maven.source.plugin.version>3.3.0</maven.source.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
         <maven.javadoc.plugin.version>3.11.2</maven.javadoc.plugin.version>
+        <maven.shade.plugin.version>3.5.3</maven.shade.plugin.version>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>sonatype-oss</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
 
     <build>
         <plugins>
@@ -49,6 +35,32 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                 </configuration>
+            </plugin>
+
+            <!-- Чтобы бумбокс не крашился на 1.12.2 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven.shade.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <relocations>
+                                <relocation>
+                                    <!-- Исходный проблемный пакет -->
+                                    <pattern>com.github.Shimado.utils</pattern>
+                                    <!-- Новый уникальный путь внутри VegasAPI -->
+                                    <shadedPattern>org.shimado.vegas.boombox.utils</shadedPattern>
+                                </relocation>
+                            </relocations>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- Плагин ресурсов должен быть добавлен -->
@@ -93,6 +105,21 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>sonatype-oss</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
