@@ -1,6 +1,6 @@
 package com.github.Shimado.vegasapi.instances;
 
-import com.github.Shimado.boomboxapi.interfaces.BoomboxSong;
+import com.github.Shimado.boomboxapi.instances.BoomboxSong;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.inventory.ItemStack;
