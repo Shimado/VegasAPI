@@ -6,7 +6,7 @@
 
     <groupId>com.github.Shimado</groupId>
     <artifactId>VegasAPI</artifactId>
-    <version>1.1.42</version>
+    <version>1.1.43</version>
 
     <name>VegasAPI</name>
     <description>API for minecraft plugin Vegas</description>
@@ -21,7 +21,6 @@
         <maven.source.plugin.version>3.3.0</maven.source.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
         <maven.javadoc.plugin.version>3.11.2</maven.javadoc.plugin.version>
-        <maven.shade.plugin.version>3.5.3</maven.shade.plugin.version>
     </properties>
 
     <build>
@@ -35,30 +34,6 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                 </configuration>
-            </plugin>
-
-            <!-- Чтобы бумбокс не крашился на 1.12.2. Меняет пути -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>${maven.shade.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <relocations>
-                                <relocation>
-                                    <pattern>com.github.Shimado.boomboxapi</pattern>
-                                    <shadedPattern>org.shimado.vegas.boomboxapi</shadedPattern>
-                                </relocation>
-                            </relocations>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
 
             <!-- Плагин ресурсов должен быть добавлен -->
@@ -130,7 +105,7 @@
             <groupId>com.github.Shimado</groupId>
             <artifactId>BoomBoxAPI</artifactId>
             <version>v1.1.15</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
