@@ -6,7 +6,7 @@
 
     <groupId>com.github.Shimado</groupId>
     <artifactId>VegasAPI</artifactId>
-    <version>1.1.40</version>
+    <version>1.1.41</version>
 
     <name>VegasAPI</name>
     <description>API for minecraft plugin Vegas</description>
@@ -37,7 +37,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Чтобы бумбокс не крашился на 1.12.2 -->
+            <!-- Чтобы бумбокс не крашился на 1.12.2. Меняет пути -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -52,10 +52,16 @@
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <relocations>
                                 <relocation>
-                                    <!-- Исходный проблемный пакет -->
-                                    <pattern>com.github.Shimado</pattern>
-                                    <!-- Новый уникальный путь внутри VegasAPI -->
-                                    <shadedPattern>org.shimado.shaded.boombox.</shadedPattern>
+                                    <pattern>com.github.Shimado.enums.ERecords</pattern>
+                                    <shadedPattern>org.shimado.vegas.boombox.enums.ERecords</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com.github.Shimado.nbs</pattern>
+                                    <shadedPattern>org.shimado.vegas.boombox.nbs</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com.github.Shimado.utils.NbsConverter</pattern>
+                                    <shadedPattern>org.shimado.vegas.boombox.utils.NbsConverter</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
