@@ -1,11 +1,12 @@
 package com.github.Shimado.vegasapi.events;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-public class ChipsSaleEvent extends Event {
+public class ChipsSaleEvent extends Event implements Cancellable {
 
     private static final HandlerList HANDLERS = new HandlerList();
 
@@ -13,6 +14,7 @@ public class ChipsSaleEvent extends Event {
     private final double chipsPrice;
     private final double chipsPriceWithTax;
     private final int chipsAmount;
+    private boolean cancelled;
 
     public ChipsSaleEvent(@NotNull Player player, double chipsPrice, double chipsPriceWithTax, int chipsAmount) {
         this.player = player;
@@ -39,6 +41,7 @@ public class ChipsSaleEvent extends Event {
         return chipsAmount;
     }
 
+
     @Override
     @NotNull
     public HandlerList getHandlers() {
@@ -48,5 +51,16 @@ public class ChipsSaleEvent extends Event {
     @NotNull
     public static HandlerList getHandlerList() {
         return HANDLERS;
+    }
+
+
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    @Override
+    public void setCancelled(boolean cancel) {
+        this.cancelled = cancel;
     }
 }
