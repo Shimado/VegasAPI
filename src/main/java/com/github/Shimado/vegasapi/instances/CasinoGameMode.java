@@ -192,6 +192,14 @@ public class CasinoGameMode {
     private double moneyBetChangePerClick = 1000.0;                          // Bet change amount per click
     private double moneyBetChangePerClickBig = 10000.0;                      // Bet change amount per big click
 
+    private List<Integer> moneyDecreaseBetSlots = new ArrayList<>();         // Money bet slots
+    private ItemStack moneyDecreaseBetItem;                                  // Bet change button
+    private String moneyDecreaseBetItemTitle;                                // Bet change button title
+    private List<String> moneyDecreaseBetItemLore = new ArrayList<>();       // Bet change button lore
+    private double moneyDecreaseBetDefault = 1000.0;                         // Default bet amount
+    private double moneyDecreaseBetChangePerClick = 1000.0;                  // Bet change amount per click
+    private double moneyDecreaseBetChangePerClickBig = 10000.0;              // Bet change amount per big click
+
     private List<Integer> spotSlots = new ArrayList<>();                     // Betting spots
     private ItemStack spotItem;                                              // Betting spot icon
     private String spotItemTitle;                                            // Betting spot title
@@ -1971,6 +1979,82 @@ public class CasinoGameMode {
 
     public CasinoGameMode setMoneyBetChangePerClickBig(double moneyBetChangePerClickBig) {
         this.moneyBetChangePerClickBig = moneyBetChangePerClickBig;
+        return this;
+    }
+
+
+    @NotNull
+    public List<Integer> getMoneyDecreaseBetSlots() {
+        return moneyDecreaseBetSlots;
+    }
+
+    public CasinoGameMode setMoneyDecreaseBetSlots(@NotNull List<Integer> moneyDecreaseBetSlots) {
+        if(moneyDecreaseBetSlots == null) return this;
+        this.moneyDecreaseBetSlots = moneyDecreaseBetSlots;
+        return this;
+    }
+
+
+    @Nullable
+    public ItemStack getMoneyDecreaseBetItem() {
+        return moneyDecreaseBetItem;
+    }
+
+    public CasinoGameMode setMoneyDecreaseBetItem(@Nullable ItemStack moneyDecreaseBetItem) {
+        this.moneyDecreaseBetItem = moneyDecreaseBetItem;
+        return this;
+    }
+
+
+    @Nullable
+    public String getMoneyDecreaseBetItemTitle() {
+        return moneyDecreaseBetItemTitle;
+    }
+
+    public CasinoGameMode setMoneyDecreaseBetItemTitle(@Nullable String moneyDecreaseBetItemTitle) {
+        this.moneyDecreaseBetItemTitle = moneyDecreaseBetItemTitle;
+        return this;
+    }
+
+
+    @NotNull
+    public List<String> getMoneyDecreaseBetItemLore() {
+        return moneyDecreaseBetItemLore;
+    }
+
+    public CasinoGameMode setMoneyDecreaseBetItemLore(@NotNull List<String> moneyDecreaseBetItemLore) {
+        if(moneyDecreaseBetItemLore == null) return this;
+        this.moneyDecreaseBetItemLore = moneyDecreaseBetItemLore;
+        return this;
+    }
+
+
+    public double getMoneyDecreaseBetDefault() {
+        return moneyDecreaseBetDefault;
+    }
+
+    public CasinoGameMode setMoneyDecreaseBetDefault(double moneyDecreaseBetDefault) {
+        this.moneyDecreaseBetDefault = moneyDecreaseBetDefault;
+        return this;
+    }
+
+
+    public double getMoneyDecreaseBetChangePerClick() {
+        return moneyDecreaseBetChangePerClick;
+    }
+
+    public CasinoGameMode setMoneyDecreaseBetChangePerClick(double moneyDecreaseBetChangePerClick) {
+        this.moneyDecreaseBetChangePerClick = moneyDecreaseBetChangePerClick;
+        return this;
+    }
+
+
+    public double getMoneyDecreaseBetChangePerClickBig() {
+        return moneyDecreaseBetChangePerClickBig;
+    }
+
+    public CasinoGameMode setMoneyDecreaseBetChangePerClickBig(double moneyDecreaseBetChangePerClickBig) {
+        this.moneyDecreaseBetChangePerClickBig = moneyDecreaseBetChangePerClickBig;
         return this;
     }
 
