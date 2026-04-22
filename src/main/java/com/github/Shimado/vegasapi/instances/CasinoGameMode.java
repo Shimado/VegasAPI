@@ -196,9 +196,6 @@ public class CasinoGameMode {
     private ItemStack moneyDecreaseBetItem;                                  // Bet change button
     private String moneyDecreaseBetItemTitle;                                // Bet change button title
     private List<String> moneyDecreaseBetItemLore = new ArrayList<>();       // Bet change button lore
-    private double moneyDecreaseBetDefault = 1000.0;                         // Default bet amount
-    private double moneyDecreaseBetChangePerClick = 1000.0;                  // Bet change amount per click
-    private double moneyDecreaseBetChangePerClickBig = 10000.0;              // Bet change amount per big click
 
     private List<Integer> spotSlots = new ArrayList<>();                     // Betting spots
     private ItemStack spotItem;                                              // Betting spot icon
@@ -2025,36 +2022,6 @@ public class CasinoGameMode {
     public CasinoGameMode setMoneyDecreaseBetItemLore(@NotNull List<String> moneyDecreaseBetItemLore) {
         if(moneyDecreaseBetItemLore == null) return this;
         this.moneyDecreaseBetItemLore = moneyDecreaseBetItemLore;
-        return this;
-    }
-
-
-    public double getMoneyDecreaseBetDefault() {
-        return moneyDecreaseBetDefault;
-    }
-
-    public CasinoGameMode setMoneyDecreaseBetDefault(double moneyDecreaseBetDefault) {
-        this.moneyDecreaseBetDefault = moneyDecreaseBetDefault;
-        return this;
-    }
-
-
-    public double getMoneyDecreaseBetChangePerClick() {
-        return moneyDecreaseBetChangePerClick;
-    }
-
-    public CasinoGameMode setMoneyDecreaseBetChangePerClick(double moneyDecreaseBetChangePerClick) {
-        this.moneyDecreaseBetChangePerClick = moneyDecreaseBetChangePerClick;
-        return this;
-    }
-
-
-    public double getMoneyDecreaseBetChangePerClickBig() {
-        return moneyDecreaseBetChangePerClickBig;
-    }
-
-    public CasinoGameMode setMoneyDecreaseBetChangePerClickBig(double moneyDecreaseBetChangePerClickBig) {
-        this.moneyDecreaseBetChangePerClickBig = moneyDecreaseBetChangePerClickBig;
         return this;
     }
 
