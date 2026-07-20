@@ -47,7 +47,8 @@ public interface CasinoTableItem {
      * @return the custom model data
      */
 
-    int getCustomModelData();
+    @NotNull
+    Object getCustomModelData();
 
     /**
      * Gets the game mode name associated with this table item.
