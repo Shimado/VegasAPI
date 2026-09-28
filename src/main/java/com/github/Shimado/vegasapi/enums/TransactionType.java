@@ -4,6 +4,7 @@ public enum TransactionType {
 
     ADD_BALANCE,
     SET_BALANCE,
-    REMOVE_BALANCE
+    REMOVE_BALANCE,
+    IS_ENOUGH_BALANCE
 
 }
